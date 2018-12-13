@@ -7,6 +7,9 @@
 1）配置python3
 2）配置串行通讯库pyserial
 3）配置midi读写库python-midi
+4）配置音乐文件剪裁库pydub
+5）配置音乐文件播放库
+
 
 ## 配置python3
 可以直接去官网下载，当然也可以使用anaconda。这个不需要说明
@@ -26,3 +29,21 @@ pip install git+https://github.com/vishnubob/python-midi@feature/python3
 #如果是python2，可以直接考虑运用GitHub上的提示进行。
 ```
 reference：[Issuses](https://github.com/vishnubob/python-midi/issues/139)
+## pydub
+使用这个函数库来实现对音乐的剪裁处理。安装前需要先安装python对mp3的支持库FFmpeg
+### 安装FFmpeg
+详细安装指导请参阅FFmpeg安装[官网](https://github.com/adaptlearning/adapt_authoring/wiki/Installing-FFmpeg)
+上面提供了对所有的系统如何安装该依赖的指南。Ubuntu系统由于太简单就不说了。下面给出如何在Windows系统下如何安装
+该程序的意见：
+[参考](https://www.wikihow.com/Install-FFmpeg-on-Windows)
+1. 下载[压缩包](https://ffmpeg.zeranoe.com/builds/win64/static/ffmpeg-20181211-876ed08-win64-static.zip)
+网速有点慢请耐心等待
+2.设置环境变量
+### 安装pydub
+```
+pip install pudub
+```
+## 安装pygame
+```
+pip install pygame
+```
