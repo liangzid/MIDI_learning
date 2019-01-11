@@ -1,0 +1,6636 @@
+; .\Text1.SRC generated from: Text1.c
+; COMPILER INVOKED BY:
+;        C:\Keil_v5\C51\BIN\C51.EXE Text1.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND SRC(.\Text1.SRC)
+
+$NOMOD51
+
+NAME	TEXT1
+
+P0	DATA	080H
+P1	DATA	090H
+P2	DATA	0A0H
+P3	DATA	0B0H
+T0	BIT	0B0H.4
+AC	BIT	0D0H.6
+T1	BIT	0B0H.5
+EA	BIT	0A8H.7
+IE	DATA	0A8H
+RD	BIT	0B0H.7
+ES	BIT	0A8H.4
+IP	DATA	0B8H
+RI	BIT	098H.0
+INT0	BIT	0B0H.2
+CY	BIT	0D0H.7
+TI	BIT	098H.1
+INT1	BIT	0B0H.3
+PS	BIT	0B8H.4
+SP	DATA	081H
+OV	BIT	0D0H.2
+WR	BIT	0B0H.6
+P10	BIT	090H.0
+SBUF	DATA	099H
+PCON	DATA	087H
+P11	BIT	090H.1
+P13	BIT	090H.3
+SCON	DATA	098H
+TMOD	DATA	089H
+TCON	DATA	088H
+dat	BIT	090H.4
+clk	BIT	090H.7
+IE0	BIT	088H.1
+IE1	BIT	088H.3
+AUXR	DATA	08EH
+B	DATA	0F0H
+ACC	DATA	0E0H
+ET0	BIT	0A8H.1
+key	BIT	090H.5
+ET1	BIT	0A8H.3
+TF0	BIT	088H.5
+TF1	BIT	088H.7
+RB8	BIT	098H.2
+TH0	DATA	08CH
+EX0	BIT	0A8H.0
+IT0	BIT	088H.0
+TH1	DATA	08DH
+TB8	BIT	098H.3
+EX1	BIT	0A8H.2
+IT1	BIT	088H.2
+P	BIT	0D0H.0
+SM0	BIT	098H.7
+TL0	DATA	08AH
+SM1	BIT	098H.6
+TL1	DATA	08BH
+SM2	BIT	098H.5
+PT0	BIT	0B8H.1
+PT1	BIT	0B8H.3
+RS0	BIT	0D0H.3
+cs	BIT	090H.6
+TR0	BIT	088H.4
+RS1	BIT	0D0H.4
+TR1	BIT	088H.6
+PX0	BIT	0B8H.0
+PX1	BIT	0B8H.2
+DPH	DATA	083H
+DPL	DATA	082H
+REN	BIT	098H.4
+RXD	BIT	0B0H.0
+TXD	BIT	0B0H.1
+F0	BIT	0D0H.5
+WS2812	BIT	090H.2
+PSW	DATA	0D0H
+?PR?_HAL_Delay?TEXT1 SEGMENT CODE 
+?PR?ReSet?TEXT1      SEGMENT CODE 
+?XD?ReSet?TEXT1      SEGMENT XDATA OVERLAYABLE 
+?PR?Delay50us?TEXT1  SEGMENT CODE 
+?PR?RGB_Set_Up?TEXT1 SEGMENT CODE 
+?PR?RGB_Set_Down?TEXT1                   SEGMENT CODE 
+?PR?_Send_2811_24bits?TEXT1              SEGMENT CODE 
+?PR?RGB_Rst?TEXT1    SEGMENT CODE 
+?PR?_Set_Colour?TEXT1                    SEGMENT CODE 
+?PR?_SetPointColour?TEXT1                SEGMENT CODE 
+?XD?_SetPointColour?TEXT1                SEGMENT XDATA OVERLAYABLE 
+?PR?_SetPixelColor?TEXT1                 SEGMENT CODE 
+?XD?_SetPixelColor?TEXT1                 SEGMENT XDATA OVERLAYABLE 
+?PR?_SentPixelColor?TEXT1                SEGMENT CODE 
+?XD?_SentPixelColor?TEXT1                SEGMENT XDATA OVERLAYABLE 
+?PR?PixelUpdate?TEXT1                    SEGMENT CODE 
+?PR?_Color?TEXT1     SEGMENT CODE 
+?XD?_Color?TEXT1     SEGMENT XDATA OVERLAYABLE 
+?PR?_Wheel?TEXT1     SEGMENT CODE 
+?XD?_Wheel?TEXT1     SEGMENT XDATA OVERLAYABLE 
+?PR?_rainbow?TEXT1   SEGMENT CODE 
+?XD?_rainbow?TEXT1   SEGMENT XDATA OVERLAYABLE 
+?PR?_rainbowCycle?TEXT1                  SEGMENT CODE 
+?XD?_rainbowCycle?TEXT1                  SEGMENT XDATA OVERLAYABLE 
+?PR?_theaterChase?TEXT1                  SEGMENT CODE 
+?XD?_theaterChase?TEXT1                  SEGMENT XDATA OVERLAYABLE 
+?PR?_theaterChaseRainbow?TEXT1           SEGMENT CODE 
+?XD?_theaterChaseRainbow?TEXT1           SEGMENT XDATA OVERLAYABLE 
+?PR?_colorWipe?TEXT1 SEGMENT CODE 
+?XD?_colorWipe?TEXT1 SEGMENT XDATA OVERLAYABLE 
+?PR?zidingyi1?TEXT1  SEGMENT CODE 
+?PR?_LightEffect8?TEXT1                  SEGMENT CODE 
+?XD?_LightEffect8?TEXT1                  SEGMENT XDATA OVERLAYABLE 
+?PR?LightEffect1_1?TEXT1                 SEGMENT CODE 
+?XD?LightEffect1_1?TEXT1                 SEGMENT XDATA OVERLAYABLE 
+?PR?LightEffect1_8?TEXT1                 SEGMENT CODE 
+?XD?LightEffect1_8?TEXT1                 SEGMENT XDATA OVERLAYABLE 
+?PR?LightEffect8_1?TEXT1                 SEGMENT CODE 
+?XD?LightEffect8_1?TEXT1                 SEGMENT XDATA OVERLAYABLE 
+?PR?LightEffect8_8?TEXT1                 SEGMENT CODE 
+?XD?LightEffect8_8?TEXT1                 SEGMENT XDATA OVERLAYABLE 
+?PR?GetNum?TEXT1     SEGMENT CODE 
+?PR?LightSunShineWithMusic?TEXT1         SEGMENT CODE 
+?XD?LightSunShineWithMusic?TEXT1         SEGMENT XDATA OVERLAYABLE 
+?PR?_LightEffect2?TEXT1                  SEGMENT CODE 
+?XD?_LightEffect2?TEXT1                  SEGMENT XDATA OVERLAYABLE 
+?PR?_LightEffect1?TEXT1                  SEGMENT CODE 
+?XD?_LightEffect1?TEXT1                  SEGMENT XDATA OVERLAYABLE 
+?PR?_LightControll?TEXT1                 SEGMENT CODE 
+?PR?long_delay?TEXT1 SEGMENT CODE 
+?PR?short_delay?TEXT1                    SEGMENT CODE 
+?PR?_SendByteTo7279?TEXT1                SEGMENT CODE 
+?PR?ReceivedByteToMCU?TEXT1              SEGMENT CODE 
+?PR?key_read?TEXT1   SEGMENT CODE 
+?PR?_delayms?TEXT1   SEGMENT CODE 
+?PR?_SendByte2Computer?TEXT1             SEGMENT CODE 
+?PR?_SendBytes2Computer?TEXT1            SEGMENT CODE 
+?PR?UartInit?TEXT1   SEGMENT CODE 
+?PR?_Delay1ms?TEXT1  SEGMENT CODE 
+?PR?main?TEXT1       SEGMENT CODE 
+?XD?main?TEXT1       SEGMENT XDATA OVERLAYABLE 
+?PR?_ws2812asm?TEXT1 SEGMENT CODE 
+?XD?_ws2812asm?TEXT1 SEGMENT XDATA OVERLAYABLE 
+?C_INITSEG           SEGMENT CODE 
+?CO?TEXT1            SEGMENT CODE 
+?XD?TEXT1            SEGMENT XDATA 
+	EXTRN	CODE (rand)
+	EXTRN	CODE (?C?LSTKXDATA)
+	EXTRN	CODE (?C?ULSHR)
+	EXTRN	CODE (?C?LSHL)
+	EXTRN	CODE (?C?LSTXDATA)
+	EXTRN	CODE (?C?UIDIV)
+	EXTRN	CODE (?C?SIDIV)
+	EXTRN	CODE (?C?FCASTC)
+	EXTRN	CODE (?C?FCASTI)
+	EXTRN	CODE (?C?FPDIV)
+	EXTRN	CODE (?C?CASTF)
+	EXTRN	CODE (?C?COPY)
+	EXTRN	CODE (?C?CLDPTR)
+	EXTRN	CODE (?C_STARTUP)
+	PUBLIC	buf_R
+	PUBLIC	buf_G
+	PUBLIC	buf_B
+	PUBLIC	_ws2812asm
+	PUBLIC	main
+	PUBLIC	_Delay1ms
+	PUBLIC	UartInit
+	PUBLIC	_SendBytes2Computer
+	PUBLIC	_SendByte2Computer
+	PUBLIC	_delayms
+	PUBLIC	key_read
+	PUBLIC	ReceivedByteToMCU
+	PUBLIC	_SendByteTo7279
+	PUBLIC	short_delay
+	PUBLIC	long_delay
+	PUBLIC	_LightControll
+	PUBLIC	_LightEffect1
+	PUBLIC	_LightEffect2
+	PUBLIC	LightSunShineWithMusic
+	PUBLIC	GetNum
+	PUBLIC	LightEffect8_8
+	PUBLIC	LightEffect8_1
+	PUBLIC	LightEffect1_8
+	PUBLIC	LightEffect1_1
+	PUBLIC	_LightEffect8
+	PUBLIC	zidingyi1
+	PUBLIC	?_colorWipe?BYTE
+	PUBLIC	_colorWipe
+	PUBLIC	_theaterChaseRainbow
+	PUBLIC	?_theaterChase?BYTE
+	PUBLIC	_theaterChase
+	PUBLIC	_rainbowCycle
+	PUBLIC	_rainbow
+	PUBLIC	_Wheel
+	PUBLIC	_Color
+	PUBLIC	PixelUpdate
+	PUBLIC	?_SentPixelColor?BYTE
+	PUBLIC	_SentPixelColor
+	PUBLIC	?_SetPixelColor?BYTE
+	PUBLIC	_SetPixelColor
+	PUBLIC	?_SetPointColour?BYTE
+	PUBLIC	_SetPointColour
+	PUBLIC	_Set_Colour
+	PUBLIC	RGB_Rst
+	PUBLIC	_Send_2811_24bits
+	PUBLIC	RGB_Set_Down
+	PUBLIC	RGB_Set_Up
+	PUBLIC	Delay50us
+	PUBLIC	ReSet
+	PUBLIC	_HAL_Delay
+
+	RSEG  ?XD?_LightEffect2?TEXT1
+?_LightEffect2?BYTE:
+      fre?27101:   DS   2
+	ORG  2
+        i?27102:   DS   2
+	ORG  4
+  pertime?27103:   DS   4
+
+	RSEG  ?XD?_Color?TEXT1
+?_Color?BYTE:
+         r?1265:   DS   1
+	ORG  1
+         b?1267:   DS   1
+
+	RSEG  ?XD?_LightEffect8?TEXT1
+?_LightEffect8?BYTE:
+       num?2087:   DS   2
+
+	RSEG  ?XD?LightEffect1_1?TEXT1
+?LightEffect1_1?BYTE:
+         i?2188:   DS   2
+	ORG  2
+         k?2189:   DS   2
+
+	RSEG  ?XD?LightEffect8_1?TEXT1
+?LightEffect8_1?BYTE:
+         i?2392:   DS   2
+	ORG  2
+         k?2393:   DS   2
+
+	RSEG  ?XD?LightEffect1_8?TEXT1
+?LightEffect1_8?BYTE:
+         i?2290:   DS   2
+	ORG  2
+         k?2291:   DS   2
+
+	RSEG  ?XD?LightEffect8_8?TEXT1
+?LightEffect8_8?BYTE:
+         i?2494:   DS   2
+	ORG  2
+         k?2495:   DS   2
+
+	RSEG  ?XD?_SentPixelColor?TEXT1
+?_SentPixelColor?BYTE:
+       num?1062:   DS   1
+	ORG  1
+         c?1063:   DS   4
+
+	RSEG  ?XD?main?TEXT1
+?main?BYTE:
+ KeyValue?40127:   DS   1
+
+	RSEG  ?XD?_theaterChaseRainbow?TEXT1
+?_theaterChaseRainbow?BYTE:
+      wait?1780:   DS   2
+	ORG  2
+         j?1781:   DS   2
+	ORG  4
+         q?1782:   DS   2
+	ORG  6
+         i?1783:   DS   2
+
+	RSEG  ?XD?_SetPointColour?TEXT1
+?_SetPointColour?BYTE:
+        num?854:   DS   2
+          r?855:   DS   1
+          g?856:   DS   1
+	ORG  4
+          b?857:   DS   1
+
+	RSEG  ?XD?_SetPixelColor?TEXT1
+?_SetPixelColor?BYTE:
+        num?959:   DS   1
+	ORG  1
+          c?960:   DS   4
+
+	RSEG  ?XD?_colorWipe?TEXT1
+?_colorWipe?BYTE:
+         c?1884:   DS   4
+	ORG  4
+      wait?1885:   DS   2
+	ORG  6
+         i?1886:   DS   2
+
+	RSEG  ?XD?LightSunShineWithMusic?TEXT1
+?LightSunShineWithMusic?BYTE:
+RandNumber?2696:   DS   2
+	ORG  2
+         i?2697:   DS   2
+	ORG  4
+         j?2698:   DS   2
+	ORG  6
+     XuHao?2699:   DS   2
+
+	RSEG  ?XD?_theaterChase?TEXT1
+?_theaterChase?BYTE:
+         c?1675:   DS   4
+	ORG  4
+      wait?1676:   DS   2
+	ORG  6
+         j?1677:   DS   2
+	ORG  8
+         q?1678:   DS   2
+	ORG  10
+         i?1679:   DS   2
+
+	RSEG  ?XD?ReSet?TEXT1
+?ReSet?BYTE:
+          i?143:   DS   2
+
+	RSEG  ?XD?_rainbowCycle?TEXT1
+?_rainbowCycle?BYTE:
+      wait?1572:   DS   2
+	ORG  2
+         i?1573:   DS   2
+	ORG  4
+         j?1574:   DS   2
+
+	RSEG  ?XD?_rainbow?TEXT1
+?_rainbow?BYTE:
+      wait?1469:   DS   2
+	ORG  2
+         i?1470:   DS   2
+	ORG  4
+         j?1471:   DS   2
+
+	RSEG  ?XD?_Wheel?TEXT1
+?_Wheel?BYTE:
+  WheelPos?1368:   DS   1
+
+	RSEG  ?XD?_ws2812asm?TEXT1
+?_ws2812asm?BYTE:
+    dataa?41128:   DS   1
+
+	RSEG  ?XD?_LightEffect1?TEXT1
+?_LightEffect1?BYTE:
+     time?28104:   DS   1
+	ORG  1
+        j?28105:   DS   2
+	ORG  3
+        i?28106:   DS   2
+	ORG  5
+        R?28107:   DS   384
+	ORG  389
+        G?28108:   DS   384
+	ORG  773
+        B?28109:   DS   384
+
+	RSEG  ?XD?TEXT1
+          buf_B:   DS   64
+          buf_G:   DS   64
+          buf_R:   DS   64
+
+	RSEG  ?CO?TEXT1
+_?ix1000:
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FDH
+	DB	0FFH
+	DB	0FFH
+	DB	0FDH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FDH
+	DB	0FDH
+	DB	0FDH
+	DB	0FDH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FDH
+	DB	0FDH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	02BH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	02BH
+	DB	030H
+	DB	02BH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	02BH
+	DB	01CH
+	DB	030H
+	DB	030H
+	DB	02BH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	02BH
+	DB	01CH
+	DB	030H
+	DB	030H
+	DB	02BH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	02BH
+	DB	01CH
+	DB	02BH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	02BH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	003H
+	DB	003H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	000H
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	000H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	003H
+	DB	003H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	003H
+	DB	003H
+	DB	003H
+	DB	003H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	003H
+	DB	0F2H
+	DB	0E9H
+	DB	0E9H
+	DB	0DDH
+	DB	003H
+	DB	000H
+	DB	000H
+	DB	003H
+	DB	0E9H
+	DB	0F2H
+	DB	0DDH
+	DB	0E9H
+	DB	003H
+	DB	000H
+	DB	000H
+	DB	003H
+	DB	0E9H
+	DB	0DDH
+	DB	0F2H
+	DB	0E9H
+	DB	003H
+	DB	000H
+	DB	000H
+	DB	003H
+	DB	0DDH
+	DB	0E9H
+	DB	0E9H
+	DB	0F2H
+	DB	003H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	003H
+	DB	003H
+	DB	003H
+	DB	003H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+
+_?ix1001:
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	0C5H
+	DB	080H
+	DB	080H
+	DB	0C5H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	0C5H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	0C5H
+	DB	0C5H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0CAH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0CAH
+	DB	0B9H
+	DB	0CAH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0CAH
+	DB	0CBH
+	DB	0B9H
+	DB	0B9H
+	DB	0CAH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0CAH
+	DB	0CBH
+	DB	0B9H
+	DB	0B9H
+	DB	0CAH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0CAH
+	DB	0CBH
+	DB	0CAH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0CAH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FCH
+	DB	0FCH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	000H
+	DB	0A6H
+	DB	0A6H
+	DB	0A6H
+	DB	0A6H
+	DB	0A6H
+	DB	0A6H
+	DB	0A6H
+	DB	0A6H
+	DB	000H
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	0FEH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FCH
+	DB	0FCH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	080H
+	DB	080H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	080H
+	DB	080H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	080H
+	DB	080H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	080H
+	DB	080H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	080H
+	DB	080H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	01AH
+	DB	01AH
+	DB	01AH
+	DB	01AH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	01AH
+	DB	0FCH
+	DB	0FCH
+	DB	0FCH
+	DB	0FCH
+	DB	01AH
+	DB	000H
+	DB	01AH
+	DB	0FCH
+	DB	080H
+	DB	0E9H
+	DB	0E9H
+	DB	026H
+	DB	0FCH
+	DB	01AH
+	DB	01AH
+	DB	0FCH
+	DB	0E9H
+	DB	080H
+	DB	026H
+	DB	0E9H
+	DB	0FCH
+	DB	01AH
+	DB	01AH
+	DB	0FCH
+	DB	0E9H
+	DB	026H
+	DB	080H
+	DB	0E9H
+	DB	0FCH
+	DB	01AH
+	DB	01AH
+	DB	0FCH
+	DB	026H
+	DB	0E9H
+	DB	0E9H
+	DB	080H
+	DB	0FCH
+	DB	01AH
+	DB	000H
+	DB	01AH
+	DB	0FCH
+	DB	0FCH
+	DB	0FCH
+	DB	0FCH
+	DB	01AH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	01AH
+	DB	01AH
+	DB	01AH
+	DB	01AH
+	DB	000H
+	DB	000H
+
+_?ix1002:
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	0C0H
+	DB	080H
+	DB	080H
+	DB	0C0H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	0C0H
+	DB	0C0H
+	DB	0C0H
+	DB	0C0H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	0C0H
+	DB	0C0H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	080H
+	DB	080H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	036H
+	DB	000H
+	DB	000H
+	DB	036H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	036H
+	DB	036H
+	DB	036H
+	DB	036H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	036H
+	DB	036H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	062H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	062H
+	DB	0C4H
+	DB	062H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	062H
+	DB	0E3H
+	DB	0C4H
+	DB	0C4H
+	DB	062H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	062H
+	DB	0E3H
+	DB	0C4H
+	DB	0C4H
+	DB	062H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	062H
+	DB	0E3H
+	DB	062H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	062H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	098H
+	DB	098H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	01BH
+	DB	01BH
+	DB	01BH
+	DB	01BH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	000H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	000H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	001H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	01BH
+	DB	01BH
+	DB	01BH
+	DB	01BH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	098H
+	DB	098H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	067H
+	DB	067H
+	DB	067H
+	DB	067H
+	DB	0FFH
+	DB	000H
+	DB	0FFH
+	DB	067H
+	DB	00BH
+	DB	012H
+	DB	012H
+	DB	01CH
+	DB	067H
+	DB	0FFH
+	DB	0FFH
+	DB	067H
+	DB	012H
+	DB	00BH
+	DB	01CH
+	DB	012H
+	DB	067H
+	DB	0FFH
+	DB	0FFH
+	DB	067H
+	DB	012H
+	DB	01CH
+	DB	00BH
+	DB	012H
+	DB	067H
+	DB	0FFH
+	DB	0FFH
+	DB	067H
+	DB	01CH
+	DB	012H
+	DB	012H
+	DB	00BH
+	DB	067H
+	DB	0FFH
+	DB	000H
+	DB	0FFH
+	DB	067H
+	DB	067H
+	DB	067H
+	DB	067H
+	DB	0FFH
+	DB	000H
+	DB	000H
+	DB	000H
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	0FFH
+	DB	000H
+	DB	000H
+
+
+	RSEG  ?C_INITSEG
+	DB	060H
+	DB	040H
+	DW	buf_R
+	DB	000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H
+
+
+	DB	060H
+	DB	040H
+	DW	buf_G
+	DB	000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H
+
+
+	DB	060H
+	DB	040H
+	DW	buf_B
+	DB	000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H,000H,000H,000H,000H,000H,000H,000H
+	DB  000H,000H,000H
+
+
+; #include <REG51.H>
+; #include <intRIns.h>
+; #include <ABSACC.h>
+; #include <math.h>
+; #include <stdio.h>
+; #include <stdlib.h>
+; #define uint unsigned int 
+; #define uchar unsigned char
+; #define numLEDs 64
+; #define N 5
+; 
+; 
+; sfr AUXR =0x8E;
+; sbit P10=P1^0;
+; sbit P11=P1^1;
+; //sbit P12=P1^2;
+; sbit P13=P1^3;
+; sbit WS2812 = P1^2;
+; 
+; sbit cs=P1^6;
+; sbit clk=P1^7;
+; sbit key=P1^5;
+; sbit dat=P1^4;
+; 
+; 
+; unsigned char  buf_R[numLEDs] = { 0 };//??é??o′?
+; unsigned char  buf_G[numLEDs] = { 0 };
+; unsigned char  buf_B[numLEDs] = { 0 };
+; void RGB_Set_Up();  //?í0??
+; void RGB_Set_Down(); //?í1??
+; void Delay1ms(uchar k);
+; void SetPointColour(unsigned int num, unsigned char r, unsigned char g, unsigned char b);
+; void SentPixelColor(unsigned char num,unsigned long c);
+; void HAL_Delay(unsigned int t)
+
+	RSEG  ?PR?_HAL_Delay?TEXT1
+L?0422:
+	USING	0
+L?0423:
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+_HAL_Delay:
+	USING	0
+			; SOURCE LINE # 34
+;---- Variable 't?040' assigned to Register 'R6/R7' ----
+; {
+			; SOURCE LINE # 35
+; 	unsigned int x, y;
+; 	for (x = 114; x>0; x--)
+			; SOURCE LINE # 37
+;---- Variable 'x?041' assigned to Register 'R4/R5' ----
+	MOV  	R5,#072H
+	MOV  	R4,#00H
+?C0001:
+; 		for (y = t; y>0; y--);
+			; SOURCE LINE # 38
+;---- Variable 'y?042' assigned to Register 'R2/R3' ----
+	MOV  	R3,AR7
+	MOV  	R2,AR6
+?C0004:
+	SETB 	C
+	MOV  	A,R3
+	SUBB 	A,#00H
+	MOV  	A,R2
+	SUBB 	A,#00H
+	JC   	?C0003
+	MOV  	A,R3
+	DEC  	R3
+	JNZ  	?C0004
+	DEC  	R2
+?C0301:
+	SJMP 	?C0004
+?C0003:
+	MOV  	A,R5
+	DEC  	R5
+	JNZ  	?C0302
+	DEC  	R4
+?C0302:
+	MOV  	A,R5
+	ORL  	A,R4
+	JNZ  	?C0001
+; }
+			; SOURCE LINE # 39
+?C0007:
+	RET  	
+; END OF _HAL_Delay
+
+; void ReSet()
+
+	RSEG  ?PR?ReSet?TEXT1
+ReSet:
+	USING	0
+			; SOURCE LINE # 40
+; {
+			; SOURCE LINE # 41
+; 	uint i;
+; 	for(i=0;i<64;i++)
+			; SOURCE LINE # 43
+	CLR  	A
+	MOV  	DPTR,#i?143
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0008:
+	MOV  	DPTR,#i?143
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#040H
+	MOV  	A,R6
+	SUBB 	A,#00H
+	JNC  	?C0011
+; 	{
+			; SOURCE LINE # 44
+; 	SentPixelColor(i,0);
+			; SOURCE LINE # 45
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 	}
+			; SOURCE LINE # 46
+	MOV  	DPTR,#i?143+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0008
+	MOV  	DPTR,#i?143
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0303:
+	SJMP 	?C0008
+; }
+			; SOURCE LINE # 47
+?C0011:
+	RET  	
+; END OF ReSet
+
+; 
+; 
+; //?′???óê±
+; void Delay50us()		//@22.1184MHz
+
+	RSEG  ?PR?Delay50us?TEXT1
+Delay50us:
+	USING	0
+			; SOURCE LINE # 51
+; {
+			; SOURCE LINE # 52
+; 	unsigned char i, j;
+; 	_nop_();
+			; SOURCE LINE # 54
+	NOP  	
+; 	_nop_();
+			; SOURCE LINE # 55
+	NOP  	
+; 	i = 2;
+			; SOURCE LINE # 56
+;---- Variable 'i?244' assigned to Register 'R7' ----
+	MOV  	R7,#02H
+; 	j = 15;
+			; SOURCE LINE # 57
+;---- Variable 'j?245' assigned to Register 'R6' ----
+	MOV  	R6,#0FH
+; 	do
+; 	{
+			; SOURCE LINE # 59
+?C0015:
+; 		while (--j);
+			; SOURCE LINE # 60
+	DJNZ 	R6,?C0015
+?C0016:
+; 	} while (--i);
+			; SOURCE LINE # 61
+?C0012:
+	DJNZ 	R7,?C0015
+; }
+			; SOURCE LINE # 62
+	RET  	
+; END OF Delay50us
+
+; // 高电平850ns 低电平400ns 误差150ns
+; void RGB_Set_Up()
+
+	RSEG  ?PR?RGB_Set_Up?TEXT1
+RGB_Set_Up:
+			; SOURCE LINE # 64
+; {
+			; SOURCE LINE # 65
+; 	WS2812 = 1;
+			; SOURCE LINE # 66
+	SETB 	WS2812
+; 	//22.1184MHz
+; 	_nop_(); _nop_(); _nop_(); _nop_(); _nop_(); _nop_(); _nop_(); _nop_(); _nop_(); _nop_();
+			; SOURCE LINE # 68
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+; 	_nop_(); _nop_(); _nop_();// _nop_(); _nop_(); _nop_(); _nop_();
+			; SOURCE LINE # 69
+	NOP  	
+	NOP  	
+	NOP  	
+; 	WS2812 = 0;
+			; SOURCE LINE # 70
+	CLR  	WS2812
+; }
+			; SOURCE LINE # 71
+	RET  	
+; END OF RGB_Set_Up
+
+; //高电平400ns 低电平850ns 误差150ns
+; void RGB_Set_Down()
+
+	RSEG  ?PR?RGB_Set_Down?TEXT1
+RGB_Set_Down:
+			; SOURCE LINE # 73
+; {
+			; SOURCE LINE # 74
+; 	WS2812 = 1;
+			; SOURCE LINE # 75
+	SETB 	WS2812
+; 	//22.1184MHz
+; 	_nop_(); _nop_(); _nop_(); _nop_(); _nop_(); _nop_(); //_nop_();
+			; SOURCE LINE # 77
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+	NOP  	
+; 	WS2812 = 0;
+			; SOURCE LINE # 78
+	CLR  	WS2812
+; }
+			; SOURCE LINE # 79
+	RET  	
+; END OF RGB_Set_Down
+
+; 
+; //·￠?í24??êy?Y
+; void Send_2811_24bits(unsigned char G8, unsigned char R8, unsigned char B8)
+
+	RSEG  ?PR?_Send_2811_24bits?TEXT1
+L?0417:
+	USING	0
+L?0418:
+	MOV  	A,#LOW (buf_G)
+	ADD  	A,R2
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_G)
+	MOV  	DPH,A
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	A,#LOW (buf_R)
+	ADD  	A,R2
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_R)
+	MOV  	DPH,A
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	MOV  	A,#LOW (buf_B)
+	ADD  	A,R2
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_B)
+	MOV  	DPH,A
+	MOVX 	A,@DPTR
+	MOV  	R3,A
+_Send_2811_24bits:
+	USING	0
+			; SOURCE LINE # 82
+;---- Variable 'G8?546' assigned to Register 'R1' ----
+	MOV  	R1,AR7
+;---- Variable 'B8?548' assigned to Register 'R3' ----
+;---- Variable 'R8?547' assigned to Register 'R5' ----
+; {
+			; SOURCE LINE # 83
+; 	unsigned int n = 0;
+			; SOURCE LINE # 84
+;---- Variable 'n?549' assigned to Register 'R6/R7' ----
+	CLR  	A
+	MOV  	R7,A
+	MOV  	R6,A
+; 	//·￠?íG8??
+; 	for (n = 0; n<8; n++)
+			; SOURCE LINE # 86
+?C0020:
+; 	{
+			; SOURCE LINE # 87
+; 		G8 <<= n;
+			; SOURCE LINE # 88
+	MOV  	R4,AR7
+	MOV  	A,R1
+	MOV  	R0,AR4
+	INC  	R0
+	SJMP 	?C0305
+?C0304:
+	CLR  	C
+	RLC  	A
+?C0305:
+	DJNZ 	R0,?C0304
+	MOV  	R1,A
+; 		if (G8 & 0x80 == 0x80)
+			; SOURCE LINE # 89
+	JNB  	ACC.0,?C0023
+; 		{
+			; SOURCE LINE # 90
+; 			RGB_Set_Up();
+			; SOURCE LINE # 91
+	LCALL	RGB_Set_Up
+; 		}
+			; SOURCE LINE # 92
+	SJMP 	?C0022
+?C0023:
+; 		else
+; 		{
+			; SOURCE LINE # 94
+; 			RGB_Set_Down();
+			; SOURCE LINE # 95
+	LCALL	RGB_Set_Down
+; 		}
+			; SOURCE LINE # 96
+; 	}
+			; SOURCE LINE # 97
+?C0022:
+	INC  	R7
+	CJNE 	R7,#00H,?C0306
+	INC  	R6
+?C0306:
+	MOV  	A,R7
+	XRL  	A,#08H
+	ORL  	A,R6
+	JNZ  	?C0020
+?C0021:
+; 	//·￠?íR8??
+; 	for (n = 0; n<8; n++)
+			; SOURCE LINE # 99
+	CLR  	A
+	MOV  	R6,A
+	MOV  	R7,A
+?C0025:
+; 	{
+			; SOURCE LINE # 100
+; 		R8 <<= n;
+			; SOURCE LINE # 101
+	MOV  	R4,AR7
+	MOV  	A,R5
+	MOV  	R0,AR4
+	INC  	R0
+	SJMP 	?C0308
+?C0307:
+	CLR  	C
+	RLC  	A
+?C0308:
+	DJNZ 	R0,?C0307
+	MOV  	R5,A
+; 		if (R8 & 0x80 == 0x80)
+			; SOURCE LINE # 102
+	JNB  	ACC.0,?C0028
+; 		{
+			; SOURCE LINE # 103
+; 			RGB_Set_Up();
+			; SOURCE LINE # 104
+	LCALL	RGB_Set_Up
+; 		}
+			; SOURCE LINE # 105
+	SJMP 	?C0027
+?C0028:
+; 		else
+; 		{
+			; SOURCE LINE # 107
+; 			RGB_Set_Down();
+			; SOURCE LINE # 108
+	LCALL	RGB_Set_Down
+; 		}
+			; SOURCE LINE # 109
+; 	}
+			; SOURCE LINE # 110
+?C0027:
+	INC  	R7
+	CJNE 	R7,#00H,?C0309
+	INC  	R6
+?C0309:
+	MOV  	A,R7
+	XRL  	A,#08H
+	ORL  	A,R6
+	JNZ  	?C0025
+?C0026:
+; 	//·￠?íB8??
+; 	for (n = 0; n<8; n++)
+			; SOURCE LINE # 112
+	CLR  	A
+	MOV  	R6,A
+	MOV  	R7,A
+?C0030:
+; 	{
+			; SOURCE LINE # 113
+; 		B8 <<= n;
+			; SOURCE LINE # 114
+	MOV  	R5,AR7
+	MOV  	A,R3
+	MOV  	R0,AR5
+	INC  	R0
+	SJMP 	?C0311
+?C0310:
+	CLR  	C
+	RLC  	A
+?C0311:
+	DJNZ 	R0,?C0310
+	MOV  	R3,A
+; 		if (B8 & 0x80 == 0x80)
+			; SOURCE LINE # 115
+	JNB  	ACC.0,?C0033
+; 		{
+			; SOURCE LINE # 116
+; 			RGB_Set_Up();
+			; SOURCE LINE # 117
+	LCALL	RGB_Set_Up
+; 		}
+			; SOURCE LINE # 118
+	SJMP 	?C0032
+?C0033:
+; 		else
+; 		{
+			; SOURCE LINE # 120
+; 			RGB_Set_Down();
+			; SOURCE LINE # 121
+	LCALL	RGB_Set_Down
+; 		}
+			; SOURCE LINE # 122
+; 	}
+			; SOURCE LINE # 123
+?C0032:
+	INC  	R7
+	CJNE 	R7,#00H,?C0312
+	INC  	R6
+?C0312:
+	MOV  	A,R7
+	XRL  	A,#08H
+	ORL  	A,R6
+	JNZ  	?C0030
+; }
+			; SOURCE LINE # 124
+?C0035:
+	RET  	
+; END OF _Send_2811_24bits
+
+; //?′????
+; void RGB_Rst()
+
+	RSEG  ?PR?RGB_Rst?TEXT1
+RGB_Rst:
+	USING	0
+			; SOURCE LINE # 126
+; {
+			; SOURCE LINE # 127
+; 	WS2812 = 0;
+			; SOURCE LINE # 128
+	CLR  	WS2812
+; 	Delay50us();
+			; SOURCE LINE # 129
+	LJMP 	Delay50us
+; END OF RGB_Rst
+
+; }
+; //°?24??êy?YGRB??×aRGB
+; void Set_Colour(unsigned char r, unsigned char g, unsigned char b)
+
+	RSEG  ?PR?_Set_Colour?TEXT1
+_Set_Colour:
+	USING	0
+			; SOURCE LINE # 132
+;---- Variable 'r?750' assigned to Register 'R7' ----
+;---- Variable 'b?752' assigned to Register 'R3' ----
+;---- Variable 'g?751' assigned to Register 'R5' ----
+; {
+			; SOURCE LINE # 133
+; 	unsigned char i;
+; 	for (i = 0; i<numLEDs; i++)
+			; SOURCE LINE # 135
+;---- Variable 'i?753' assigned to Register 'R2' ----
+	CLR  	A
+	MOV  	R2,A
+?C0037:
+; 	{
+			; SOURCE LINE # 136
+; 		buf_R[i] = r; //?o3?
+			; SOURCE LINE # 137
+	MOV  	A,#LOW (buf_R)
+	ADD  	A,R2
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_R)
+	MOV  	DPH,A
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 		buf_G[i] = g;
+			; SOURCE LINE # 138
+	MOV  	A,#LOW (buf_G)
+	ADD  	A,R2
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_G)
+	MOV  	DPH,A
+	MOV  	A,R5
+	MOVX 	@DPTR,A
+; 		buf_B[i] = b;
+			; SOURCE LINE # 139
+	MOV  	A,#LOW (buf_B)
+	ADD  	A,R2
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_B)
+	MOV  	DPH,A
+	MOV  	A,R3
+	MOVX 	@DPTR,A
+; 	}
+			; SOURCE LINE # 140
+	INC  	R2
+	MOV  	A,R2
+	CJNE 	A,#040H,?C0037
+?C0038:
+; 	for (i = 0; i<numLEDs; i++)
+			; SOURCE LINE # 141
+	CLR  	A
+	MOV  	R2,A
+?C0040:
+; 	{
+			; SOURCE LINE # 142
+; 		Send_2811_24bits(buf_G[i], buf_R[i], buf_B[i]);//·￠?í??ê?
+			; SOURCE LINE # 143
+	LCALL	L?0417
+; 	}
+			; SOURCE LINE # 144
+	INC  	R2
+	MOV  	A,R2
+	CJNE 	A,#040H,?C0040
+; }
+			; SOURCE LINE # 145
+?C0043:
+	RET  	
+; END OF _Set_Colour
+
+; //?3ò???μ???ê?μ???é?
+; void SetPointColour(unsigned int num, unsigned char r, unsigned char g, unsigned char b)
+
+	RSEG  ?PR?_SetPointColour?TEXT1
+_SetPointColour:
+	USING	0
+			; SOURCE LINE # 147
+	MOV  	DPTR,#num?854
+	MOV  	A,R6
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+;---- Variable 'g?856' assigned to Register 'R3' ----
+;---- Variable 'r?855' assigned to Register 'R1' ----
+	MOV  	R1,AR5
+; {
+			; SOURCE LINE # 148
+; 	unsigned char i;
+; 	for (i = 0; i<numLEDs; i++)
+			; SOURCE LINE # 150
+;---- Variable 'i?858' assigned to Register 'R2' ----
+	CLR  	A
+	MOV  	R2,A
+?C0044:
+; 	{
+			; SOURCE LINE # 151
+; 		buf_R[num-1] = r;//?o3?
+			; SOURCE LINE # 152
+	MOV  	DPTR,#num?854
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	ADD  	A,#LOW (buf_R+0FFFFH)
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_R+0FFFFH)
+	MOV  	DPH,A
+	MOV  	A,R1
+	MOVX 	@DPTR,A
+; 		buf_G[num-1] = g;
+			; SOURCE LINE # 153
+	MOV  	A,#LOW (buf_G+0FFFFH)
+	ADD  	A,R7
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_G+0FFFFH)
+	MOV  	DPH,A
+	MOV  	A,R3
+	MOVX 	@DPTR,A
+; 		buf_B[num-1] = b;
+			; SOURCE LINE # 154
+	MOV  	DPTR,#b?857
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	MOV  	A,#LOW (buf_B+0FFFFH)
+	ADD  	A,R7
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_B+0FFFFH)
+	MOV  	DPH,A
+	MOV  	A,R6
+	MOVX 	@DPTR,A
+; 	}
+			; SOURCE LINE # 155
+	INC  	R2
+	MOV  	A,R2
+	CJNE 	A,#040H,?C0044
+?C0045:
+; 	for (i = 0; i<numLEDs; i++)
+			; SOURCE LINE # 156
+	CLR  	A
+	MOV  	R2,A
+?C0047:
+; 	{
+			; SOURCE LINE # 157
+; 		Send_2811_24bits(buf_G[i], buf_R[i], buf_B[i]);//·￠?í??ê?
+			; SOURCE LINE # 158
+	LCALL	L?0417
+; 	}
+			; SOURCE LINE # 159
+	INC  	R2
+	MOV  	A,R2
+	CJNE 	A,#040H,?C0047
+; }
+			; SOURCE LINE # 160
+?C0050:
+	RET  	
+; END OF _SetPointColour
+
+; 
+; //颜色交换24位不拆分发
+; 
+; void SetPixelColor(unsigned char num,unsigned long c)
+
+	RSEG  ?PR?_SetPixelColor?TEXT1
+_SetPixelColor:
+	USING	0
+			; SOURCE LINE # 164
+;---- Variable 'num?959' assigned to Register 'R3' ----
+	MOV  	R3,AR7
+; 
+; {
+			; SOURCE LINE # 166
+; 
+; 	  unsigned char i;
+; 
+; 		for(i=0;i<numLEDs;i++)
+			; SOURCE LINE # 170
+;---- Variable 'i?961' assigned to Register 'R2' ----
+	CLR  	A
+	MOV  	R2,A
+?C0051:
+; 
+; 	  {
+			; SOURCE LINE # 172
+; 
+; 			  buf_R[num] = (unsigned char)(c>>16);
+			; SOURCE LINE # 174
+	MOV  	DPTR,#c?960
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	R0,#010H
+	LCALL	?C?ULSHR
+	MOV  	A,#LOW (buf_R)
+	ADD  	A,R3
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_R)
+	MOV  	DPH,A
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; 			  buf_G[num] = (unsigned char)(c>>8);
+			; SOURCE LINE # 176
+	MOV  	DPTR,#c?960
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	R0,#08H
+	LCALL	?C?ULSHR
+	MOV  	A,#LOW (buf_G)
+	ADD  	A,R3
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_G)
+	MOV  	DPH,A
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; 			  buf_B[num] = (unsigned char)(c);
+			; SOURCE LINE # 178
+	MOV  	DPTR,#c?960
+	INC  	DPTR
+	INC  	DPTR
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	A,#LOW (buf_B)
+	ADD  	A,R3
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_B)
+	MOV  	DPH,A
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; 		}
+			; SOURCE LINE # 180
+	INC  	R2
+	MOV  	A,R2
+	CJNE 	A,#040H,?C0051
+?C0052:
+; 
+; 		for(i=0;i<numLEDs;i++)
+			; SOURCE LINE # 182
+	CLR  	A
+	MOV  	R2,A
+?C0054:
+; 
+; 		{
+			; SOURCE LINE # 184
+; 
+; 			Send_2811_24bits(buf_G[i],buf_R[i],buf_B[i]);
+			; SOURCE LINE # 186
+	LCALL	L?0418
+; 
+; 		}
+			; SOURCE LINE # 188
+	INC  	R2
+	MOV  	A,R2
+	CJNE 	A,#040H,?C0054
+; 
+; }
+			; SOURCE LINE # 190
+?C0057:
+	RET  	
+; END OF _SetPixelColor
+
+; //颜色交换24位不拆分发
+; 
+; void SentPixelColor(unsigned char num,unsigned long c)
+
+	RSEG  ?PR?_SentPixelColor?TEXT1
+_SentPixelColor:
+	USING	0
+			; SOURCE LINE # 193
+;---- Variable 'num?1062' assigned to Register 'R3' ----
+	MOV  	R3,AR7
+; 
+; {
+			; SOURCE LINE # 195
+; 
+; 	  unsigned char i;
+; 
+; 		for(i=0;i<numLEDs;i++)
+			; SOURCE LINE # 199
+;---- Variable 'i?1064' assigned to Register 'R2' ----
+	CLR  	A
+	MOV  	R2,A
+?C0058:
+; 
+; 	  {
+			; SOURCE LINE # 201
+; 
+; 			  buf_R[num-1] = (unsigned char)(c>>16);
+			; SOURCE LINE # 203
+	MOV  	DPTR,#c?1063
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	R0,#010H
+	LCALL	?C?ULSHR
+	MOV  	A,#LOW (buf_R+0FFFFH)
+	ADD  	A,R3
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_R+0FFFFH)
+	MOV  	DPH,A
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; 			  buf_G[num-1] = (unsigned char)(c>>8);
+			; SOURCE LINE # 205
+	MOV  	DPTR,#c?1063
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	R0,#08H
+	LCALL	?C?ULSHR
+	MOV  	A,#LOW (buf_G+0FFFFH)
+	ADD  	A,R3
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_G+0FFFFH)
+	MOV  	DPH,A
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; 			  buf_B[num-1] = (unsigned char)(c);
+			; SOURCE LINE # 207
+	MOV  	DPTR,#c?1063
+	INC  	DPTR
+	INC  	DPTR
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	A,#LOW (buf_B+0FFFFH)
+	ADD  	A,R3
+	MOV  	DPL,A
+	CLR  	A
+	ADDC 	A,#HIGH (buf_B+0FFFFH)
+	MOV  	DPH,A
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; 		}
+			; SOURCE LINE # 209
+	INC  	R2
+	MOV  	A,R2
+	CJNE 	A,#040H,?C0058
+?C0059:
+; 
+; 		for(i=0;i<numLEDs;i++)
+			; SOURCE LINE # 211
+	CLR  	A
+	MOV  	R2,A
+?C0061:
+; 
+; 		{
+			; SOURCE LINE # 213
+; 
+; 			Send_2811_24bits(buf_G[i],buf_R[i],buf_B[i]);
+			; SOURCE LINE # 215
+	LCALL	L?0418
+; 
+; 		}
+			; SOURCE LINE # 217
+	INC  	R2
+	MOV  	A,R2
+	CJNE 	A,#040H,?C0061
+; 
+; }
+			; SOURCE LINE # 219
+?C0064:
+	RET  	
+; END OF _SentPixelColor
+
+; 
+;  
+; 
+; //复位
+; 
+; void PixelUpdate()
+
+	RSEG  ?PR?PixelUpdate?TEXT1
+PixelUpdate:
+	USING	0
+			; SOURCE LINE # 225
+; 
+; {
+			; SOURCE LINE # 227
+; 
+; 	RGB_Rst();
+			; SOURCE LINE # 229
+	LJMP 	RGB_Rst
+; END OF PixelUpdate
+
+; 
+; }
+; 
+; //颜色
+; 
+; unsigned long Color(unsigned char r, unsigned char g, unsigned char b)
+
+	RSEG  ?PR?_Color?TEXT1
+L?0421:
+	USING	0
+	MOV  	R7,A
+	MOV  	R4,#00H
+	MOV  	R5,#05H
+	LCALL	?C?SIDIV
+	MOV  	DPTR,#i?2494
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	ADD  	A,R7
+	MOV  	R7,A
+	MOV  	R3,A
+	CLR  	A
+	MOV  	R5,A
+_Color:
+	USING	0
+			; SOURCE LINE # 235
+	MOV  	DPTR,#r?1265
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R3
+	MOVX 	@DPTR,A
+;---- Variable 'g?1266' assigned to Register 'R5' ----
+; 
+; {
+			; SOURCE LINE # 237
+; 
+;   return ((unsigned long)r << 16) | ((unsigned long)g <<  8) | b;
+			; SOURCE LINE # 239
+	MOV  	R7,AR5
+	CLR  	A
+	MOV  	R4,A
+	MOV  	R5,A
+	MOV  	R6,A
+	MOV  	R0,#08H
+	LCALL	?C?LSHL
+	PUSH 	AR4
+	PUSH 	AR5
+	PUSH 	AR6
+	PUSH 	AR7
+	MOV  	DPTR,#r?1265
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	A
+	MOV  	R4,A
+	MOV  	R5,A
+	MOV  	R6,A
+	MOV  	R0,#010H
+	LCALL	?C?LSHL
+	POP  	AR3
+	POP  	AR2
+	POP  	AR1
+	POP  	AR0
+	MOV  	A,R7
+	ORL  	A,R3
+	MOV  	R3,A
+	MOV  	A,R6
+	ORL  	A,R2
+	MOV  	R2,A
+	MOV  	A,R5
+	ORL  	A,R1
+	MOV  	R1,A
+	MOV  	A,R4
+	ORL  	A,R0
+	MOV  	R0,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	A,R3
+	ORL  	A,R7
+	MOV  	R7,A
+	MOV  	A,R2
+	MOV  	R6,A
+	MOV  	A,R1
+	MOV  	R5,A
+	MOV  	A,R0
+	MOV  	R4,A
+; 
+; }
+			; SOURCE LINE # 241
+?C0066:
+	RET  	
+; END OF _Color
+
+; 
+;  
+; 
+; //颜色算法
+; 
+; unsigned long Wheel(unsigned char WheelPos)
+
+	RSEG  ?PR?_Wheel?TEXT1
+_Wheel:
+	USING	0
+			; SOURCE LINE # 247
+	MOV  	DPTR,#WheelPos?1368
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; {
+			; SOURCE LINE # 249
+; 
+;   WheelPos = 255 - WheelPos;
+			; SOURCE LINE # 251
+	CLR  	C
+	MOV  	A,#0FFH
+	SUBB 	A,R7
+	MOVX 	@DPTR,A
+; 
+;   if(WheelPos < 85) 
+			; SOURCE LINE # 253
+	CLR  	C
+	SUBB 	A,#055H
+	JNC  	?C0067
+; 
+; 	{
+			; SOURCE LINE # 255
+; 
+;     return Color(255 - WheelPos * 3, 0, WheelPos * 3);
+			; SOURCE LINE # 257
+	MOVX 	A,@DPTR
+	MOV  	B,#03H
+	MUL  	AB
+	MOV  	R3,A
+	CLR  	C
+	MOV  	A,#0FFH
+	SUBB 	A,R3
+	MOV  	R7,A
+	CLR  	A
+	MOV  	R5,A
+	SJMP 	?C0354
+; 
+;   }
+			; SOURCE LINE # 259
+?C0067:
+; 
+;   if(WheelPos < 170) {
+			; SOURCE LINE # 261
+	MOV  	DPTR,#WheelPos?1368
+	MOVX 	A,@DPTR
+	CLR  	C
+	SUBB 	A,#0AAH
+	JNC  	?C0069
+; 
+;     WheelPos -= 85;
+			; SOURCE LINE # 263
+	MOVX 	A,@DPTR
+	ADD  	A,#0ABH
+	MOVX 	@DPTR,A
+; 
+;     return Color(0, WheelPos * 3, 255 - WheelPos * 3);
+			; SOURCE LINE # 265
+	MOVX 	A,@DPTR
+	MOV  	B,#03H
+	MUL  	AB
+	MOV  	R5,A
+	CLR  	C
+	MOV  	A,#0FFH
+	SUBB 	A,R5
+	MOV  	R3,A
+	CLR  	A
+	MOV  	R7,A
+?C0353:
+	SJMP 	?C0354
+; 
+;   }
+			; SOURCE LINE # 267
+?C0069:
+; 
+;   WheelPos -= 170;
+			; SOURCE LINE # 269
+	MOV  	DPTR,#WheelPos?1368
+	MOVX 	A,@DPTR
+	ADD  	A,#056H
+	MOVX 	@DPTR,A
+; 
+;   return Color(WheelPos * 3, 255 - WheelPos * 3, 0);
+			; SOURCE LINE # 271
+	MOVX 	A,@DPTR
+	MOV  	B,#03H
+	MUL  	AB
+	MOV  	R7,A
+	CLR  	C
+	MOV  	A,#0FFH
+	SUBB 	A,R7
+	MOV  	R5,A
+	CLR  	A
+	MOV  	R3,A
+?C0354:
+	LCALL	_Color
+; 
+; }
+			; SOURCE LINE # 273
+?C0068:
+	RET  	
+; END OF _Wheel
+
+; 
+;  
+; 
+; //彩虹
+; 
+; void rainbow(unsigned int wait)
+
+	RSEG  ?PR?_rainbow?TEXT1
+_rainbow:
+	USING	0
+			; SOURCE LINE # 279
+	MOV  	DPTR,#wait?1469
+	MOV  	A,R6
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; {
+			; SOURCE LINE # 281
+; 
+;   unsigned int i, j;
+; 
+;  
+; 
+;   for(j=0; j<2; j++) 
+			; SOURCE LINE # 287
+	CLR  	A
+	MOV  	DPTR,#j?1471
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0070:
+; 
+; 	{
+			; SOURCE LINE # 289
+; 
+;     for(i=0; i<numLEDs; i++)
+			; SOURCE LINE # 291
+	CLR  	A
+	MOV  	DPTR,#i?1470
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0073:
+	MOV  	DPTR,#i?1470
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#040H
+	MOV  	A,R6
+	SUBB 	A,#00H
+	JNC  	?C0074
+; 
+; 		{
+			; SOURCE LINE # 293
+; 
+;       SetPixelColor(i, Wheel((i+j) & 255));
+			; SOURCE LINE # 295
+	INC  	DPTR
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	MOV  	A,R7
+	ADD  	A,R5
+	MOV  	R7,A
+	LCALL	_Wheel
+	MOV  	DPTR,#?_SetPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?1470
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	LCALL	_SetPixelColor
+; 
+;     }
+			; SOURCE LINE # 297
+	MOV  	DPTR,#i?1470+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0073
+	MOV  	DPTR,#i?1470
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0313:
+	SJMP 	?C0073
+?C0074:
+; 
+; 		PixelUpdate();
+			; SOURCE LINE # 299
+	LCALL	PixelUpdate
+; 
+;     HAL_Delay(wait);
+			; SOURCE LINE # 301
+	MOV  	DPTR,#wait?1469
+	LCALL	L?0422
+; 
+;   }
+			; SOURCE LINE # 303
+	MOV  	DPTR,#j?1471+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0314
+	MOV  	DPTR,#j?1471
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0314:
+	CLR  	C
+	MOV  	DPTR,#j?1471+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#02H
+	MOV  	DPTR,#j?1471
+	MOVX 	A,@DPTR
+	SUBB 	A,#00H
+	JC   	?C0070
+?C0071:
+;   ReSet();
+			; SOURCE LINE # 304
+	LJMP 	ReSet
+; END OF _rainbow
+
+;   
+; }
+; 
+;  
+; 
+; //稍微不同的是，这使得彩虹均匀分布
+; 
+; void rainbowCycle(unsigned int wait) 
+
+	RSEG  ?PR?_rainbowCycle?TEXT1
+_rainbowCycle:
+	USING	0
+			; SOURCE LINE # 312
+	MOV  	DPTR,#wait?1572
+	MOV  	A,R6
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; {
+			; SOURCE LINE # 314
+; 
+;   unsigned int i, j;
+; 
+;  
+; 
+;   for(j=0;j<256*5;j++) 
+			; SOURCE LINE # 320
+	CLR  	A
+	MOV  	DPTR,#j?1574
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0077:
+; 
+; 	{ // 5 cycles of all colors on wheel  车轮上所有颜色的5个循环
+			; SOURCE LINE # 322
+; 
+;     for(i=0;i<numLEDs;i++) 
+			; SOURCE LINE # 324
+	CLR  	A
+	MOV  	DPTR,#i?1573
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0080:
+	MOV  	DPTR,#i?1573
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#040H
+	MOV  	A,R6
+	SUBB 	A,#00H
+	JNC  	?C0081
+; 
+; 	 {
+			; SOURCE LINE # 326
+; 
+;      SetPixelColor(i, Wheel(((i * 256 / numLEDs) + j) & 255));
+			; SOURCE LINE # 328
+	MOV  	A,R7
+	MOV  	R6,A
+	CLR  	A
+	MOV  	R0,#06H
+?C0315:
+	XCH  	A,R6
+	CLR  	C
+	RRC  	A
+	XCH  	A,R6
+	RRC  	A
+	DJNZ 	R0,?C0315
+	MOV  	R7,A
+	MOV  	DPTR,#j?1574
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	ADD  	A,R7
+	MOV  	R7,A
+	LCALL	_Wheel
+	MOV  	DPTR,#?_SetPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?1573
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	LCALL	_SetPixelColor
+; 
+;     }
+			; SOURCE LINE # 330
+	MOV  	DPTR,#i?1573+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0080
+	MOV  	DPTR,#i?1573
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0316:
+	SJMP 	?C0080
+?C0081:
+; 
+; 	  PixelUpdate();
+			; SOURCE LINE # 332
+	LCALL	PixelUpdate
+; 
+;     HAL_Delay (wait);
+			; SOURCE LINE # 334
+	MOV  	DPTR,#wait?1572
+	LCALL	L?0422
+; 
+;   }
+			; SOURCE LINE # 336
+	MOV  	DPTR,#j?1574+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0317
+	MOV  	DPTR,#j?1574
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0317:
+	CLR  	C
+	MOV  	DPTR,#j?1574
+	MOVX 	A,@DPTR
+	SUBB 	A,#05H
+	JC   	?C0077
+; 
+; }
+			; SOURCE LINE # 338
+?C0083:
+	RET  	
+; END OF _rainbowCycle
+
+; 
+;  
+; 
+; //Theatre-style crawling lights.呼吸灯
+; 
+; void theaterChase(unsigned long c, unsigned int wait) 
+
+	RSEG  ?PR?_theaterChase?TEXT1
+L?0419:
+	USING	0
+L?0420:
+	MOV  	DPTR,#?_theaterChase?BYTE+04H
+	CLR  	A
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,#050H
+	MOVX 	@DPTR,A
+_theaterChase:
+	USING	0
+			; SOURCE LINE # 344
+	MOV  	DPTR,#c?1675
+	LCALL	?C?LSTXDATA
+; 
+; {
+			; SOURCE LINE # 346
+; 
+; 	int j,q;
+; 
+; 	unsigned int i;
+; 
+;   for (j=0; j<1; j++) 
+			; SOURCE LINE # 352
+	CLR  	A
+	MOV  	DPTR,#j?1677
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0084:
+; 
+; 	{  //do 10 cycles of chasing  做10个循环
+			; SOURCE LINE # 354
+; 
+;     for (q=0; q < 3; q++) 
+			; SOURCE LINE # 356
+	CLR  	A
+	MOV  	DPTR,#q?1678
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0087:
+; 
+; 		{
+			; SOURCE LINE # 358
+; 
+;       for (i=0; i<numLEDs; i=i+3)
+			; SOURCE LINE # 360
+	CLR  	A
+	MOV  	DPTR,#i?1679
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0090:
+	MOV  	DPTR,#i?1679
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#040H
+	MOV  	A,R6
+	SUBB 	A,#00H
+	JNC  	?C0091
+; 
+; 			{
+			; SOURCE LINE # 362
+; 
+;         SetPixelColor(i+q, c);    //turn every third pixel on  把每一个第三个像素
+			; SOURCE LINE # 364
+	MOV  	DPTR,#q?1678
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	MOV  	A,R7
+	ADD  	A,R5
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#c?1675
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	POP  	AR7
+	LCALL	_SetPixelColor
+; 
+;       }
+			; SOURCE LINE # 366
+	MOV  	DPTR,#i?1679+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#03H
+	MOVX 	@DPTR,A
+	MOV  	DPTR,#i?1679
+	MOVX 	A,@DPTR
+	ADDC 	A,#00H
+	MOVX 	@DPTR,A
+	SJMP 	?C0090
+?C0091:
+; 
+; 			PixelUpdate();
+			; SOURCE LINE # 368
+	LCALL	PixelUpdate
+; 
+;       HAL_Delay(wait);
+			; SOURCE LINE # 370
+	MOV  	DPTR,#wait?1676
+	LCALL	L?0423
+; 
+;  
+; 
+;       for (i=0; i<numLEDs; i=i+3) 
+			; SOURCE LINE # 374
+	CLR  	A
+	MOV  	DPTR,#i?1679
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0093:
+	MOV  	DPTR,#i?1679
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#040H
+	MOV  	A,R6
+	SUBB 	A,#00H
+	JNC  	?C0094
+; 
+; 			{
+			; SOURCE LINE # 376
+; 
+;        SetPixelColor(i+q, 0);        //turn every third pixel off   把每一个第三个像素关掉
+			; SOURCE LINE # 378
+	MOV  	DPTR,#q?1678
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	MOV  	A,R7
+	ADD  	A,R5
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SetPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SetPixelColor
+; 
+;       }
+			; SOURCE LINE # 380
+	MOV  	DPTR,#i?1679+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#03H
+	MOVX 	@DPTR,A
+	MOV  	DPTR,#i?1679
+	MOVX 	A,@DPTR
+	ADDC 	A,#00H
+	MOVX 	@DPTR,A
+	SJMP 	?C0093
+?C0094:
+; 
+; 			PixelUpdate();
+			; SOURCE LINE # 382
+	LCALL	PixelUpdate
+; 
+;     }
+			; SOURCE LINE # 384
+	MOV  	DPTR,#q?1678+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0318
+	MOV  	DPTR,#q?1678
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0318:
+	CLR  	C
+	MOV  	DPTR,#q?1678+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#03H
+	MOV  	DPTR,#q?1678
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	$ + 5H
+	LJMP 	?C0087
+; 
+;   }
+			; SOURCE LINE # 386
+?C0086:
+	MOV  	DPTR,#j?1677+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0319
+	MOV  	DPTR,#j?1677
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0319:
+	CLR  	C
+	MOV  	DPTR,#j?1677+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#01H
+	MOV  	DPTR,#j?1677
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	$ + 5H
+	LJMP 	?C0084
+; 
+; }
+			; SOURCE LINE # 388
+?C0096:
+	RET  	
+; END OF _theaterChase
+
+; 
+;  
+; 
+; //Theatre-style crawling lights with rainbow effect
+; 
+; //带有彩虹效果的戏剧式爬行灯
+; 
+; void theaterChaseRainbow(unsigned int wait) 
+
+	RSEG  ?PR?_theaterChaseRainbow?TEXT1
+_theaterChaseRainbow:
+	USING	0
+			; SOURCE LINE # 396
+	MOV  	DPTR,#wait?1780
+	MOV  	A,R6
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 
+; {
+			; SOURCE LINE # 398
+; 
+; 	int j,q;
+; 
+; 	unsigned int i;
+; 
+;   for (j=0; j < 1; j++) 
+			; SOURCE LINE # 404
+	CLR  	A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0097:
+; 
+; 	{     // cycle all 256 colors in the wheel 在轮子上循环所有256色
+			; SOURCE LINE # 406
+; 
+;     for (q=0; q < 3; q++)
+			; SOURCE LINE # 408
+	CLR  	A
+	MOV  	DPTR,#q?1782
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0100:
+; 
+; 		{
+			; SOURCE LINE # 410
+; 
+;       for (i=0; i < numLEDs; i=i+3) 
+			; SOURCE LINE # 412
+	CLR  	A
+	MOV  	DPTR,#i?1783
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0103:
+	MOV  	DPTR,#i?1783
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#040H
+	MOV  	A,R6
+	SUBB 	A,#00H
+	JNC  	?C0104
+; 
+; 			{
+			; SOURCE LINE # 414
+; 
+;         SetPixelColor(i+q, Wheel( (i+j) % 255));    //turn every third pixel off 把每一个第三个像素
+			; SOURCE LINE # 416
+	MOV  	DPTR,#j?1781
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	MOV  	A,R7
+	ADD  	A,R5
+	MOV  	R7,A
+	MOV  	A,R6
+	ADDC 	A,R4
+	MOV  	R6,A
+	MOV  	R4,#00H
+	MOV  	R5,#0FFH
+	LCALL	?C?UIDIV
+	MOV  	R7,AR5
+	LCALL	_Wheel
+	MOV  	DPTR,#?_SetPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#q?1782
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	INC  	DPTR
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	ADD  	A,R7
+	MOV  	R7,A
+	LCALL	_SetPixelColor
+; 
+;       }
+			; SOURCE LINE # 418
+	MOV  	DPTR,#i?1783+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#03H
+	MOVX 	@DPTR,A
+	MOV  	DPTR,#i?1783
+	MOVX 	A,@DPTR
+	ADDC 	A,#00H
+	MOVX 	@DPTR,A
+	SJMP 	?C0103
+?C0104:
+; 
+;       PixelUpdate();
+			; SOURCE LINE # 420
+	LCALL	PixelUpdate
+; 
+;  
+; 
+;       HAL_Delay(wait);
+			; SOURCE LINE # 424
+	MOV  	DPTR,#wait?1780
+	LCALL	L?0423
+; 
+;  
+; 
+;       for (i=0; i < numLEDs; i=i+3)
+			; SOURCE LINE # 428
+	CLR  	A
+	MOV  	DPTR,#i?1783
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0106:
+	MOV  	DPTR,#i?1783
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#040H
+	MOV  	A,R6
+	SUBB 	A,#00H
+	JNC  	?C0102
+; 
+; 			{
+			; SOURCE LINE # 430
+; 
+;         SetPixelColor(i+q, 0);        //turn every third pixel off  把每一个第三个像素关掉
+			; SOURCE LINE # 432
+	MOV  	DPTR,#q?1782
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	MOV  	A,R7
+	ADD  	A,R5
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SetPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SetPixelColor
+; 
+;       }
+			; SOURCE LINE # 434
+	MOV  	DPTR,#i?1783+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#03H
+	MOVX 	@DPTR,A
+	MOV  	DPTR,#i?1783
+	MOVX 	A,@DPTR
+	ADDC 	A,#00H
+	MOVX 	@DPTR,A
+	SJMP 	?C0106
+; 
+;     }
+			; SOURCE LINE # 436
+?C0102:
+	MOV  	DPTR,#q?1782+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0320
+	MOV  	DPTR,#q?1782
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0320:
+	CLR  	C
+	MOV  	DPTR,#q?1782+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#03H
+	MOV  	DPTR,#q?1782
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	$ + 5H
+	LJMP 	?C0100
+; 
+;   }
+			; SOURCE LINE # 438
+?C0099:
+	MOV  	DPTR,#j?1781+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0321
+	MOV  	DPTR,#j?1781
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0321:
+	CLR  	C
+	MOV  	DPTR,#j?1781+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#01H
+	MOV  	DPTR,#j?1781
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	$ + 5H
+	LJMP 	?C0097
+?C0098:
+; 	ReSet();
+			; SOURCE LINE # 439
+	LJMP 	ReSet
+; END OF _theaterChaseRainbow
+
+; }
+; 
+; // Fill the dots one after the other with a color
+; //用一种颜色填充这些圆点
+; void colorWipe(unsigned long c, unsigned int wait)
+
+	RSEG  ?PR?_colorWipe?TEXT1
+_colorWipe:
+	USING	0
+			; SOURCE LINE # 444
+	MOV  	DPTR,#c?1884
+	LCALL	?C?LSTXDATA
+; 
+; {
+			; SOURCE LINE # 446
+; 
+; 	unsigned int i = 0;
+			; SOURCE LINE # 448
+	CLR  	A
+	MOV  	DPTR,#i?1886
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+; 
+; 	for (i = 0; i<numLEDs; i++)
+			; SOURCE LINE # 450
+	MOV  	DPTR,#i?1886
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0110:
+	MOV  	DPTR,#i?1886
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#040H
+	MOV  	A,R6
+	SUBB 	A,#00H
+	JNC  	?C0111
+; 
+; 	{
+			; SOURCE LINE # 452
+; 
+; 		SetPixelColor(i, c);
+			; SOURCE LINE # 454
+	PUSH 	AR7
+	MOV  	DPTR,#c?1884
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	POP  	AR7
+	LCALL	_SetPixelColor
+; 
+; 		PixelUpdate();
+			; SOURCE LINE # 456
+	LCALL	PixelUpdate
+; 
+; 		//HAL_Delay(wait);
+; 
+; 	}
+			; SOURCE LINE # 460
+	MOV  	DPTR,#i?1886+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0110
+	MOV  	DPTR,#i?1886
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0322:
+	SJMP 	?C0110
+?C0111:
+; 	ReSet();
+			; SOURCE LINE # 461
+	LJMP 	ReSet
+; END OF _colorWipe
+
+; 
+; }
+; void zidingyi1()
+
+	RSEG  ?PR?zidingyi1?TEXT1
+zidingyi1:
+	USING	0
+			; SOURCE LINE # 464
+; 
+; {
+			; SOURCE LINE # 466
+?C0114:
+; 
+; 
+; 
+; 	while (1)
+			; SOURCE LINE # 470
+; 
+; 	{
+			; SOURCE LINE # 472
+; 
+; 		rainbow(45);
+			; SOURCE LINE # 474
+	MOV  	R7,#02DH
+	MOV  	R6,#00H
+	LCALL	_rainbow
+; 
+; 		rainbowCycle(40);
+			; SOURCE LINE # 476
+	MOV  	R7,#028H
+	MOV  	R6,#00H
+	LCALL	_rainbowCycle
+; 
+; 		theaterChase(Color(0, 0, 255), 80); // Blue
+			; SOURCE LINE # 478
+	MOV  	R3,#0FFH
+	CLR  	A
+	MOV  	R5,A
+	MOV  	R7,A
+	LCALL	_Color
+	LCALL	L?0419
+; 
+; 		theaterChase(Color(0, 255, 0), 80); // Blue
+			; SOURCE LINE # 480
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R5,#0FFH
+	MOV  	R7,A
+	LCALL	_Color
+	LCALL	L?0419
+; 
+; 		theaterChase(Color(255, 0, 0), 80); // Blue
+			; SOURCE LINE # 482
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R5,A
+	MOV  	R7,#0FFH
+	LCALL	_Color
+	LCALL	L?0420
+; 
+; 		theaterChaseRainbow(40);
+			; SOURCE LINE # 484
+	MOV  	R7,#028H
+	MOV  	R6,#00H
+	LCALL	_theaterChaseRainbow
+; 
+; 		colorWipe(255, 255);
+			; SOURCE LINE # 486
+	MOV  	DPTR,#?_colorWipe?BYTE+04H
+	CLR  	A
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,#0FFH
+	MOVX 	@DPTR,A
+	MOV  	R7,A
+	MOV  	R6,#00H
+	MOV  	R5,#00H
+	MOV  	R4,#00H
+	LCALL	_colorWipe
+; 
+; 	}
+			; SOURCE LINE # 488
+	SJMP 	?C0114
+; END OF zidingyi1
+
+; 
+; }
+; //按下就亮 
+; 
+; 
+; 
+; void LightEffect8(uint num)
+
+	RSEG  ?PR?_LightEffect8?TEXT1
+_LightEffect8:
+	USING	0
+			; SOURCE LINE # 495
+	MOV  	DPTR,#num?2087
+	MOV  	A,R6
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; {
+			; SOURCE LINE # 496
+; 	SetPointColour(num, 255, 0, 0);
+			; SOURCE LINE # 497
+	CLR  	A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOVX 	@DPTR,A
+	MOV  	R3,A
+	MOV  	R5,#0FFH
+	LCALL	_SetPointColour
+; 	Delay1ms(200);
+			; SOURCE LINE # 498
+	MOV  	R7,#0C8H
+	LCALL	_Delay1ms
+; 	SetPointColour(num,255,255,255);
+			; SOURCE LINE # 499
+	MOV  	DPTR,#num?2087
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOV  	A,#0FFH
+	MOVX 	@DPTR,A
+	MOV  	R3,A
+	MOV  	R5,A
+	LCALL	_SetPointColour
+; 	Delay1ms(200);
+			; SOURCE LINE # 500
+	MOV  	R7,#0C8H
+	LCALL	_Delay1ms
+; 	SetPointColour(num,0,0,255);
+			; SOURCE LINE # 501
+	MOV  	DPTR,#num?2087
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOV  	A,#0FFH
+	MOVX 	@DPTR,A
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R5,A
+	LCALL	_SetPointColour
+; 	Delay1ms(200);
+			; SOURCE LINE # 502
+	MOV  	R7,#0C8H
+	LCALL	_Delay1ms
+; 	//SentPixelColor(num, 0);
+; 	ReSet();
+			; SOURCE LINE # 504
+	LJMP 	ReSet
+; END OF _LightEffect8
+
+; }
+; void LightEffect1_1(void)       //左上角第一个按键的灯效
+
+	RSEG  ?PR?LightEffect1_1?TEXT1
+LightEffect1_1:
+	USING	0
+			; SOURCE LINE # 506
+; {
+			; SOURCE LINE # 507
+; 	int i, k;
+; 	for (k = 0; k<8 * N; k = k + 8)		//连续N次颜色递进
+			; SOURCE LINE # 509
+	CLR  	A
+	MOV  	DPTR,#k?2189
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0118:
+	CLR  	C
+	MOV  	DPTR,#k?2189+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#028H
+	MOV  	DPTR,#k?2189
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	$ + 5H
+	LJMP 	?C0119
+; 	{
+			; SOURCE LINE # 510
+; 		for (i = 0; i<8; i++)
+			; SOURCE LINE # 511
+	CLR  	A
+	MOV  	DPTR,#i?2188
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0121:
+	MOV  	DPTR,#i?2188
+	MOVX 	A,@DPTR
+	MOV  	R2,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R3,A
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,R2
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	?C0120
+; 		{
+			; SOURCE LINE # 512
+; 			SentPixelColor(i, Color(0, 0, i + k * 64 / (N)));	 //第一行
+			; SOURCE LINE # 513
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0323:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0323
+	MOV  	R7,A
+	MOV  	R4,#00H
+	MOV  	R5,#05H
+	LCALL	?C?SIDIV
+	MOV  	A,R3
+	ADD  	A,R7
+	MOV  	R3,A
+	CLR  	A
+	MOV  	R5,A
+	MOV  	R7,A
+	LCALL	_Color
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?2188
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	LCALL	_SentPixelColor
+; 			SentPixelColor(i * 8, Color(0, 0, i + k * 64 / (N)));	 //第一列
+			; SOURCE LINE # 514
+	MOV  	DPTR,#k?2189
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0324:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0324
+	MOV  	R7,A
+	MOV  	R4,#00H
+	MOV  	R5,#05H
+	LCALL	?C?SIDIV
+	MOV  	DPTR,#i?2188
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	ADD  	A,R7
+	MOV  	R3,A
+	CLR  	A
+	MOV  	R5,A
+	MOV  	R7,A
+	LCALL	_Color
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?2188
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	B,#08H
+	MUL  	AB
+	MOV  	R7,A
+	LCALL	_SentPixelColor
+; 		}
+			; SOURCE LINE # 515
+	MOV  	DPTR,#i?2188+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0121
+	MOV  	DPTR,#i?2188
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0325:
+	LJMP 	?C0121
+; 	}
+			; SOURCE LINE # 516
+?C0120:
+	MOV  	DPTR,#k?2189+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#08H
+	MOVX 	@DPTR,A
+	MOV  	DPTR,#k?2189
+	MOVX 	A,@DPTR
+	ADDC 	A,#00H
+	MOVX 	@DPTR,A
+	LJMP 	?C0118
+?C0119:
+; 	for (i = 0; i<8; i++)	          //clear all
+			; SOURCE LINE # 517
+	CLR  	A
+	MOV  	DPTR,#i?2188
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0124:
+	MOV  	DPTR,#i?2188
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,R6
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	?C0127
+; 	{
+			; SOURCE LINE # 518
+; 		SentPixelColor(i, 0);
+			; SOURCE LINE # 519
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 		SentPixelColor(i * 8, 0);
+			; SOURCE LINE # 520
+	MOV  	DPTR,#i?2188
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	B,#08H
+	MUL  	AB
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 	}
+			; SOURCE LINE # 521
+	MOV  	DPTR,#i?2188+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0124
+	MOV  	DPTR,#i?2188
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0326:
+	SJMP 	?C0124
+; }
+			; SOURCE LINE # 522
+?C0127:
+	RET  	
+; END OF LightEffect1_1
+
+; void LightEffect1_8(void)		 //右上角第一个按键的灯效
+
+	RSEG  ?PR?LightEffect1_8?TEXT1
+LightEffect1_8:
+	USING	0
+			; SOURCE LINE # 523
+; {
+			; SOURCE LINE # 524
+; 	int i, k;
+; 	for (k = 0; k<8 * N; k = k + 8)
+			; SOURCE LINE # 526
+	CLR  	A
+	MOV  	DPTR,#k?2291
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0128:
+	CLR  	C
+	MOV  	DPTR,#k?2291+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#028H
+	MOV  	DPTR,#k?2291
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	$ + 5H
+	LJMP 	?C0129
+; 	{
+			; SOURCE LINE # 527
+; 		for (i = 0; i<8; i++)
+			; SOURCE LINE # 528
+	CLR  	A
+	MOV  	DPTR,#i?2290
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0131:
+	MOV  	DPTR,#i?2290
+	MOVX 	A,@DPTR
+	MOV  	R2,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R3,A
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,R2
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	$ + 5H
+	LJMP 	?C0130
+; 		{
+			; SOURCE LINE # 529
+; 			SentPixelColor(7 - i, Color(i + k * 64 / (N), 0, 0));		 //第一行
+			; SOURCE LINE # 530
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0327:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0327
+	MOV  	R7,A
+	MOV  	R4,#00H
+	MOV  	R5,#05H
+	LCALL	?C?SIDIV
+	MOV  	A,R3
+	ADD  	A,R7
+	MOV  	R7,A
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R5,A
+	LCALL	_Color
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?2290
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	MOV  	A,#07H
+	SUBB 	A,R7
+	MOV  	R7,A
+	LCALL	_SentPixelColor
+; 			SentPixelColor(i * 8 + 7, Color(i + k * 64 / (N), 0, 0));	 //最后一列
+			; SOURCE LINE # 531
+	MOV  	DPTR,#k?2291
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0328:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0328
+	MOV  	R7,A
+	MOV  	R4,#00H
+	MOV  	R5,#05H
+	LCALL	?C?SIDIV
+	MOV  	DPTR,#i?2290
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	ADD  	A,R7
+	MOV  	R7,A
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R5,A
+	LCALL	_Color
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?2290
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	B,#08H
+	MUL  	AB
+	ADD  	A,#07H
+	MOV  	R7,A
+	LCALL	_SentPixelColor
+; 		}
+			; SOURCE LINE # 532
+	MOV  	DPTR,#i?2290+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JZ   	$ + 5H
+	LJMP 	?C0131
+	MOV  	DPTR,#i?2290
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0329:
+	LJMP 	?C0131
+; 	}
+			; SOURCE LINE # 533
+?C0130:
+	MOV  	DPTR,#k?2291+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#08H
+	MOVX 	@DPTR,A
+	MOV  	DPTR,#k?2291
+	MOVX 	A,@DPTR
+	ADDC 	A,#00H
+	MOVX 	@DPTR,A
+	LJMP 	?C0128
+?C0129:
+; 	for (i = 0; i<8; i++)	          //clear all
+			; SOURCE LINE # 534
+	CLR  	A
+	MOV  	DPTR,#i?2290
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0134:
+	MOV  	DPTR,#i?2290
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,R6
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	?C0137
+; 	{
+			; SOURCE LINE # 535
+; 		SentPixelColor(7 - i, 0);
+			; SOURCE LINE # 536
+	CLR  	C
+	MOV  	A,#07H
+	SUBB 	A,R7
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 		SentPixelColor(i * 8 + 7, 0);
+			; SOURCE LINE # 537
+	MOV  	DPTR,#i?2290
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	B,#08H
+	MUL  	AB
+	ADD  	A,#07H
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 	}
+			; SOURCE LINE # 538
+	MOV  	DPTR,#i?2290+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0134
+	MOV  	DPTR,#i?2290
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0330:
+	SJMP 	?C0134
+; }
+			; SOURCE LINE # 539
+?C0137:
+	RET  	
+; END OF LightEffect1_8
+
+; void LightEffect8_1(void)		 //左下角第一个按键的灯效
+
+	RSEG  ?PR?LightEffect8_1?TEXT1
+LightEffect8_1:
+	USING	0
+			; SOURCE LINE # 540
+; {
+			; SOURCE LINE # 541
+; 	int i, k;
+; 	for (k = 0; k<8 * N; k = k + 8)
+			; SOURCE LINE # 543
+	CLR  	A
+	MOV  	DPTR,#k?2393
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0138:
+	CLR  	C
+	MOV  	DPTR,#k?2393+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#028H
+	MOV  	DPTR,#k?2393
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	$ + 5H
+	LJMP 	?C0139
+; 	{
+			; SOURCE LINE # 544
+; 		for (i = 0; i<8; i++)
+			; SOURCE LINE # 545
+	CLR  	A
+	MOV  	DPTR,#i?2392
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0141:
+	MOV  	DPTR,#i?2392
+	MOVX 	A,@DPTR
+	MOV  	R2,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R3,A
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,R2
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	$ + 5H
+	LJMP 	?C0140
+; 		{
+			; SOURCE LINE # 546
+; 			SentPixelColor(56 + i, Color(0, i + k * 64 / (N), 0));		 //第一行
+			; SOURCE LINE # 547
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0331:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0331
+	MOV  	R7,A
+	MOV  	R4,#00H
+	MOV  	R5,#05H
+	LCALL	?C?SIDIV
+	MOV  	A,R3
+	ADD  	A,R7
+	MOV  	R5,A
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R7,A
+	LCALL	_Color
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?2392
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	ADD  	A,#038H
+	MOV  	R7,A
+	LCALL	_SentPixelColor
+; 			SentPixelColor((7 - i) * 8, Color(0, i + k * 64 / (N), 0));	 //最后一列
+			; SOURCE LINE # 548
+	MOV  	DPTR,#k?2393
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0332:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0332
+	MOV  	R7,A
+	MOV  	R4,#00H
+	MOV  	R5,#05H
+	LCALL	?C?SIDIV
+	MOV  	DPTR,#i?2392
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	ADD  	A,R7
+	MOV  	R5,A
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R7,A
+	LCALL	_Color
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?2392
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	MOV  	A,#07H
+	SUBB 	A,R7
+	MOV  	B,#08H
+	MUL  	AB
+	MOV  	R7,A
+	LCALL	_SentPixelColor
+; 		}
+			; SOURCE LINE # 549
+	MOV  	DPTR,#i?2392+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JZ   	$ + 5H
+	LJMP 	?C0141
+	MOV  	DPTR,#i?2392
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0333:
+	LJMP 	?C0141
+; 	}
+			; SOURCE LINE # 550
+?C0140:
+	MOV  	DPTR,#k?2393+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#08H
+	MOVX 	@DPTR,A
+	MOV  	DPTR,#k?2393
+	MOVX 	A,@DPTR
+	ADDC 	A,#00H
+	MOVX 	@DPTR,A
+	LJMP 	?C0138
+?C0139:
+; 	for (i = 0; i<8; i++)	          //clear all
+			; SOURCE LINE # 551
+	CLR  	A
+	MOV  	DPTR,#i?2392
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0144:
+	MOV  	DPTR,#i?2392
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,R6
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	?C0147
+; 	{
+			; SOURCE LINE # 552
+; 		SentPixelColor(56 + i, 0);
+			; SOURCE LINE # 553
+	MOV  	A,R7
+	ADD  	A,#038H
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 		SentPixelColor((7 - i) * 8, 0);
+			; SOURCE LINE # 554
+	MOV  	DPTR,#i?2392
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	MOV  	A,#07H
+	SUBB 	A,R7
+	MOV  	B,#08H
+	MUL  	AB
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 	}
+			; SOURCE LINE # 555
+	MOV  	DPTR,#i?2392+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0144
+	MOV  	DPTR,#i?2392
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0334:
+	SJMP 	?C0144
+; }
+			; SOURCE LINE # 556
+?C0147:
+	RET  	
+; END OF LightEffect8_1
+
+; void LightEffect8_8(void)		 //右下角第一个按键的灯效
+
+	RSEG  ?PR?LightEffect8_8?TEXT1
+LightEffect8_8:
+	USING	0
+			; SOURCE LINE # 557
+; {
+			; SOURCE LINE # 558
+; 	int i, k;
+; 	for (k = 0; k<8 * N; k = k + 8)
+			; SOURCE LINE # 560
+	CLR  	A
+	MOV  	DPTR,#k?2495
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0148:
+	CLR  	C
+	MOV  	DPTR,#k?2495+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#028H
+	MOV  	DPTR,#k?2495
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	$ + 5H
+	LJMP 	?C0149
+; 	{
+			; SOURCE LINE # 561
+; 		for (i = 0; i<8; i++)
+			; SOURCE LINE # 562
+	CLR  	A
+	MOV  	DPTR,#i?2494
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0151:
+; 		{
+			; SOURCE LINE # 563
+; 			SentPixelColor(63 - i, Color(i + k * 64 / (N), 0, i + k * 64 / (N)));		 //第一行	紫色
+			; SOURCE LINE # 564
+	MOV  	DPTR,#k?2495
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0335:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0335
+	LCALL	L?0421
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?2494
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	MOV  	A,#03FH
+	SUBB 	A,R7
+	MOV  	R7,A
+	LCALL	_SentPixelColor
+; 			SentPixelColor((7 - i) * 8 + 7, Color(i + k * 64 / (N), 0, i + k * 64 / (N)));	 //最后一列	 紫色
+			; SOURCE LINE # 565
+	MOV  	DPTR,#k?2495
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0336:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0336
+	LCALL	L?0421
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTXDATA
+	MOV  	DPTR,#i?2494
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	CPL  	A
+	INC  	A
+	MOV  	B,#08H
+	MUL  	AB
+	ADD  	A,#03FH
+	MOV  	R7,A
+	LCALL	_SentPixelColor
+; 		}
+			; SOURCE LINE # 566
+	MOV  	DPTR,#i?2494+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0337
+	MOV  	DPTR,#i?2494
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0337:
+	CLR  	C
+	MOV  	DPTR,#i?2494+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#08H
+	MOV  	DPTR,#i?2494
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	?C0151
+; 	}
+			; SOURCE LINE # 567
+?C0150:
+	MOV  	DPTR,#k?2495+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#08H
+	MOVX 	@DPTR,A
+	MOV  	DPTR,#k?2495
+	MOVX 	A,@DPTR
+	ADDC 	A,#00H
+	MOVX 	@DPTR,A
+	LJMP 	?C0148
+?C0149:
+; 	for (i = 0; i<8; i++)	          //clear all
+			; SOURCE LINE # 568
+	CLR  	A
+	MOV  	DPTR,#i?2494
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0154:
+	MOV  	DPTR,#i?2494
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,R6
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	?C0157
+; 	{
+			; SOURCE LINE # 569
+; 		SentPixelColor(63 - i, 0);
+			; SOURCE LINE # 570
+	CLR  	C
+	MOV  	A,#03FH
+	SUBB 	A,R7
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 		SentPixelColor((7 - i) * 8 + 7, 0);
+			; SOURCE LINE # 571
+	MOV  	DPTR,#i?2494
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	CPL  	A
+	INC  	A
+	MOV  	B,#08H
+	MUL  	AB
+	ADD  	A,#03FH
+	MOV  	R7,A
+	PUSH 	AR7
+	MOV  	DPTR,#?_SentPixelColor?BYTE+01H
+	LCALL	?C?LSTKXDATA
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	DB   	00H
+	POP  	AR7
+	LCALL	_SentPixelColor
+; 	}
+			; SOURCE LINE # 572
+	MOV  	DPTR,#i?2494+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0338
+	MOV  	DPTR,#i?2494
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0338:
+	SJMP 	?C0154
+; }
+			; SOURCE LINE # 573
+?C0157:
+	RET  	
+; END OF LightEffect8_8
+
+; int GetNum()
+
+	RSEG  ?PR?GetNum?TEXT1
+GetNum:
+	USING	0
+			; SOURCE LINE # 574
+; 	{
+			; SOURCE LINE # 575
+; 		return rand() % 7;
+			; SOURCE LINE # 576
+	LCALL	rand
+	MOV  	R4,#00H
+	MOV  	R5,#07H
+	LCALL	?C?SIDIV
+	MOV  	R6,AR4
+	MOV  	R7,AR5
+; 	}
+			; SOURCE LINE # 577
+?C0158:
+	RET  	
+; END OF GetNum
+
+; //=========================================跟随音量产生震动的效果=============================================================
+; void LightSunShineWithMusic(void)
+
+	RSEG  ?PR?LightSunShineWithMusic?TEXT1
+LightSunShineWithMusic:
+	USING	0
+			; SOURCE LINE # 579
+; {
+			; SOURCE LINE # 580
+; 	//    纯白   大红   橙色    浅黄      浅绿      青色       蓝色     紫色     深蓝   
+; 	// R  255   255    255     251      128       116      0        219     14
+; 	// G  255    0     153     255      255       234      0         0      43
+; 	// B  255    0     0        66       0        254      255      219     143
+; 	//返回的是0-6之间的某一个数
+; 	
+; 
+; 	//需要：产生一个0-7的随机数的函数，
+; 	int RandNumber;
+; 	int i, j;
+; 	unsigned int XuHao; //存储需要写入的灯的序号
+; 	for (i = 0; i < 8; i++)
+			; SOURCE LINE # 592
+	CLR  	A
+	MOV  	DPTR,#i?2697
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0159:
+; 	{
+			; SOURCE LINE # 593
+; 		RandNumber = GetNum() + 2;
+			; SOURCE LINE # 594
+	LCALL	GetNum
+	MOV  	A,R7
+	ADD  	A,#02H
+	MOV  	R7,A
+	CLR  	A
+	ADDC 	A,R6
+	MOV  	DPTR,#RandNumber?2696
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 		for (j = 0; j < 8; j++)
+			; SOURCE LINE # 595
+	CLR  	A
+	MOV  	DPTR,#j?2698
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0162:
+	MOV  	DPTR,#j?2698
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#08H
+	MOV  	A,R6
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	$ + 5H
+	LJMP 	?C0161
+; 		{
+			; SOURCE LINE # 596
+; 			XuHao = (7 - j) * 8 + i;//得到了那个灯的序号
+			; SOURCE LINE # 597
+	CLR  	C
+	MOV  	A,#07H
+	SUBB 	A,R7
+	MOV  	R7,A
+	CLR  	A
+	SUBB 	A,R6
+	MOV  	R6,A
+	MOV  	A,R7
+	MOV  	R0,#03H
+?C0339:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0339
+	MOV  	R7,A
+	MOV  	DPTR,#i?2697+01H
+	MOVX 	A,@DPTR
+	ADD  	A,R7
+	MOV  	R7,A
+	MOV  	DPTR,#i?2697
+	MOVX 	A,@DPTR
+	ADDC 	A,R6
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 			if (j = RandNumber - 1)//最高的那个一定亮蓝色，用以区分
+			; SOURCE LINE # 598
+	MOV  	DPTR,#RandNumber?2696+01H
+	MOVX 	A,@DPTR
+	ADD  	A,#0FFH
+	MOV  	R7,A
+	MOV  	DPTR,#RandNumber?2696
+	MOVX 	A,@DPTR
+	ADDC 	A,#0FFH
+	MOV  	R6,A
+	MOV  	DPTR,#j?2698
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+	ORL  	A,R6
+	JZ   	?C0165
+; 			{
+			; SOURCE LINE # 599
+; 				SetPointColour(XuHao, 14, 43, 143);//最高点一定亮深蓝色
+			; SOURCE LINE # 600
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOV  	A,#08FH
+	MOVX 	@DPTR,A
+	MOV  	R3,#02BH
+	MOV  	R5,#0EH
+; 			}
+			; SOURCE LINE # 601
+	LJMP 	?C0362
+?C0165:
+; 			else
+; 			{
+			; SOURCE LINE # 603
+; 				if (j >= RandNumber)
+			; SOURCE LINE # 604
+	MOV  	DPTR,#RandNumber?2696
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	MOV  	DPTR,#j?2698+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,R7
+	MOV  	A,R6
+	XRL  	A,#080H
+	MOV  	R0,A
+	MOV  	DPTR,#j?2698
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,R0
+	JC   	?C0167
+; 				{
+			; SOURCE LINE # 605
+; 					SetPointColour(XuHao, 255, 255, 255);//纯白色
+			; SOURCE LINE # 606
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOV  	A,#0FFH
+	MOVX 	@DPTR,A
+	MOV  	R3,A
+	MOV  	R5,A
+?C0355:
+; 
+; 				}
+			; SOURCE LINE # 608
+	LJMP 	?C0362
+?C0167:
+; 				else
+; 				{
+			; SOURCE LINE # 610
+; 					switch (j)
+			; SOURCE LINE # 611
+	MOV  	DPTR,#j?2698
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	A,R6
+	JZ   	$ + 5H
+	LJMP 	?C0164
+	MOV  	A,R7
+	CJNE 	A,#07H,?C0340
+?C0340:
+	JC   	$ + 5H
+	LJMP 	?C0164
+	MOV  	DPTR,#?C0341
+	MOV  	R0,A
+	ADD  	A,R0
+	ADD  	A,R0
+	JMP  	@A+DPTR
+?C0341:
+	LJMP 	?C0170
+	LJMP 	?C0171
+	LJMP 	?C0172
+	LJMP 	?C0173
+	LJMP 	?C0174
+	LJMP 	?C0175
+	LJMP 	?C0176
+; 					{
+			; SOURCE LINE # 612
+; 					case 0:SetPointColour(XuHao, 219, 0, 219); break;   //紫色
+			; SOURCE LINE # 613
+?C0170:
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOV  	A,#0DBH
+	MOVX 	@DPTR,A
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R5,#0DBH
+?C0356:
+	SJMP 	?C0362
+; 					case 1:SetPointColour(XuHao, 0, 0, 255); break;     //蓝色
+			; SOURCE LINE # 614
+?C0171:
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOV  	A,#0FFH
+	MOVX 	@DPTR,A
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R5,A
+?C0357:
+	SJMP 	?C0362
+; 					case 2:SetPointColour(XuHao, 116, 234, 254); break; //青色
+			; SOURCE LINE # 615
+?C0172:
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOV  	A,#0FEH
+	MOVX 	@DPTR,A
+	MOV  	R3,#0EAH
+	MOV  	R5,#074H
+?C0358:
+	SJMP 	?C0362
+; 					case 3:SetPointColour(XuHao, 128, 255, 0); break;   //浅绿
+			; SOURCE LINE # 616
+?C0173:
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOVX 	@DPTR,A
+	MOV  	R3,#0FFH
+	MOV  	R5,#080H
+?C0359:
+	SJMP 	?C0362
+; 					case 4:SetPointColour(XuHao, 255, 153, 0); break;   //橙色
+			; SOURCE LINE # 617
+?C0174:
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOVX 	@DPTR,A
+	MOV  	R3,#099H
+	MOV  	R5,#0FFH
+?C0360:
+	SJMP 	?C0362
+; 					case 5:SetPointColour(XuHao, 251, 255, 66); break;  //黄色
+			; SOURCE LINE # 618
+?C0175:
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOV  	A,#042H
+	MOVX 	@DPTR,A
+	MOV  	R3,#0FFH
+	MOV  	R5,#0FBH
+?C0361:
+	SJMP 	?C0362
+; 					case 6:SetPointColour(XuHao, 255, 0, 0); break;     //红色
+			; SOURCE LINE # 619
+?C0176:
+	MOV  	DPTR,#XuHao?2699
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOVX 	@DPTR,A
+	MOV  	R3,A
+	MOV  	R5,#0FFH
+?C0362:
+	LCALL	_SetPointColour
+; 					default:
+			; SOURCE LINE # 620
+; 						break;
+			; SOURCE LINE # 621
+; 					}
+			; SOURCE LINE # 622
+; 				}
+			; SOURCE LINE # 623
+; 			}
+			; SOURCE LINE # 624
+; 		}
+			; SOURCE LINE # 625
+?C0164:
+	MOV  	DPTR,#j?2698+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0342
+	MOV  	DPTR,#j?2698
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0342:
+	LJMP 	?C0162
+; 	}
+			; SOURCE LINE # 626
+?C0161:
+	MOV  	DPTR,#i?2697+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0343
+	MOV  	DPTR,#i?2697
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0343:
+	CLR  	C
+	MOV  	DPTR,#i?2697+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,#08H
+	MOV  	DPTR,#i?2697
+	MOVX 	A,@DPTR
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JNC  	$ + 5H
+	LJMP 	?C0159
+; }
+			; SOURCE LINE # 627
+?C0178:
+	RET  	
+; END OF LightSunShineWithMusic
+
+; void LightEffect2(unsigned char time, unsigned int fre)
+
+	RSEG  ?PR?_LightEffect2?TEXT1
+_LightEffect2:
+	USING	0
+			; SOURCE LINE # 628
+	MOV  	DPTR,#fre?27101
+	MOV  	A,R4
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R5
+	MOVX 	@DPTR,A
+;---- Variable 'time?27100' assigned to Register 'R7' ----
+; {
+			; SOURCE LINE # 629
+; 	uint i;
+; 	double pertime = (double)time / fre;
+			; SOURCE LINE # 631
+	MOV  	R4,AR7
+	CLR  	A
+	LCALL	?C?FCASTC
+	PUSH 	AR4
+	PUSH 	AR5
+	PUSH 	AR6
+	PUSH 	AR7
+	MOV  	DPTR,#fre?27101
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	CLR  	A
+	LCALL	?C?FCASTI
+	MOV  	R0,AR4
+	MOV  	R1,AR5
+	MOV  	R2,AR6
+	MOV  	R3,AR7
+	POP  	AR7
+	POP  	AR6
+	POP  	AR5
+	POP  	AR4
+	LCALL	?C?FPDIV
+	MOV  	DPTR,#pertime?27103
+	LCALL	?C?LSTXDATA
+; 	for (i = 0; i < fre; i++)
+			; SOURCE LINE # 632
+	CLR  	A
+	MOV  	DPTR,#i?27102
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0179:
+	MOV  	DPTR,#fre?27101
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	MOV  	DPTR,#i?27102+01H
+	MOVX 	A,@DPTR
+	SUBB 	A,R7
+	MOV  	DPTR,#i?27102
+	MOVX 	A,@DPTR
+	SUBB 	A,R6
+	JNC  	?C0182
+; 	{
+			; SOURCE LINE # 633
+; 		LightSunShineWithMusic();
+			; SOURCE LINE # 634
+	LCALL	LightSunShineWithMusic
+; 		Delay1ms(pertime);
+			; SOURCE LINE # 635
+	MOV  	DPTR,#pertime?27103
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	LCALL	?C?CASTF
+	LCALL	_Delay1ms
+; 	}
+			; SOURCE LINE # 636
+	MOV  	DPTR,#i?27102+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JNZ  	?C0179
+	MOV  	DPTR,#i?27102
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0344:
+	SJMP 	?C0179
+; }
+			; SOURCE LINE # 637
+?C0182:
+	RET  	
+; END OF _LightEffect2
+
+; void LightEffect1(unsigned char time, unsigned int j)
+
+	RSEG  ?PR?_LightEffect1?TEXT1
+_LightEffect1:
+	USING	0
+			; SOURCE LINE # 638
+	MOV  	DPTR,#time?28104
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R4
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,R5
+	MOVX 	@DPTR,A
+; {
+			; SOURCE LINE # 639
+; 	int i;
+; unsigned char  R[6][64] = { 
+			; SOURCE LINE # 641
+	MOV  	R0,#LOW (R?28107)
+	MOV  	R4,#HIGH (R?28107)
+	MOV  	R5,#01H
+	MOV  	R3,#0FFH
+	MOV  	R2,#HIGH (_?ix1000)
+	MOV  	R1,#LOW (_?ix1000)
+	MOV  	R6,#01H
+	MOV  	R7,#080H
+	LCALL	?C?COPY
+; 	{
+; 	000,000,000,000,000,000,000,000,
+; 	000,255,255,000,000,255,255,000,
+; 	255,255,255,255,255,255,255,255,
+; 	255,255,255,255,255,255,255,255,
+; 	255,255,255,255,255,255,255,255,
+; 	000,255,255,255,255,255,000,000,
+; 	000,000,255,255,255,255,000,000,
+; 	000,000,000,255,255,000,000,000},
+; 
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,255,000,000,255,000,000,
+; 	000,255,253,255,255,253,255,000,
+; 	000,255,253,253,253,253,255,000,
+; 	000,000,255,253,253,255,000,000,
+; 	000,000,000,255,255,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 	
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,000,053,000,000,000,000,
+; 	000,000,053,060,053,000,000,000,
+; 	000,053, 28,060,060,053,000,000,
+; 	000,000,053, 28,060,060,053,000,
+; 	000,000,000,053,28,053,000,000,
+; 	000,000,000,000,053,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 
+; 	{000,000,000,003,003,000,000,000,
+; 	000,000,001,001,001,001,000,000,
+; 	000,197,197,197,197,197,197,000,
+; 	254,254,254,254,254,254,254,254,
+; 	000,197,197,197,197,197,197,000,
+; 	000,000,001,001,001,001,000,000,
+; 	000,000,000,003,003,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 
+; 	{255,255,255,255,255,255,255,255,
+; 	255,255,255,255,255,255,255,255,
+; 	255,255,000,000,000,000,255,255,
+; 	255,255,000,000,000,000,255,255,
+; 	255,255,000,000,000,000,255,255,
+; 	255,255,000,000,000,000,255,255,
+; 	255,255,255,255,255,255,255,255,
+; 	255,255,255,255,255,255,255,255},
+; 	
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,003,003,003,003,000,000,
+; 	000,003,242,233,233,221,003,000,
+; 	000,003,233,242,221,233,003,000,
+; 	000,003,233,221,242,233,003,000,
+; 	000,003,221,233,233,242,003,000,
+; 	000,000,003,003,003,003,000,000,
+; 	000,000,000,000,000,000,000,000} 
+; };
+; 
+; 
+; unsigned char G[6][64] = {
+			; SOURCE LINE # 699
+	MOV  	R0,#LOW (G?28108)
+	MOV  	R4,#HIGH (G?28108)
+	MOV  	R5,#01H
+	MOV  	R3,#0FFH
+	MOV  	R2,#HIGH (_?ix1001)
+	MOV  	R1,#LOW (_?ix1001)
+	MOV  	R6,#01H
+	MOV  	R7,#080H
+	LCALL	?C?COPY
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,128,000,000,128,000,000,
+; 	000,000,128,128,128,128,000,000,
+; 	000,000,000,128,128,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 	
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,128,000,000,128,000,000,
+; 	000,128,197,128,128,197,128,000,
+; 	000,128,197,197,197,197,128,000,
+; 	000,000,128,197,197,128,000,000,
+; 	000,000,000,128,128,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 	
+; 	{000,000,000,255,000,000,000,000,
+; 	000,000,255,202,255,000,000,000,
+; 	000,255,202,185,202,255,000,000,
+; 	255,202,203,185,185,202,255,000,
+; 	000,255,202,203,185,185,202,255,
+; 	000,000,255,202,203,202,255,000,
+; 	000,000,000,255,202,255,000,000,
+; 	000,000,000,000,255,000,000,000},
+; 
+; 	{000,000,000,252,252,000,000,000,
+; 	000,000,254,254,254,254,000,000,
+; 	000,254,254,254,254,254,254,000,
+; 	166,166,166,166,166,166,166,166,
+; 	000,254,254,254,254,254,254,000,
+; 	000,000,254,254,254,254,000,000,
+; 	000,000,000,252,252,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 
+; 	{128,128,128,128,128,128,128,128,
+; 	128,255,255,255,255,255,255,128,
+; 	128,255,255,255,255,255,255,128,
+; 	128,255,255,255,255,255,255,128,
+; 	128,255,255,255,255,255,255,128,
+; 	128,255,255,255,255,255,255,128,
+; 	128,255,255,255,255,255,255,128,
+; 	128,128,128,128,128,128,128,128},
+; 	
+; 	{000,000,032,032,032,032,000,000,
+; 	000,032,252,252,252,252,032,000,
+; 	032,252,128,233,233, 38,252,032,
+; 	032,252,233,128, 38,233,252,032,
+; 	032,252,233, 38,128,233,252,032,
+; 	032,252, 38,233,233,128,252,032,
+; 	000,032,252,252,252,252,032,000,
+; 	000,000,032,032,032,032,000,000} 
+; };
+; unsigned char B[6][64] = { 
+			; SOURCE LINE # 754
+	MOV  	R0,#LOW (B?28109)
+	MOV  	R4,#HIGH (B?28109)
+	MOV  	R5,#01H
+	MOV  	R3,#0FFH
+	MOV  	R2,#HIGH (_?ix1002)
+	MOV  	R1,#LOW (_?ix1002)
+	MOV  	R6,#01H
+	MOV  	R7,#080H
+	LCALL	?C?COPY
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,128,000,000,128,000,000,
+; 	000,128,192,128,128,192,128,000,
+; 	000,128,192,192,192,192,128,000,
+; 	000,000,128,192,192,128,000,000,
+; 	000,000,000,128,128,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,066,000,000,066,000,000,
+; 	000,000,066,066,066,066,000,000,
+; 	000,000,000,066,066,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 	
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,000, 98,000,000,000,000,
+; 	000,000, 98,196,98,000,000,000,
+; 	000, 98,227,196,196,98,000,000,
+; 	000,000, 98,227,196,196,98,000,
+; 	000,000,000, 98,227,98,000,000,
+; 	000,000,000,000, 98,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 
+; 	{000,000,000,152,152,000,000,000,
+; 	000,000,033,033,033,033,000,000,
+; 	000,001,001,001,001,001,001,000,
+; 	001,001,001,001,001,001,001,001,
+; 	001,001,001,001,001,001,001,001,
+; 	000,001,001,001,001,001,001,000,
+; 	000,000,033,033,033,033,000,000,
+; 	000,000,000,152,152,000,000,000},
+; 
+; 	{000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,000,255,255,000,000,000,
+; 	000,000,000,255,255,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000,
+; 	000,000,000,000,000,000,000,000},
+; 
+; 	{000,000,255,255,255,255,000,000,
+; 	000,255,103,103,103,103,255,000,
+; 	255,103,013,022,022,034,103,255,
+; 	255,103,022,013,034,022,103,255,
+; 	255,103,022,034,013,022,103,255,
+; 	255,103,034,022,022,013,103,255,
+; 	000,255,103,103,103,103,255,000,
+; 	000,000,255,255,255,255,000,000} 
+; };
+; 
+; for (i = 0; i<63; i++) {
+			; SOURCE LINE # 810
+	CLR  	A
+	MOV  	DPTR,#i?28106
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOVX 	@DPTR,A
+?C0183:
+	MOV  	DPTR,#i?28106
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	CLR  	C
+	SUBB 	A,#03FH
+	MOV  	A,R6
+	XRL  	A,#080H
+	SUBB 	A,#080H
+	JC   	$ + 5H
+	LJMP 	?C0184
+; 	SetPointColour(i, 0, 0, 0);
+			; SOURCE LINE # 811
+	CLR  	A
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOVX 	@DPTR,A
+	MOV  	R3,A
+	MOV  	R5,A
+	LCALL	_SetPointColour
+; 	SetPointColour(i, R[j][i], G[j][i], B[j][i]);
+			; SOURCE LINE # 812
+	MOV  	DPTR,#i?28106
+	MOVX 	A,@DPTR
+	MOV  	R4,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	MOV  	R7,A
+	MOV  	R6,AR4
+	PUSH 	AR6
+	PUSH 	AR7
+	MOV  	DPTR,#j?28105
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0345:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0345
+	ADD  	A,#LOW (R?28107)
+	MOV  	DPL,A
+	MOV  	A,#HIGH (R?28107)
+	ADDC 	A,R6
+	MOV  	DPH,A
+	MOV  	A,DPL
+	ADD  	A,R5
+	MOV  	DPL,A
+	MOV  	A,DPH
+	ADDC 	A,R4
+	MOV  	DPH,A
+	MOVX 	A,@DPTR
+	MOV  	R5,A
+	MOV  	DPTR,#j?28105
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0346:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0346
+	ADD  	A,#LOW (G?28108)
+	MOV  	DPL,A
+	MOV  	A,#HIGH (G?28108)
+	ADDC 	A,R6
+	MOV  	DPH,A
+	PUSH 	DPH
+	PUSH 	DPL
+	MOV  	DPTR,#i?28106
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	POP  	DPL
+	POP  	DPH
+	ADD  	A,DPL
+	MOV  	DPL,A
+	MOV  	A,DPH
+	ADDC 	A,R6
+	MOV  	DPH,A
+	MOVX 	A,@DPTR
+	MOV  	R3,A
+	MOV  	DPTR,#j?28105
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	MOV  	R0,#06H
+?C0347:
+	CLR  	C
+	RLC  	A
+	XCH  	A,R6
+	RLC  	A
+	XCH  	A,R6
+	DJNZ 	R0,?C0347
+	ADD  	A,#LOW (B?28109)
+	MOV  	DPL,A
+	MOV  	A,#HIGH (B?28109)
+	ADDC 	A,R6
+	MOV  	DPH,A
+	PUSH 	DPH
+	PUSH 	DPL
+	MOV  	DPTR,#i?28106
+	MOVX 	A,@DPTR
+	MOV  	R6,A
+	INC  	DPTR
+	MOVX 	A,@DPTR
+	POP  	DPL
+	POP  	DPH
+	ADD  	A,DPL
+	MOV  	DPL,A
+	MOV  	A,DPH
+	ADDC 	A,R6
+	MOV  	DPH,A
+	MOVX 	A,@DPTR
+	MOV  	DPTR,#?_SetPointColour?BYTE+04H
+	MOVX 	@DPTR,A
+	POP  	AR7
+	POP  	AR6
+	LCALL	_SetPointColour
+; 	HAL_Delay(time);
+			; SOURCE LINE # 813
+	MOV  	DPTR,#time?28104
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	MOV  	R6,#00H
+	LCALL	_HAL_Delay
+; }
+			; SOURCE LINE # 814
+	MOV  	DPTR,#i?28106+01H
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+	JZ   	$ + 5H
+	LJMP 	?C0183
+	MOV  	DPTR,#i?28106
+	MOVX 	A,@DPTR
+	INC  	A
+	MOVX 	@DPTR,A
+?C0348:
+	LJMP 	?C0183
+?C0184:
+; 	ReSet();
+			; SOURCE LINE # 815
+	LJMP 	ReSet
+; END OF _LightEffect1
+
+; 					}
+; /*
+; void LightEffect1111(unsigned char time, unsigned int j)
+; {
+; 	int i;
+; 	uchar R1[]={000,000,000,000,000,000,000,000,	
+;      	      000,006,006,000,000,006,006,000,
+;                       006,121,121,006,006,121,121,006,
+; 	      006,121,29,121,121,29,121,006,									
+; 	      006,121,29,29,29,121,121,006,
+;                       000,006,121,29,29,121,006,000,
+; 	      000,000,006,121,121,006,000,000,
+; 	      000,000,000,006,006,000,000,000};
+; 	uchar G1[]={000,000,000,000,000,000,000,000,	
+;      	      000,249,249,000,000,249,249,000,
+;                       249,001,001,249,249,001,001,249,
+; 	      249,001,167,001,001,167,001,249,									
+; 	      249,001,167,167,167,167,001,249,
+;                       000,249,001,167,167,001,249,000,
+; 	      000,000,249,001,001,249,000,000,
+; 	      000,000,000,249,249,000,000,000};
+; 	uchar B1[]={000,000,000,000,000,000,000,000,	
+;      	      000,242,242,000,000,242,242,000,
+;                       242,254,254,242,242,254,254,242,
+; 	      242,254,226,254,254,226,254,242,									
+; 	      242,254,226,226,226,226,254,242,
+;                       000,242,254,226,226,254,242,000,
+; 	      000,000,242,254,254,242,000,000,
+; 	      000,000,000,242,242,000,000,000}; //large heart  blue purple	
+; 
+; 	uchar R2[]={000,000,000,000,000,000,000,000,	
+;      	      000,255,255,000,000,255,255,000,
+;                       255,255,255,255,255,255,255,255,
+; 	      255,255,255,255,255,255,255,255,									
+; 	      255,255,255,255,255,255,255,255,
+;                       000,255,255,255,255,255,000,000,
+; 	      000,000,255,255,255,255,000,000,
+; 	      000,000,000,255,255,000,000,000};
+; 	uchar G2[]={000,000,000,000,000,000,000,000,	
+;      	      000,128,128,000,000,128,128,000,
+;                       128,128,128,128,128,128,128,128,
+; 	      128,128,128,128,128,128,128,128,									
+; 	      128,128,128,128,128,128,128,128,
+;                       000,128,128,128,128,128,128,000,
+; 	      000,000,128,128,128,128,000,000,
+; 	      000,000,000,128,128,000,000,000};
+; 	uchar B2[]={000,000,000,000,000,000,000,000,	
+;      	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000,									
+; 	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000};  //large heart  orange
+; 	
+; 	uchar R3[]={000,000,000,000,000,000,000,000	,
+;      	      000,000,255,000,000,000,255,000,
+;                       000,255,000,255,000,255,000,255,
+; 	      000,000,000,000,000,000,000,000		,							
+; 	      000,000,000,255,000,255,000,000,
+;                       000,000,000,000,255,000,000,000,
+; 	      000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000};	
+; 	uchar G3[]={000,000,000,000,000,000,000,000	,
+;      	      000,000,255,000,000,000,255,000,
+;                       000,255,000,255,000,255,000,255,
+; 	      000,000,000,000,000,000,000,000		,							
+; 	      000,000,000,255,000,255,000,000,
+;                       000,000,000,000,255,000,000,000,
+; 	      000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000};	
+; 	uchar B3[]={000,000,000,000,000,000,000,000,	
+;      	      000,000,000,000,000,000,000,000  ,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000				,					
+; 	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000};	  //笑脸
+; 
+; 
+; 	uchar R4[]={255,000,000,000,000,000,000,255,	
+;      	      000,255,000,000,000,000,255,000,
+;                       000,000,255,000,000,255,000,000,
+; 	      000,000,000,146,146,000,000,000				,					
+; 	      000,000,000,146,146,000,000,000,
+;                       000,000,255,000,000,255,000,000,
+; 	      000,255,000,000,000,000,255,000,
+; 	      255,000,000,000,000,000,000,255};	
+; 	uchar G4[]={000,000,000,000,000,000,000,000,	
+;      	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,036,036,000,000,000				,					
+; 	      000,000,000,036,036,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000};	
+; 	uchar B4[]={128,000,000,000,000,000,000,128,	
+;      	      000,128,000,000,000,000,128,000,
+;                       000,000,128,000,000,128,000,000,
+; 	      000,000,000,219,219,000,000,000				,					
+; 	      000,000,000,219,219,000,000,000,
+;                       000,000,128,000,000,128,000,000,
+; 	      000,128,000,000,000,000,128,000,
+; 	      128,000,000,000,000,000,000,128};    //“X图案
+; 
+; 	uchar R5[]={064,000,064,000,000,064,064,064,	
+;      	      064,000,064,000,000,064,000,064,
+;                       064,064,064,000,000,064,064,064,
+; 	      000,000,000,242,242,000,000,000				,					
+; 	      000,000,000,242,242,000,000,000,
+;                       064,064,064,000,000,064,064,064,
+; 	      064,000,064,000,000,064,000,064,
+; 	      064,064,064,000,000,064,064,064};	
+; 	uchar G5[]={064,064,064,000,000,064,064,064,	
+;      	      064,000,064,000,000,064,000,064,
+;                       064,064,064,000,000,064,064,064,
+; 	      000,000,000,064,064,000,000,000				,					
+; 	      000,000,000,064,064,000,000,000,
+;                       064,064,064,000,000,064,064,064  ,
+; 	      064,000,064,000,000,064,000,064,
+; 	      064,000,064,000,000,064,064,064};	
+; 	uchar B5[]={064,000,064,000,000,064,064,064,	
+;      	      064,000,064,000,000,064,000,064,
+;                       064,064,064,000,000,064,064,064,
+; 	      000,000,000,126,126,000,000,000				,					
+; 	      000,000,000,126,126,000,000,000,
+;                       064,064,064,000,000,064,064,064,
+; 	      064,000,064,000,000,064,000,064  ,
+; 	      064,064,064,000,000,064,000,064};   //五口图案
+; 
+; 	uchar R6[]={000,000,000,000,000,000,000,000,	
+;      	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000				,					
+; 	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000};	
+; 	uchar G6[]={000,000,000,000,000,000,000,000,	
+;      	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 					  000,000,000,000,000,000,000,000,									
+; 	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000};	
+; 	uchar B6[]={000,000,000,000,000,000,000,000,	
+;      	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000				,					
+; 	      000,000,000,000,000,000,000,000,
+;                       000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000,
+; 	      000,000,000,000,000,000,000,000};
+; 	uchar R[5][64]={R1,R2,R3,R4,R5};
+; 	uchar G[5][64]={G1,G2,G3,G4,G5};
+; 	uchar B[5][64]={B1,B2,B3,B4,B5};
+; 	
+; for (i = 0; i<63; i++) {
+; 	SetPointColour(i, 0, 0, 0);
+; 	SetPointColour(i, R[j][i], G[j][i], B[j][i]);
+; 	HAL_Delay(time);
+; }
+; 					}
+; */
+; 
+; void LightControll(uchar keyvalue)
+
+	RSEG  ?PR?_LightControll?TEXT1
+_LightControll:
+	USING	0
+			; SOURCE LINE # 983
+;---- Variable 'keyvalue?29110' assigned to Register 'R7' ----
+; 						{
+			; SOURCE LINE # 984
+; 							switch (keyvalue)
+			; SOURCE LINE # 985
+	MOV  	A,R7
+	CJNE 	A,#040H,?C0349
+?C0349:
+	JC   	$ + 5H
+	LJMP 	?C0253
+	MOV  	DPTR,#?C0350
+	MOV  	R0,A
+	ADD  	A,R0
+	ADD  	A,R0
+	JMP  	@A+DPTR
+?C0350:
+	LJMP 	?C0188
+	LJMP 	?C0189
+	LJMP 	?C0190
+	LJMP 	?C0191
+	LJMP 	?C0192
+	LJMP 	?C0193
+	LJMP 	?C0194
+	LJMP 	?C0195
+	LJMP 	?C0196
+	LJMP 	?C0197
+	LJMP 	?C0198
+	LJMP 	?C0199
+	LJMP 	?C0200
+	LJMP 	?C0201
+	LJMP 	?C0202
+	LJMP 	?C0203
+	LJMP 	?C0204
+	LJMP 	?C0205
+	LJMP 	?C0206
+	LJMP 	?C0207
+	LJMP 	?C0208
+	LJMP 	?C0209
+	LJMP 	?C0210
+	LJMP 	?C0211
+	LJMP 	?C0212
+	LJMP 	?C0213
+	LJMP 	?C0214
+	LJMP 	?C0215
+	LJMP 	?C0216
+	LJMP 	?C0217
+	LJMP 	?C0218
+	LJMP 	?C0219
+	LJMP 	?C0220
+	LJMP 	?C0221
+	LJMP 	?C0222
+	LJMP 	?C0223
+	LJMP 	?C0224
+	LJMP 	?C0225
+	LJMP 	?C0226
+	LJMP 	?C0227
+	LJMP 	?C0228
+	LJMP 	?C0229
+	LJMP 	?C0230
+	LJMP 	?C0231
+	LJMP 	?C0232
+	LJMP 	?C0233
+	LJMP 	?C0234
+	LJMP 	?C0235
+	LJMP 	?C0236
+	LJMP 	?C0237
+	LJMP 	?C0238
+	LJMP 	?C0239
+	LJMP 	?C0240
+	LJMP 	?C0241
+	LJMP 	?C0242
+	LJMP 	?C0243
+	LJMP 	?C0244
+	LJMP 	?C0249
+	LJMP 	?C0249
+	LJMP 	?C0247
+	LJMP 	?C0248
+	LJMP 	?C0249
+	LJMP 	?C0249
+	LJMP 	?C0251
+; 							{
+			; SOURCE LINE # 986
+; 							case '\x00':LightEffect8_1(); break;
+			; SOURCE LINE # 987
+?C0188:
+	LJMP 	LightEffect8_1
+; 							case '\x01':theaterChase(Color(0, 0, 255), 10); break;
+			; SOURCE LINE # 988
+?C0189:
+	SJMP 	?C0367
+; 							case '\x02':theaterChase(Color(0, 0, 255), 10); break;
+			; SOURCE LINE # 989
+?C0190:
+?C0363:
+	SJMP 	?C0367
+; 							case '\x03':LightEffect1(20,0); break;
+			; SOURCE LINE # 990
+?C0191:
+	SJMP 	?C0365
+; 							case '\x04': LightEffect1(20,1);break;
+			; SOURCE LINE # 991
+?C0192:
+	MOV  	R5,#01H
+	SJMP 	?C0385
+; 							case '\x05':theaterChase(Color(0, 0, 255), 10); break;
+			; SOURCE LINE # 992
+?C0193:
+?C0364:
+	SJMP 	?C0367
+; 							case '\x06':theaterChase(Color(0, 0, 255), 10); break;
+			; SOURCE LINE # 993
+?C0194:
+?C0367:
+	MOV  	R3,#0FFH
+	CLR  	A
+	MOV  	R5,A
+	MOV  	R7,A
+	LCALL	_Color
+	MOV  	DPTR,#?_theaterChase?BYTE+04H
+	CLR  	A
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,#0AH
+	MOVX 	@DPTR,A
+	LJMP 	_theaterChase
+; 							case '\x07':LightEffect1_1(); break;
+			; SOURCE LINE # 994
+?C0195:
+	SJMP 	?C0368
+; 							case '\x08':rainbow(40); break;
+			; SOURCE LINE # 995
+?C0196:
+	LJMP 	?C0400
+; 							case '\t':LightEffect8(9); break;
+			; SOURCE LINE # 996
+?C0197:
+	MOV  	R7,#09H
+	LJMP 	?C0412
+; 							case '\n':LightEffect8(10); break;
+			; SOURCE LINE # 997
+?C0198:
+	MOV  	R7,#0AH
+?C0370:
+	LJMP 	?C0412
+; 							case '\x0b':LightEffect8(11); break;
+			; SOURCE LINE # 998
+?C0199:
+	MOV  	R7,#0BH
+?C0371:
+	LJMP 	?C0412
+; 							case '\x0c':LightEffect8(12); break;
+			; SOURCE LINE # 999
+?C0200:
+	MOV  	R7,#0CH
+?C0372:
+	LJMP 	?C0412
+; 							case '\r':LightEffect8(13); break;
+			; SOURCE LINE # 1000
+?C0201:
+	MOV  	R7,#0DH
+?C0373:
+	LJMP 	?C0412
+; 							case '\x0e':LightEffect8(14); break;
+			; SOURCE LINE # 1001
+?C0202:
+	MOV  	R7,#0EH
+?C0374:
+	LJMP 	?C0412
+; 							case '\x0f':theaterChaseRainbow(40); break;
+			; SOURCE LINE # 1002
+?C0203:
+	LJMP 	?C0407
+; 							case '\x10':rainbow(40); break;
+			; SOURCE LINE # 1003
+?C0204:
+?C0369:
+	LJMP 	?C0400
+; 							case '\x11':LightEffect8(17); break;
+			; SOURCE LINE # 1004
+?C0205:
+	MOV  	R7,#011H
+?C0375:
+	LJMP 	?C0412
+; 							case '\x12':LightEffect8(18); break;
+			; SOURCE LINE # 1005
+?C0206:
+	MOV  	R7,#012H
+?C0378:
+	LJMP 	?C0412
+; 							case '\x13':LightEffect8(19); break;
+			; SOURCE LINE # 1006
+?C0207:
+	MOV  	R7,#013H
+?C0379:
+	LJMP 	?C0412
+; 							case '\x14':LightEffect8(20); break;
+			; SOURCE LINE # 1007
+?C0208:
+	MOV  	R7,#014H
+?C0380:
+	LJMP 	?C0412
+; 							case '\x15':LightEffect8(21); break;
+			; SOURCE LINE # 1008
+?C0209:
+	MOV  	R7,#015H
+?C0381:
+	LJMP 	?C0412
+; 							case '\x16':LightEffect8(22); break;
+			; SOURCE LINE # 1009
+?C0210:
+	MOV  	R7,#016H
+?C0382:
+	LJMP 	?C0412
+; 							case '\x17':theaterChaseRainbow(40); break;
+			; SOURCE LINE # 1010
+?C0211:
+?C0376:
+	LJMP 	?C0407
+; 							case '\x18':LightEffect1(20,2); break;
+			; SOURCE LINE # 1011
+?C0212:
+	MOV  	R5,#02H
+?C0366:
+	SJMP 	?C0385
+; 							case '\x19':LightEffect8(25); break;
+			; SOURCE LINE # 1012
+?C0213:
+	MOV  	R7,#019H
+?C0383:
+	LJMP 	?C0412
+; 							case '\x1a':LightEffect1(20, 0); break;
+			; SOURCE LINE # 1013
+?C0214:
+?C0365:
+	CLR  	A
+	MOV  	R5,A
+	MOV  	R4,A
+	SJMP 	?C0394
+; 							case '\x1b':LightEffect1(10, 1); break;
+			; SOURCE LINE # 1014
+?C0215:
+	MOV  	R5,#01H
+	SJMP 	?C0395
+; 							case '\x1c':LightEffect1(10, 2); break;
+			; SOURCE LINE # 1015
+?C0216:
+	MOV  	R5,#02H
+?C0388:
+	SJMP 	?C0395
+; 							case '\x1d':LightEffect1(20, 3); break;
+			; SOURCE LINE # 1016
+?C0217:
+	MOV  	R5,#03H
+?C0385:
+	MOV  	R4,#00H
+?C0387:
+	SJMP 	?C0394
+; 							case '\x1e':LightEffect8(30); break;
+			; SOURCE LINE # 1017
+?C0218:
+	MOV  	R7,#01EH
+?C0386:
+	SJMP 	?C0412
+; 							case '\x1f':LightEffect1(20,3); break;
+			; SOURCE LINE # 1018
+?C0219:
+	MOV  	R5,#03H
+	MOV  	R4,#00H
+?C0390:
+	SJMP 	?C0394
+; 							case ' ':LightEffect1_1(); break;
+			; SOURCE LINE # 1019
+?C0220:
+?C0368:
+	LJMP 	LightEffect1_1
+; 							case '!':LightEffect8(33); break;
+			; SOURCE LINE # 1020
+?C0221:
+	MOV  	R7,#021H
+?C0391:
+	SJMP 	?C0412
+; 							case '"':LightEffect1(20, 4); break;
+			; SOURCE LINE # 1021
+?C0222:
+	MOV  	R5,#04H
+	MOV  	R4,#00H
+?C0392:
+	SJMP 	?C0394
+; 							case '#':LightEffect1(10, 5); break;
+			; SOURCE LINE # 1022
+?C0223:
+	MOV  	R5,#05H
+?C0389:
+	SJMP 	?C0395
+; 							case '$':LightEffect1(10, 6); break;
+			; SOURCE LINE # 1023
+?C0224:
+	MOV  	R5,#06H
+?C0395:
+	MOV  	R4,#00H
+	MOV  	R7,#0AH
+	SJMP 	?C0415
+; 							case '%':LightEffect1(20, 7); break;
+			; SOURCE LINE # 1024
+?C0225:
+	MOV  	R5,#07H
+	MOV  	R4,#00H
+?C0394:
+	MOV  	R7,#014H
+?C0396:
+	SJMP 	?C0415
+; 							case '&':LightEffect8(38); break;
+			; SOURCE LINE # 1025
+?C0226:
+	MOV  	R7,#026H
+?C0393:
+	SJMP 	?C0412
+; 							case '\'':LightEffect1(20,4); break;
+			; SOURCE LINE # 1026
+?C0227:
+	MOV  	R5,#04H
+	MOV  	R4,#00H
+	MOV  	R7,#014H
+?C0397:
+	SJMP 	?C0415
+; 							case '(':rainbow(40); break;
+			; SOURCE LINE # 1027
+?C0228:
+?C0377:
+	SJMP 	?C0400
+; 							case ')':LightEffect8(41); break;
+			; SOURCE LINE # 1028
+?C0229:
+	MOV  	R7,#029H
+?C0398:
+	SJMP 	?C0412
+; 							case '*':LightEffect8(42); break;
+			; SOURCE LINE # 1029
+?C0230:
+	MOV  	R7,#02AH
+?C0401:
+	SJMP 	?C0412
+; 							case '+':LightEffect8(43); break;
+			; SOURCE LINE # 1030
+?C0231:
+	MOV  	R7,#02BH
+?C0402:
+	SJMP 	?C0412
+; 							case ',':LightEffect8(44); break;
+			; SOURCE LINE # 1031
+?C0232:
+	MOV  	R7,#02CH
+?C0403:
+	SJMP 	?C0412
+; 							case '-':LightEffect8(45); break;
+			; SOURCE LINE # 1032
+?C0233:
+	MOV  	R7,#02DH
+?C0404:
+	SJMP 	?C0412
+; 							case '.':LightEffect8(46); break;
+			; SOURCE LINE # 1033
+?C0234:
+	MOV  	R7,#02EH
+?C0405:
+	SJMP 	?C0412
+; 							case '/':theaterChaseRainbow(40); break;
+			; SOURCE LINE # 1034
+?C0235:
+?C0384:
+	SJMP 	?C0407
+; 							case '0':rainbow(40); break;
+			; SOURCE LINE # 1035
+?C0236:
+?C0400:
+	MOV  	R7,#028H
+	MOV  	R6,#00H
+	LJMP 	_rainbow
+; 							case '1':LightEffect8(49); break;
+			; SOURCE LINE # 1036
+?C0237:
+	MOV  	R7,#031H
+?C0406:
+	SJMP 	?C0412
+; 							case '2':LightEffect8(50); break;
+			; SOURCE LINE # 1037
+?C0238:
+	MOV  	R7,#032H
+?C0408:
+	SJMP 	?C0412
+; 							case '3':LightEffect8(51); break;
+			; SOURCE LINE # 1038
+?C0239:
+	MOV  	R7,#033H
+?C0409:
+	SJMP 	?C0412
+; 							case '4':LightEffect8(52); break;
+			; SOURCE LINE # 1039
+?C0240:
+	MOV  	R7,#034H
+?C0410:
+	SJMP 	?C0412
+; 							case '5':LightEffect8(53); break;
+			; SOURCE LINE # 1040
+?C0241:
+	MOV  	R7,#035H
+?C0411:
+	SJMP 	?C0412
+; 							case '6':LightEffect8(54); break;
+			; SOURCE LINE # 1041
+?C0242:
+	MOV  	R7,#036H
+?C0412:
+	MOV  	R6,#00H
+	LJMP 	_LightEffect8
+; 							case '7':theaterChaseRainbow(40); break;
+			; SOURCE LINE # 1042
+?C0243:
+?C0407:
+	MOV  	R7,#028H
+	MOV  	R6,#00H
+	LJMP 	_theaterChaseRainbow
+; 							case '8':LightEffect8_8(); break;
+			; SOURCE LINE # 1043
+?C0244:
+	LJMP 	LightEffect8_8
+; 							case '9':colorWipe(255, 255); break;
+			; SOURCE LINE # 1044
+; 							case ':':colorWipe(255, 255); break;
+			; SOURCE LINE # 1045
+; 							case ';':LightEffect1(20,5); break;
+			; SOURCE LINE # 1046
+?C0247:
+	MOV  	R5,#05H
+	MOV  	R4,#00H
+	MOV  	R7,#014H
+?C0399:
+	SJMP 	?C0415
+; 							case '<':LightEffect1(20,4); break;
+			; SOURCE LINE # 1047
+?C0248:
+	MOV  	R5,#04H
+	MOV  	R4,#00H
+	MOV  	R7,#014H
+?C0415:
+	LJMP 	_LightEffect1
+; 							case '=':colorWipe(255, 255); break;
+			; SOURCE LINE # 1048
+?C0249:
+?C0414:
+; 							case '>':colorWipe(255, 255); break;
+			; SOURCE LINE # 1049
+?C0416:
+	MOV  	DPTR,#?_colorWipe?BYTE+04H
+	CLR  	A
+	MOVX 	@DPTR,A
+	INC  	DPTR
+	MOV  	A,#0FFH
+	MOVX 	@DPTR,A
+	MOV  	R7,A
+	MOV  	R6,#00H
+	MOV  	R5,#00H
+	MOV  	R4,#00H
+	LJMP 	_colorWipe
+; 							case '?':LightEffect1_8(); break;
+			; SOURCE LINE # 1050
+?C0251:
+	LCALL	LightEffect1_8
+; 							default:break;
+			; SOURCE LINE # 1051
+; 							}
+			; SOURCE LINE # 1052
+; 						}
+			; SOURCE LINE # 1053
+?C0253:
+	RET  	
+; END OF _LightControll
+
+; 
+; 
+; 
+; 
+; 
+; 
+; 
+; //===================================利用7279来进行键盘的读取处理===========================================
+; 
+; 
+; //=========================================================================================
+; void long_delay(void)
+
+	RSEG  ?PR?long_delay?TEXT1
+long_delay:
+	USING	0
+			; SOURCE LINE # 1065
+;    {
+			; SOURCE LINE # 1066
+;    uchar i;
+;    for (i=0;i<0x30;i++){;}    //00110000
+			; SOURCE LINE # 1068
+;---- Variable 'i?30111' assigned to Register 'R7' ----
+	CLR  	A
+	MOV  	R7,A
+?C0254:
+	INC  	R7
+	MOV  	A,R7
+	CJNE 	A,#030H,?C0254
+;    }
+			; SOURCE LINE # 1069
+?C0257:
+	RET  	
+; END OF long_delay
+
+; 
+; void short_delay(void)
+
+	RSEG  ?PR?short_delay?TEXT1
+short_delay:
+	USING	0
+			; SOURCE LINE # 1071
+;    {
+			; SOURCE LINE # 1072
+;    uchar i;
+;    for (i=0;i<8;i++){;}
+			; SOURCE LINE # 1074
+;---- Variable 'i?31112' assigned to Register 'R7' ----
+	CLR  	A
+	MOV  	R7,A
+?C0258:
+	INC  	R7
+	MOV  	A,R7
+	CJNE 	A,#08H,?C0258
+;    }		
+			; SOURCE LINE # 1075
+?C0261:
+	RET  	
+; END OF short_delay
+
+; 
+; 
+; //单片机向7279发送数据
+; void SendByteTo7279(uchar out_byte)
+
+	RSEG  ?PR?_SendByteTo7279?TEXT1
+_SendByteTo7279:
+	USING	0
+			; SOURCE LINE # 1079
+;---- Variable 'out_byte?32113' assigned to Register 'R6' ----
+	MOV  	R6,AR7
+;    {
+			; SOURCE LINE # 1080
+;    uchar i;
+;    cs = 0; long_delay();//片选信号为低电平有效
+			; SOURCE LINE # 1082
+	CLR  	cs
+	LCALL	long_delay
+;    for (i=0;i<8;i++)
+			; SOURCE LINE # 1083
+;---- Variable 'i?32114' assigned to Register 'R5' ----
+	CLR  	A
+	MOV  	R5,A
+?C0262:
+;       {
+			; SOURCE LINE # 1084
+; 	  if (out_byte & 0x80) { dat = 1; } //10000000
+			; SOURCE LINE # 1085
+	MOV  	A,R6
+	JNB  	ACC.7,?C0265
+	SETB 	dat
+	SJMP 	?C0266
+?C0265:
+; 	  else { dat = 0; }                        //读取每一位的数据存放在dat中
+			; SOURCE LINE # 1086
+	CLR  	dat
+?C0266:
+; 	  //相当于产生时钟信号，制造了一个下降沿,从而进行数据的发送
+; 	  clk = 1; short_delay(); clk = 0; short_delay();
+			; SOURCE LINE # 1088
+	SETB 	clk
+	LCALL	short_delay
+	CLR  	clk
+	LCALL	short_delay
+; 	  out_byte = out_byte*2;
+			; SOURCE LINE # 1089
+	MOV  	A,R6
+	ADD  	A,ACC
+	MOV  	R6,A
+;       }
+			; SOURCE LINE # 1090
+	INC  	R5
+	MOV  	A,R5
+	CJNE 	A,#08H,?C0262
+?C0263:
+;    dat = 0;
+			; SOURCE LINE # 1091
+	CLR  	dat
+;    }
+			; SOURCE LINE # 1092
+	RET  	
+; END OF _SendByteTo7279
+
+;    
+; //7279向单片机发送数据
+; unsigned char ReceivedByteToMCU()
+
+	RSEG  ?PR?ReceivedByteToMCU?TEXT1
+ReceivedByteToMCU:
+	USING	0
+			; SOURCE LINE # 1095
+; {
+			; SOURCE LINE # 1096
+; 	unsigned char i, in_byte;
+; 	dat = 1;   
+			; SOURCE LINE # 1098
+	SETB 	dat
+; 	long_delay(); in_byte = 0;
+			; SOURCE LINE # 1099
+	LCALL	long_delay
+;---- Variable 'in_byte?33116' assigned to Register 'R6' ----
+	CLR  	A
+	MOV  	R6,A
+; 	for (i=0;i<8;i++)
+			; SOURCE LINE # 1100
+;---- Variable 'i?33115' assigned to Register 'R5' ----
+	MOV  	R5,A
+?C0268:
+; 	{
+			; SOURCE LINE # 1101
+; 		clk = 1; short_delay(); in_byte = in_byte*2;
+			; SOURCE LINE # 1102
+	SETB 	clk
+	LCALL	short_delay
+	MOV  	A,R6
+	ADD  	A,ACC
+	MOV  	R6,A
+; 		if (dat) { in_byte = in_byte|0x01; }
+			; SOURCE LINE # 1103
+	JNB  	dat,?C0271
+	ORL  	A,#01H
+	MOV  	R6,A
+?C0271:
+; 		clk = 0; short_delay();
+			; SOURCE LINE # 1104
+	CLR  	clk
+	LCALL	short_delay
+; 	}
+			; SOURCE LINE # 1105
+	INC  	R5
+	MOV  	A,R5
+	CJNE 	A,#08H,?C0268
+?C0269:
+; 	dat = 0; 
+			; SOURCE LINE # 1106
+	CLR  	dat
+; 	return(in_byte);
+			; SOURCE LINE # 1107
+	MOV  	R7,AR6
+; }
+			; SOURCE LINE # 1108
+?C0272:
+	RET  	
+; END OF ReceivedByteToMCU
+
+; 
+; // 读取键值
+; unsigned char key_read()
+
+	RSEG  ?PR?key_read?TEXT1
+key_read:
+	USING	0
+			; SOURCE LINE # 1111
+; {
+			; SOURCE LINE # 1112
+; 	SendByteTo7279(0x15); //15H是7279中的读键盘数据指令
+			; SOURCE LINE # 1113
+	MOV  	R7,#015H
+	LCALL	_SendByteTo7279
+; 	return(ReceivedByteToMCU());
+			; SOURCE LINE # 1114
+	LCALL	ReceivedByteToMCU
+; }
+			; SOURCE LINE # 1115
+?C0273:
+	RET  	
+; END OF key_read
+
+; 
+; //======================
+; 	
+; 
+; void delayms(uint x)
+
+	RSEG  ?PR?_delayms?TEXT1
+_delayms:
+	USING	0
+			; SOURCE LINE # 1120
+;---- Variable 'x?35117' assigned to Register 'R6/R7' ----
+; {
+			; SOURCE LINE # 1121
+; 	uint i;
+; 	uint j;
+; 	for(i=0;i<x;i++)
+			; SOURCE LINE # 1124
+;---- Variable 'i?35118' assigned to Register 'R4/R5' ----
+	CLR  	A
+	MOV  	R5,A
+	MOV  	R4,A
+?C0274:
+	CLR  	C
+	MOV  	A,R5
+	SUBB 	A,R7
+	MOV  	A,R4
+	SUBB 	A,R6
+	JNC  	?C0280
+; 		for(j=0;j<335;j++)
+			; SOURCE LINE # 1125
+;---- Variable 'j?35119' assigned to Register 'R2/R3' ----
+	CLR  	A
+	MOV  	R3,A
+	MOV  	R2,A
+?C0277:
+; 			{;}
+			; SOURCE LINE # 1126
+	INC  	R3
+	CJNE 	R3,#00H,?C0351
+	INC  	R2
+?C0351:
+	CJNE 	R2,#01H,?C0277
+	CJNE 	R3,#04FH,?C0277
+?C0276:
+	INC  	R5
+	CJNE 	R5,#00H,?C0352
+	INC  	R4
+?C0352:
+	SJMP 	?C0274
+; }
+			; SOURCE LINE # 1127
+?C0280:
+	RET  	
+; END OF _delayms
+
+; void SendByte2Computer(uchar dataa)
+
+	RSEG  ?PR?_SendByte2Computer?TEXT1
+_SendByte2Computer:
+			; SOURCE LINE # 1128
+;---- Variable 'dataa?36120' assigned to Register 'R7' ----
+; {
+			; SOURCE LINE # 1129
+; 	SBUF=dataa;
+			; SOURCE LINE # 1130
+	MOV  	SBUF,R7
+?C0281:
+; 	while(TI==0);
+			; SOURCE LINE # 1131
+	JNB  	TI,?C0281
+?C0282:
+; 	
+; 	TI=0;//软件复位
+			; SOURCE LINE # 1133
+	CLR  	TI
+; }
+			; SOURCE LINE # 1134
+	RET  	
+; END OF _SendByte2Computer
+
+; void SendBytes2Computer(unsigned char * datas)
+
+	RSEG  ?PR?_SendBytes2Computer?TEXT1
+_SendBytes2Computer:
+	USING	0
+			; SOURCE LINE # 1135
+;---- Variable 'datas?37121' assigned to Register 'R1/R2/R3' ----
+; {
+			; SOURCE LINE # 1136
+; 	//int i;
+; 	uchar* dd=datas;
+			; SOURCE LINE # 1138
+;---- Variable 'dd?37122' assigned to Register 'R1/R2/R3' ----
+?C0284:
+; 	while( *dd != '\0')
+			; SOURCE LINE # 1139
+	LCALL	?C?CLDPTR
+	MOV  	R7,A
+	JZ   	?C0286
+; 	//for(i=0;i<3;i++)
+; 	{
+			; SOURCE LINE # 1141
+; 		SendByte2Computer(*dd);
+			; SOURCE LINE # 1142
+	LCALL	_SendByte2Computer
+; 		dd+=1;
+			; SOURCE LINE # 1143
+	MOV  	A,#01H
+	ADD  	A,R1
+	MOV  	R1,A
+	CLR  	A
+	ADDC 	A,R2
+	MOV  	R2,A
+; 		//SendByte(datas[i]);
+; 		
+; 		
+; 	}
+			; SOURCE LINE # 1147
+	SJMP 	?C0284
+; }
+			; SOURCE LINE # 1148
+?C0286:
+	RET  	
+; END OF _SendBytes2Computer
+
+; 
+; void UartInit(void)		//9600bps@18.432MHz
+
+	RSEG  ?PR?UartInit?TEXT1
+UartInit:
+			; SOURCE LINE # 1150
+; {
+			; SOURCE LINE # 1151
+; 	SCON = 0x50;		//8位数据,可变波特率
+			; SOURCE LINE # 1152
+	MOV  	SCON,#050H
+; 	AUXR |= 0x40;		//定时器1时钟为Fosc,即1T
+			; SOURCE LINE # 1153
+	ORL  	AUXR,#040H
+; 	AUXR &= 0xFE;		//串口1选择定时器1为波特率发生器
+			; SOURCE LINE # 1154
+	ANL  	AUXR,#0FEH
+; 	TMOD &= 0x0F;		//设定定时器1为16位自动重装方式
+			; SOURCE LINE # 1155
+	ANL  	TMOD,#0FH
+; 	TL1 = 0x20;		//设定定时初值
+			; SOURCE LINE # 1156
+	MOV  	TL1,#020H
+; 	TH1 = 0xFE;		//设定定时初值
+			; SOURCE LINE # 1157
+	MOV  	TH1,#0FEH
+; 	ET1 = 0;		//禁止定时器1中断
+			; SOURCE LINE # 1158
+	CLR  	ET1
+; 	TR1 = 1;		//启动定时器1
+			; SOURCE LINE # 1159
+	SETB 	TR1
+; }
+			; SOURCE LINE # 1160
+	RET  	
+; END OF UartInit
+
+; 
+; 
+; 
+; void Delay1ms(uchar k)		//@18.432MHz
+
+	RSEG  ?PR?_Delay1ms?TEXT1
+_Delay1ms:
+	USING	0
+			; SOURCE LINE # 1164
+;---- Variable 'k?39123' assigned to Register 'R7' ----
+; {
+			; SOURCE LINE # 1165
+; 	unsigned char i, j,mm;
+; 	for(mm=0;mm<k;mm++){
+			; SOURCE LINE # 1167
+;---- Variable 'mm?39126' assigned to Register 'R6' ----
+	CLR  	A
+	MOV  	R6,A
+?C0288:
+	MOV  	A,R6
+	CLR  	C
+	SUBB 	A,R7
+	JNC  	?C0296
+; 	_nop_();
+			; SOURCE LINE # 1168
+	NOP  	
+; 	_nop_();
+			; SOURCE LINE # 1169
+	NOP  	
+; 	i = 22;
+			; SOURCE LINE # 1170
+;---- Variable 'i?39124' assigned to Register 'R5' ----
+	MOV  	R5,#016H
+; 	j = 128;
+			; SOURCE LINE # 1171
+;---- Variable 'j?39125' assigned to Register 'R4' ----
+	MOV  	R4,#080H
+; 	do
+; 	{
+			; SOURCE LINE # 1173
+?C0294:
+; 		while (--j);
+			; SOURCE LINE # 1174
+	DJNZ 	R4,?C0294
+?C0295:
+; 	} while (--i);
+			; SOURCE LINE # 1175
+?C0291:
+	DJNZ 	R5,?C0294
+; }}
+			; SOURCE LINE # 1176
+	INC  	R6
+	SJMP 	?C0288
+?C0296:
+	RET  	
+; END OF _Delay1ms
+
+; 
+; 
+; 
+; 
+; void main()
+
+	RSEG  ?PR?main?TEXT1
+main:
+	USING	0
+			; SOURCE LINE # 1181
+; {
+			; SOURCE LINE # 1182
+; unsigned char KeyValue;
+; UartInit();
+			; SOURCE LINE # 1184
+	LCALL	UartInit
+?C0297:
+; 
+; //rainbowCycle(40);
+; while(1)
+			; SOURCE LINE # 1187
+; {
+			; SOURCE LINE # 1188
+; 	
+; 	//RGB_Set_Up();
+; 	//RGB_Set_Down();
+; 	//SetPointColour(2,255,0,0);
+; 	
+; 	KeyValue=key_read();
+			; SOURCE LINE # 1194
+	LCALL	key_read
+	MOV  	DPTR,#KeyValue?40127
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; 	SendByte2Computer(KeyValue);
+			; SOURCE LINE # 1195
+	LCALL	_SendByte2Computer
+; 	LightControll(KeyValue);
+			; SOURCE LINE # 1196
+	MOVX 	A,@DPTR
+	MOV  	R7,A
+	LCALL	_LightControll
+; 	Delay1ms(100);
+			; SOURCE LINE # 1197
+	MOV  	R7,#064H
+	LCALL	_Delay1ms
+; 
+; 
+; 
+; }
+			; SOURCE LINE # 1201
+	SJMP 	?C0297
+; END OF main
+
+; 
+; 
+; 
+; }
+; 
+; //适用于12MHz
+; //R7相当于dataa,R6用来进行循环，RLC负责移位
+; void ws2812asm(unsigned char dataa)
+
+	RSEG  ?PR?_ws2812asm?TEXT1
+_ws2812asm:
+	USING	0
+			; SOURCE LINE # 1209
+	MOV  	DPTR,#dataa?41128
+	MOV  	A,R7
+	MOVX 	@DPTR,A
+; {
+			; SOURCE LINE # 1210
+; #pragma asm
+; 	MOV A, R7       
+	  MOV A, R7       
+; 	MOV R6, #0x08   
+	  MOV R6, #0x08   
+; WS2812LOOP:
+	  WS2812LOOP:
+; 	SETB P3.7
+	  SETB P3.7
+; 	RLC A
+	  RLC A
+; 	MOV P3.7, C
+	  MOV P3.7, C
+; 	NOP
+	  NOP
+; 	CLR P3.7
+	  CLR P3.7
+; 	DJNZ R6, WS2812LOOP
+	  DJNZ R6, WS2812LOOP
+; #pragma endasm
+; }
+			; SOURCE LINE # 1222
+	RET  	
+; END OF _ws2812asm
+
+	END
