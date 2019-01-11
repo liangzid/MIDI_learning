@@ -1,0 +1,8 @@
+".\obj\char.obj",
+".\obj\FFT.obj",
+".\obj\FLASH.obj",
+".\obj\HC573.obj",
+".\obj\KEY.obj",
+".\obj\test.obj" 
+TO ".\obj\test" 
+PRINT(".\obj\test.m51")

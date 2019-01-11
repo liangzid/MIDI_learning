@@ -1,0 +1,467 @@
+C51 COMPILER V9.01   TEST                                                                  01/08/2019 21:00:42 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TEST
+OBJECT MODULE PLACED IN .\obj\test.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\test.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\ob
+                    -j\test.lst) OBJECT(.\obj\test.obj)
+
+line level    source
+
+   1          #include <intrins.h>     //
+   2          #include"STC12C5A60S2.H" //Ð¾Æ¬Í·ÎÄ¼þ
+   3          #include"STC12C5A60S2.H" //Ð¾Æ¬Í·ÎÄ¼þ
+   4          #define channel      0x01                 //ÉèÖÃADÍ¨µÀÎª P1.0
+   5          #define ADC_POWER   (1<<7) 
+   6          #define ADC_SPEEDHH (0x03<<5) 
+   7          #define ADC_START   (1<<3) 
+   8          #define PADCH       (1<<5) 
+   9          #define ADC_FLAG    (1<<4)
+  10          typedef unsigned char uchar;
+  11          typedef unsigned int  uint;
+  12          extern void clear(char le);
+  13          extern void key_scan();
+  14          extern void flash_1();//rain
+  15          extern void flash_2();//rain
+  16          extern void flash_3();//rain
+  17          extern void flash_4();//rain
+  18          
+  19          extern void flash_5();//rain
+  20          extern void flash_6();//rain
+  21          extern void flash_7();//rain
+  22          extern void flash_8();//rain
+  23          extern void flash_9();//rain
+  24          extern void flash_10();//rain
+  25          extern void flash_11();//rain
+  26          extern void flash_12();//rain
+  27          
+  28          extern void hang1();//rain
+  29          extern void hang2();//rain
+  30          extern void hang3();//rain
+  31          extern void hang4();//rain
+  32          extern void hang5();//rain
+  33          extern void hang6();//rain
+  34          extern void hang7();//rain
+  35          extern void hang8();//rain
+  36          extern void FFT(); //»ù2fft
+  37          extern void flash_diy(void);
+  38          
+  39          extern code  char LIST_TAB[128] ;
+  40          extern int   xdata Fft_Real[128];                               //FFTµÄÊµ²¿
+  41          extern int   xdata Fft_Image[128];             //FFTµÄÐé²¿ 
+  42          extern uchar xdata LED_TAB[16];                         //¼ÇÂ¼ºìÉ«Öù×´
+  43          extern uchar key_flag ;
+  44          extern uchar xdata LED_TAB[16];                         //¼ÇÂ¼ºìÉ«Öù×´  
+  45          uchar flag_fft_s;
+  46          uchar ADC_Count=0,G=0,T;
+  47          uchar code tablew[]={0x00,0x80,0xC0,0xE0,0xF0,0xF8,0xFC,0xFE}; 
+  48          #define     NEW     1
+  49          #if         NEW
+  50          sbit x1 = P1^2;         //¶¨ÒåP1.2×÷ÎªµÚÒ»²ãµÄ²ãÑ¡ÐÅºÅ
+  51          sbit x2 = P1^3;         //¶¨ÒåP1.3×÷ÎªµÚ¶þ²ãµÄ²ãÑ¡ÐÅºÅ 
+  52          sbit x3 = P1^4;         //¶¨ÒåP1.4×÷ÎªµÚÈý²ãµÄ²ãÑ¡ÐÅºÅ
+  53          sbit x4 = P3^3;         //¶¨ÒåP3.3×÷ÎªµÚËÄµÚµÄ²ãÑ¡ÐÅºÅ 
+  54          sbit x5 = P3^4;         //¶¨ÒåP3.4×÷ÎªµÚÎå²ãµÄ²ãÑ¡ÐÅºÅ
+C51 COMPILER V9.01   TEST                                                                  01/08/2019 21:00:42 PAGE 2   
+
+  55          sbit x6 = P3^5;         //¶¨ÒåP3.5×÷ÎªµÚÁùµÚµÄ²ãÑ¡ÐÅºÅ 
+  56          sbit x7 = P3^7;         //¶¨ÒåP3.7×÷ÎªµÚÆß²ãµÄ²ãÑ¡ÐÅºÅ
+  57          sbit x8 = P3^6;         //¶¨ÒåP3.6×÷ÎªµÚ°Ë²ãµÄ²ãÑ¡ÐÅºÅ
+  58          #else
+              sbit x1 = P1^4;         //¶¨ÒåP1.4×÷ÎªµÚÒ»²ãµÄ²ãÑ¡ÐÅºÅ
+              sbit x2 = P1^2;         //¶¨ÒåP1.2×÷ÎªµÚ¶þ²ãµÄ²ãÑ¡ÐÅºÅ 
+              sbit x3 = P3^2;         //¶¨ÒåP3.2×÷ÎªµÚÈý²ãµÄ²ãÑ¡ÐÅºÅ
+              sbit x4 = P3^3;         //¶¨ÒåP3.3×÷ÎªµÚËÄµÚ¶þ²ãÑ¡ÐÅºÅ 
+              sbit x5 = P3^4;         //¶¨ÒåP3.4×÷ÎªµÚÎå²ãµÄ²ãÑ¡ÐÅºÅ
+              sbit x6 = P3^5;         //¶¨ÒåP3.5×÷ÎªµÚÁùµÚ¶þ²ãÑ¡ÐÅºÅ 
+              sbit x7 = P3^6;         //¶¨ÒåP3.6×÷ÎªµÚÆß²ãµÄ²ãÑ¡ÐÅºÅ
+              sbit x8 = P3^7;         //¶¨ÒåP3.7×÷ÎªµÚ°Ë²ãµÄ²ãÑ¡ÐÅºÅ
+              #endif
+  68          
+  69          uchar xdata display[8][8];
+  70          uchar xdata display2[8][8];
+  71          uchar xdata uart_buffer[65];
+  72          uchar rec = 0;
+  73          uint  uart_cnt = 0;
+  74          void layer_cs(unsigned char cs )
+  75          {
+  76   1          unsigned char i = 0;
+  77   1          x1=0; x2=0;x3=0;x4=0;x5=0;x6=0;x7=0;x8=0;
+  78   1          if((cs & 0x01) == 0x01)
+  79   1          {
+  80   2              x1 = 1;
+  81   2          }
+  82   1          if((cs & 0x02) == 0x02)
+  83   1          {
+  84   2              x2 = 1;
+  85   2          }    
+  86   1          if((cs & 0x04) == 0x04)
+  87   1          {
+  88   2              x3 = 1;
+  89   2          }    
+  90   1          if((cs & 0x08) == 0x08)
+  91   1          {
+  92   2              x4 = 1;
+  93   2          }    
+  94   1          if((cs & 0x10) == 0x10)
+  95   1          {
+  96   2              x5 = 1;
+  97   2          }    
+  98   1          if((cs & 0x20) == 0x20)
+  99   1          {
+ 100   2              x6 = 1;
+ 101   2          }    
+ 102   1          if((cs & 0x40) == 0x40)
+ 103   1          {
+ 104   2              x7 = 1;
+ 105   2          }    
+ 106   1          if((cs & 0x80) == 0x80)
+ 107   1          {
+ 108   2              x8 = 1;
+ 109   2          }
+ 110   1      }
+ 111          //¹¦ÄÜ³õÊ¼»¯
+ 112          void Init()
+ 113          {  
+ 114   1              P0 = 0x00; //74HC573Êý¾Ý¿Ú
+ 115   1              P2 = 0x00; //74HC573Î»Ñ¡¶Ë
+ 116   1          x1=1;
+C51 COMPILER V9.01   TEST                                                                  01/08/2019 21:00:42 PAGE 3   
+
+ 117   1          x2=1;
+ 118   1          x3=1;
+ 119   1          x4=1;
+ 120   1          x5=1;
+ 121   1          x6=1;
+ 122   1          x7=1;
+ 123   1      }
+ 124          
+ 125          void uart_init(void)
+ 126          {
+ 127   1              PCON &= 0x7F;           //??????
+ 128   1              SCON = 0x50;            //8???,?????
+ 129   1              AUXR |= 0x04;           //???????????Fosc,?1T
+ 130   1              BRT = 0xFD;                 //?????????????
+ 131   1              AUXR |= 0x01;           //??1?????????????????
+ 132   1              AUXR |= 0x10;           //??????????
+ 133   1          REN = 1;            //ÔÊÐí´®¿Ú½ÓÊÕ
+ 134   1          ES = 1;             //´®¿ÚÖÐ¶Ï
+ 135   1          EA = 1;    
+ 136   1      }
+ 137          /******** Ö÷º¯Êý ***************************************************************************************/
+ 138          
+ 139          /***************************************
+ 140          º¯ÊýÃû³Æ£ºÖÐ¶Ïº¯Êý
+ 141          ÊäÈë²ÎÊý£ºÎÞ
+ 142          ·µ »Ø Öµ£ºÎÞ
+ 143          ****************************************/
+ 144          void interrupt_uart (void) interrupt 4
+ 145          {
+ 146   1          uint i = 0;
+ 147   1          uint j = 0;
+ 148   1          if(RI)
+ 149   1          {
+ 150   2              uart_buffer[uart_cnt] = SBUF;
+ 151   2              RI = 0;
+ 152   2              if(uart_buffer[0] == 0xF2)
+ 153   2              {
+ 154   3                  uart_cnt++;
+ 155   3                  if((uart_cnt == 65)|| uart_cnt>65)
+ 156   3                  {          
+ 157   4                      uart_cnt = 0;
+ 158   4                      uart_buffer[0] = 0;
+ 159   4                      rec = 1;
+ 160   4                  }
+ 161   3              }
+ 162   2              else if (uart_buffer[0] == 0xF4)
+ 163   2              {
+ 164   3                  uart_cnt++;
+ 165   3                  if((uart_cnt == 2)|| uart_cnt>2)
+ 166   3                  {  
+ 167   4                      CCAP0H = uart_buffer[1];
+ 168   4                      CCAP1H = uart_buffer[1];
+ 169   4                      uart_cnt = 0;
+ 170   4                      uart_buffer[0] = 0;
+ 171   4                  }        
+ 172   3              }
+ 173   2              
+ 174   2          }
+ 175   1          else
+ 176   1          {
+ 177   2             TI = 0; 
+ 178   2          }
+C51 COMPILER V9.01   TEST                                                                  01/08/2019 21:00:42 PAGE 4   
+
+ 179   1      }
+ 180          
+ 181          void main()
+ 182          {
+ 183   1              uchar i = 0; //forÑ­»·±äÁ¿
+ 184   1          uchar j = 0; //forÑ­»·±äÁ¿
+ 185   1              Init();
+ 186   1              while(1)
+ 187   1              {                                       
+ 188   2                      clear(0);       //Çå¿ÕË¢ÐÂÏÔÊ¾»º³åÇø 
+ 189   2                      key_scan();     //É¨Ãè°´¼ü
+ 190   2                      
+ 191   2                      
+ 192   2                      if(key_flag == 1)
+ 193   2                      {
+ 194   3                              key_flag = 0;
+ 195   3                  IE=0x82;
+ 196   3                  TCON=0x01;
+ 197   3                  TH0=0xc0;    
+ 198   3                  TL0=0;
+ 199   3                  TR0=1;
+ 200   3                  PS  = 1;
+ 201   3                  PT0 = 0;
+ 202   3                  uart_init();
+ 203   3                  flag_fft_s = 1;  //¶¨Ê±Æ÷0¹¦ÄÜ¿ØÖÆ
+ 204   3                  while(1)
+ 205   3                  {
+ 206   4                      if(rec == 0)
+ 207   4                      {
+ 208   5                          continue;
+ 209   5                      }
+ 210   4                      rec = 0;
+ 211   4          
+ 212   4                      for(i=0;i<8;i++)
+ 213   4                      {                
+ 214   5                          for(j=0;j<8;j++)
+ 215   5                          {
+ 216   6                              display2[i][j] = 0;
+ 217   6                          }                               
+ 218   5                      } 
+ 219   4                      /*PCÊý¾Ý×ª»»*/
+ 220   4                      for(j=0;j<8;j++)
+ 221   4                      {                
+ 222   5                          for(i=0;i<8;i++)
+ 223   5                          {
+ 224   6                             display2[j][0] |= ((uart_buffer[0+i+1]>>j)  & 0x01)<<(7-i);
+ 225   6                             display2[j][1] |= ((uart_buffer[8+i+1]>>j)  & 0x01)<<(7-i);
+ 226   6                             display2[j][2] |= ((uart_buffer[16+i+1]>>j) & 0x01)<<(7-i);
+ 227   6                             display2[j][3] |= ((uart_buffer[24+i+1]>>j) & 0x01)<<(7-i);
+ 228   6                             display2[j][4] |= ((uart_buffer[32+i+1]>>j) & 0x01)<<(7-i);
+ 229   6                             display2[j][5] |= ((uart_buffer[40+i+1]>>j) & 0x01)<<(7-i);
+ 230   6                             display2[j][6] |= ((uart_buffer[48+i+1]>>j) & 0x01)<<(7-i);
+ 231   6                             display2[j][7] |= ((uart_buffer[56+i+1]>>j) & 0x01)<<(7-i);                      
+ 232   6                          }                               
+ 233   5                      }
+ 234   4                      
+ 235   4                      TR0 = 0;
+ 236   4                      /*Çå¿Õ»º³åÇø*/
+ 237   4                      for(i=0;i<8;i++)
+ 238   4                      {                
+ 239   5                          for(j=0;j<8;j++)
+ 240   5                          {
+C51 COMPILER V9.01   TEST                                                                  01/08/2019 21:00:42 PAGE 5   
+
+ 241   6                              display[7-i][j] = display2[i][j];
+ 242   6                          }                               
+ 243   5                      }                     
+ 244   4                      TR0 = 1;           
+ 245   4                 }
+ 246   3      
+ 247   3                      }
+ 248   2      
+ 249   2                      //FFT
+ 250   2                      if(key_flag == 2)
+ 251   2                      {
+ 252   3                  //IO¿ÚÄ£Ê½³õÊ¼»¯
+ 253   3                  P3M0 = 0xff; //ULN2803Êä³ö¿ÚÉèÖÃÎªÍÆÍìÊä³ö
+ 254   3                  P3M1 = 0x00;
+ 255   3                  P0M0 = 0xff; //P0¡¢P2ÓÃÓÚ¿ØÖÆ74HC573,ÍÆÍìÊä³ö
+ 256   3                  P0M1 = 0x00;
+ 257   3                  P2M0 = 0xff;
+ 258   3                  P2M1 = 0x00;           
+ 259   3                  //----- ADC³õÊ¼»¯ ----------------------------------------------------------------------------
+             ---
+ 260   3                      P1ASF  = 0x02;          //0000,0010, ½« P1.1 ÖÃ³ÉÄ£Äâ¿Ú
+ 261   3                      AUXR1 &=0xFB;           //1111,1011, Áî ADRJ=0
+ 262   3                      EADC   =1;                              //ADÖÐ¶Ï´ò¿ª
+ 263   3                      ADC_CONTR = ADC_POWER | ADC_SPEEDHH | ADC_START | channel; //1110 1001   1´ò¿ª A/D £¨ADC_POWER£©×
+             -ª»»µçÔ´£»11ËÙ¶ÈÎª90ÖÜÆÚÒ»´Î£»
+ 264   3                                                                                     //0ÖÐ¶Ï±êÖ¾ÇåÁã£»1Æô¶¯adc(ADC_START);001ADÍ¨
+             -µÀ´ò¿ª£¨ÕâÀïÎªP1.1£©;        
+ 265   3                      ET0 = 1;                          //¶¨Ê±Æ÷0ÖÐ¶Ï ÆôÓÃ
+ 266   3                      TR0 = 0;                          //¶¨Ê±Æ÷0     ¹Ø±Õ
+ 267   3                      ET1 = 1;                          //¶¨Ê±Æ÷1ÖÐ¶Ï ÆôÓÃ
+ 268   3                      TR1 = 0;              //¶¨Ê±Æ÷1     ¹Ø±Õ
+ 269   3                      PT1 = 0;                          //¶¨Ê±Æ÷1 µÍÓÅÏÈ¼¶
+ 270   3                      PT0 = 1;                          //¶¨Ê±Æ÷0 ¸ßÓÅÏÈ¼¶
+ 271   3                      IPH = PADCH;
+ 272   3                      IP  = PADC;                       //ÖÐ¶ÏÓÅÏÈ¼¶
+ 273   3                      EA  = 1;                          //×ÜÖÐ¶Ï´ò¿ª 
+ 274   3                      clear(0);                         //Çå¿ÕÏÔÊ¾»º³åÇø
+ 275   3                              TMOD = 0x12; //T0: 8Î»×Ô¶¯ÖØ×°      T1: 16Î»Ä£Ê½
+ 276   3                              TH0  = 0x60; //ADC²ÉÑùÖÜÆÚ£¨80us»ò6.66us£©  ²ÉÑùÂÊ 12.5 KHz                                                               
+ 277   3                              TL0  = 0x60; //
+ 278   3                              TH1  = 0xfd; //Ë¢ÐÂÏÔÊ¾ÖÜÆÚ£¨300us»ò25us£©      Ë¢ÐÂÂÊ                                                                             
+ 279   3                              TL1  = 0Xa8; //
+ 280   3                              while(1)
+ 281   3                              {
+ 282   4                                      flag_fft_s = 0;  
+ 283   4                                      TR1 = 1; //Ë¢ÐÂÏÔÊ¾
+ 284   4                                      TR0 = 1; //¿ØÖÆ²ÉÑùËÙÂÊ
+ 285   4                                      //P0    = 0xaa; //P0 Î´Öª×÷ÓÃ1010 1010
+ 286   4                                      ADC_Count=0;                            
+ 287   4                                      TR1  = 1;     //¿ªÆô¶¨Ê±Æ÷
+ 288   4                                      TR0  = 1;     //¿ªÆô¶¨Ê±Æ÷ÖÐ¶Ï0
+ 289   4                                      EADC = 1;         //¿ªÆôADC 
+ 290   4                                      while(ADC_Count<128); //×ª»»128´Î
+ 291   4                                      for(i=0;i<128;i++)        //FFT²ÎÊýÐé²¿¸³Öµ
+ 292   4                                      {
+ 293   5                                              Fft_Image[i]=0;   //Ô­Ê¼Êý¾Ý Ðé²¿¸³ÖµÎª0
+ 294   5                                      }
+ 295   4                                      FFT();                //FFTÔËËã²¢×ª»»Îª¸÷Æµ¶Î·ùÖµ       
+ 296   4      
+ 297   4                                      //ÆäËû°´Å¥£¬Ìø³ö
+ 298   4                                      //key_scan();
+ 299   4                                      //if(key_flag != 2) break;
+C51 COMPILER V9.01   TEST                                                                  01/08/2019 21:00:42 PAGE 6   
+
+ 300   4                              }                                                                                                                                                                                                                                                                                                                                               
+ 301   3                      }
+ 302   2      
+ 303   2                      //Ë³ÐòÑ­»·
+ 304   2                      if(key_flag == 3)
+ 305   2                      {       
+ 306   3                  TMOD=0x11;
+ 307   3                  EA  = 0;                      //×ÜÐ¶Ïò¿ª
+ 308   3                  flag_fft_s = 1;  //¶¨Ê±Æ÷0¹¦ÄÜ¿ØÖÆ
+ 309   3                  PT0 = 1;                      //¶¨Ê±Æ÷0 ¸ßÓÅÏÈ¼¶
+ 310   3                  ET0 = 1;                      //¶¨Ê±Æ÷0ÖÐ¶Ï ÆôÓÃ
+ 311   3                  ES = 0;             //´®¿ÚÖÐ¶Ï
+ 312   3                  TR0 = 1;      //¿ªô¶¨±Æ÷0 
+ 313   3                  EA  = 1;                      //×ÜÐ¶Ïò¿ª
+ 314   3                  clear(0);
+ 315   3                              while(1)
+ 316   3                              {
+ 317   4                      
+ 318   4                      flash_diy(); 
+ 319   4                      clear(0);               
+ 320   4                      
+ 321   4                                      flash_2();
+ 322   4                                      clear(0);
+ 323   4                      flash_3();
+ 324   4                      flash_4();
+ 325   4                      //flash_5();
+ 326   4                      flash_5();
+ 327   4                      flash_5();
+ 328   4                      flash_6();
+ 329   4                      flash_7();
+ 330   4                      flash_8();
+ 331   4                      flash_9();
+ 332   4                      flash_10();
+ 333   4                      clear (0);
+ 334   4                      
+ 335   4                      flash_11();
+ 336   4                      flash_9();
+ 337   4                      flash_5();
+ 338   4                      flash_7();
+ 339   4                      flash_5();
+ 340   4                      flash_6();
+ 341   4                      flash_8();
+ 342   4                      flash_9();
+ 343   4                      flash_10();                             
+ 344   4                              }                               
+ 345   3                      }
+ 346   2              }               
+ 347   1      }
+ 348          
+ 349          
+ 350          //¶¨Ê±Æ÷1ÖÐ¶Ï ÓÃÓÚË¢ÐÂÏÔÊ¾(Ö»ÔÚÆµÆ×ÏÔÊ¾Ê±Ê¹ÓÃ)
+ 351          void interrupt_fft_display() interrupt 3                                         //ÖÐ¶ÏÒ»´ÎÏÔÊ¾Ò»ÁÐ
+ 352          {                
+ 353   1              TH1  = 0xfd; //Ë¢ÐÂÏÔÊ¾ÖÜÆÚ£¨300us»ò25us£©      Ë¢ÐÂÂÊ                                                                             
+ 354   1              TL1  = 0Xa8; //
+ 355   1              G++;                                                    
+ 356   1              if(G>=17) G=1;
+ 357   1              switch(G)                                                                    //ÍùµãÕóÆÁÌî³äÒ»ÁÐµÄÊý¾Ý
+ 358   1              {               
+ 359   2                      case 1: layer_cs(tablew[(LED_TAB[1] )%8]);hang1();break;         //(LED_TAB[1] )%8È¡°ËµÄÓàÊý
+ 360   2                      case 2: layer_cs(tablew[(LED_TAB[2] )%8]);hang1();break;
+ 361   2                      case 3: layer_cs(tablew[(LED_TAB[3] )%8]);hang2();break;
+C51 COMPILER V9.01   TEST                                                                  01/08/2019 21:00:42 PAGE 7   
+
+ 362   2                      case 4: layer_cs(tablew[(LED_TAB[4] )%8]);hang2();break;
+ 363   2                      case 5: layer_cs(tablew[(LED_TAB[5] )%8]);hang3();break;
+ 364   2                      case 6: layer_cs(tablew[(LED_TAB[6] )%8]);hang3();break;
+ 365   2                      case 7: layer_cs(tablew[(LED_TAB[7] )%8]);hang4();break;
+ 366   2                      case 8: layer_cs(tablew[(LED_TAB[8] )%8]);hang4();break;
+ 367   2                      case 9: layer_cs(tablew[(LED_TAB[9] )%8]);hang5();break;
+ 368   2                      case 10:layer_cs(tablew[(LED_TAB[10])%8]);hang5();break;
+ 369   2                      case 11:layer_cs(tablew[(LED_TAB[11])%8]);hang6();break;
+ 370   2                      case 12:layer_cs(tablew[(LED_TAB[12])%8]);hang6();break;
+ 371   2                      case 13:layer_cs(tablew[(LED_TAB[13])%8]);hang7();break;
+ 372   2                      case 14:layer_cs(tablew[(LED_TAB[14])%8]);hang7();break;
+ 373   2                      case 15:layer_cs(tablew[(LED_TAB[15])%8]);hang8();break;
+ 374   2                      case 16:layer_cs(tablew[(LED_TAB[15])%8]);hang8();break;
+ 375   2              }                
+ 376   1      }               
+ 377          
+ 378          //ADC×ª»»Íê³ÉÖÐ¶Ï
+ 379          void ADC_Finish() interrupt 5
+ 380          {          
+ 381   1          ADC_CONTR &= !ADC_FLAG; 
+ 382   1          Fft_Real[LIST_TAB[ADC_Count]] = (int)((ADC_RES)<<1)+(ADC_RESL>>1)*2;     //°´LIST_TAB±íÀïµÄË³Ðò£¬½øÐÐ´
+             -æ´¢²ÉÑùÖµ
+ 383   1          
+ 384   1          if(ADC_Count<=127)
+ 385   1          { 
+ 386   2              ADC_Count++;  
+ 387   2          }
+ 388   1          else
+ 389   1          { 
+ 390   2              EADC=0;
+ 391   2              TR0=0;
+ 392   2          }                                                                                                            
+ 393   1      }
+ 394          
+ 395          void interrupt_print() interrupt 1                                       
+ 396          {       
+ 397   1              uchar i;
+ 398   1              static uchar layer=0;                           
+ 399   1              if(flag_fft_s == 1)
+ 400   1              { 
+ 401   2              x1=0; x2=0;x3=0;x4=0;x5=0;x6=0;x7=0;x8=0;
+ 402   2                      for(i=0;i<8;i++)
+ 403   2                      {
+ 404   3                  P2 = 1<<i;
+ 405   3                  P0 = display[layer][i];                             
+ 406   3                      }
+ 407   2              layer_cs(0x01<<layer);
+ 408   2      
+ 409   2                      if(layer<7) 
+ 410   2              {
+ 411   3                  layer++;
+ 412   3              }
+ 413   2                      else
+ 414   2              {
+ 415   3                  layer=0; 
+ 416   3              }
+ 417   2                      TH0=0xFA;
+ 418   2                      TL0=0xF0;       
+ 419   2              }
+ 420   1              //¿ØÖÆ²ÉÑùËÙÂÊ
+ 421   1              else
+ 422   1              {
+C51 COMPILER V9.01   TEST                                                                  01/08/2019 21:00:42 PAGE 8   
+
+ 423   2                      ADC_CONTR = ADC_POWER | ADC_SPEEDHH| ADC_START | channel; //¿ªÊ¼AD²É¼¯
+ 424   2              }
+ 425   1      } 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1966    ----
+   CONSTANT SIZE    =      8    ----
+   XDATA SIZE       =    201       7
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

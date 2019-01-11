@@ -1,0 +1,26 @@
+C51 COMPILER V9.00   ZIMO                                                                  03/23/2015 20:09:15 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ZIMO
+OBJECT MODULE PLACED IN .\obj\zimo.obj
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE zimo.c LARGE BROWSE DEBUG OBJECTEXTEND PRINT(.\obj\zimo.lst) OBJECT(.\obj\z
+                    -imo.obj)
+
+line level    source
+
+   1          #include"STC12C5A60S2.H" //оƬͷ�ļ�
+   2          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

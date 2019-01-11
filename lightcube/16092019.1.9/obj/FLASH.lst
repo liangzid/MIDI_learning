@@ -1,0 +1,2065 @@
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE FLASH
+OBJECT MODULE PLACED IN .\obj\FLASH.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\FLASH.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\o
+                    -bj\FLASH.lst) OBJECT(.\obj\FLASH.obj)
+
+line level    source
+
+   1          #include"STC12C5A60S2.H" //芯片头文件
+   2          #include <intrins.h>
+   3          typedef unsigned char uchar;
+   4          typedef unsigned int  uint;
+   5          void delay(uint i);  
+   6          /*rank:A,1,2,3,4,I,心,U*/
+   7          
+   8          uchar code table_cha[8][8]={0x51,0x51,0x51,0x4a,0x4a,0x4a,0x44,0x44,0x18,0x1c,0x18,0x18,0x18,0x18,0x18,0x3
+             -c,0x3c,0x66,0x66,0x30,0x18,0xc,0x6,0xf6,0x3c,0x66,0x60,0x38,0x60,0x60,0x66,0x3c,0x30,0x38,0x3c,0x3e,0x36,0x7e,0x30,0x30,
+             -0x3c,0x3c,0x18,0x18,0x18,0x18,0x3c,0x3c,0x66,0xff,0xff,0xff,0x7e,0x3c,0x18,0x18,0x66,0x66,0x66,0x66,0x66,0x66,0x7e,0x3c}
+             -;
+   9          
+  10          /*the "ideasoft"*/
+  11          
+  12          uchar code table_id[40]={0x81,0xff,0x81,0x00,0xff,0x81,0x81,0x7e,0x00,0xff,0x89,0x89,0x00,0xf8,0x27,0x27,0
+             -xf8,0x00,0x8f,0x89,0x89,0xf9,0x00,0xff,0x81,0x81,0xff,0x00,0xff,0x09,0x09,0x09,0x01,0x0,0x01,0x01,0xff,0x01,0x01,0x00};
+  13          
+  14          /*railway*/
+  15          
+  16          uchar code dat[128]={0x0,0x20,0x40,0x60,0x80,0xa0,0xc0,0xe0,0xe4,0xe8,0xec,0xf0,0xf4,0xf8,0xfc,0xdc,0xbc,0
+             -x9c,0x7c,0x5c,0x3c,0x1c,0x18,0x14,0x10,0xc,0x8,0x4,0x25,0x45,0x65,0x85,0xa5,0xc5,0xc9,0xcd,0xd1,0xd5,0xd9,0xb9,0x99,0x79
+             -,0x59,0x39,0x35,0x31,0x2d,0x29,0x4a,0x6a,0x8a,0xaa,0xae,0xb2,0xb6,0x96,0x76,0x56,0x52,0x4e,0x6f,0x8f,0x93,0x73,0x6f,0x8f
+             -,0x93,0x73,0x4a,0x6a,0x8a,0xaa,0xae,0xb2,0xb6,0x96,0x76,0x56,0x52,0x4e,0x25,0x45,0x65,0x85,0xa5,0xc5,0xc9,0xcd,0xd1,0xd5
+             -,0xd9,0xb9,0x99,0x79,0x59,0x39,0x35,0x31,0x2d,0x29,0x0,0x20,0x40,0x60,0x80,0xa0,0xc0,0xe0,0xe4,0xe8,0xec,0xf0,0xf4,0xf8,
+             -0xfc,0xdc,0xbc,0x9c,0x7c,0x5c,0x3c,0x1c,0x18,0x14,0x10,0xc,0x8,0x4};
+  17          
+  18          /*railway 2*/
+  19          
+  20          uchar code dat2[28]={0x0,0x20,0x40,0x60,0x80,0xa0,0xc0,0xe0,0xe4,0xe8,0xec,0xf0,0xf4,0xf8,0xfc,0xdc,0xbc,0
+             -x9c,0x7c,0x5c,0x3c,0x1c,0x18,0x14,0x10,0xc,0x8,0x4};
+  21          
+  22          /*railway 3*/
+  23          
+  24          uchar code dat3[24]={0x00,0x01,0x02,0x03,0x04,0x05,0x06,0x16,0x26,0x36,0x46,0x56,0x66,0x65,0x64,0x63,0x62,
+             -0x61,0x60,0x50,0x40,0x30,0x20,0x10};
+  25          
+  26          /*3p char*/
+  27          
+  28          uchar code table_3p[3][8]={0xff,0x89,0xf5,0x93,0x93,0xf5,0x89,0xff,0x0e,0x1f,0x3f,0x7e,0x7e,0x3f,0x1f,0x0e
+             -,0x18,0x3c,0x7e,0xff,0x18,0x18,0x18,0x18};
+  29          extern unsigned char xdata display[8][8];
+  30          /*initializtion
+  31          
+  32          That is to initialize the program .
+  33          
+  34          It is write to set the timer in c52 mcu.
+  35          
+  36          So the program can renovate the led_3d_cube in fixed time use the interrupt function.*/
+  37          
+  38          
+  39          /*To figure out the round number*/
+  40          
+  41          uchar abs(uchar a)
+  42          {
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 2   
+
+  43   1          uchar b;
+  44   1          b=a/10;
+  45   1          a=a-b*10;
+  46   1          if (a>=5)
+  47   1          b++;
+  48   1          return b;
+  49   1      }
+  50          
+  51          /*To figure out the absolute value*/
+  52          
+  53          uchar abss(char a)
+  54          {
+  55   1          if (a<0)
+  56   1          a=-a;    
+  57   1          return a;
+  58   1      }
+  59          
+  60          /*The function can comparat the character.
+  61          
+  62          And remove the big one to the back.*/
+  63          
+  64          void max(uchar *a,uchar *b)
+  65          {
+  66   1          uchar t;
+  67   1          if ((*a)>(*b))
+  68   1          {
+  69   2              t=(*a);
+  70   2              (*a)=(*b);
+  71   2              (*b)=t;   
+  72   2          }
+  73   1      }
+  74          
+  75          /*The function is to figure out the max number and return it.*/
+  76          
+  77          uchar maxt(uchar a,uchar b,uchar c)
+  78          {
+  79   1      
+  80   1          if (a<b)
+  81   1          a=b;
+  82   1          if (a<c)
+  83   1          a=c;
+  84   1          return a;
+  85   1      }
+  86          
+  87          void clear(char le)
+  88          {
+  89   1          uchar i,j;
+  90   1          for (j=0;j<8;j++)
+  91   1          {    
+  92   2              for (i=0;i<8;i++)
+  93   2              {    
+  94   3                  display[j][i]=le;
+  95   3              }
+  96   2          }
+  97   1      }
+  98          
+  99          void point(uchar x,uchar y,uchar z,uchar le)
+ 100          
+ 101          {
+ 102   1      
+ 103   1               uchar ch1,ch0;
+ 104   1      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 3   
+
+ 105   1               ch1=1<<x;
+ 106   1      
+ 107   1               ch0=~ch1;
+ 108   1      
+ 109   1               if (le) 
+ 110   1      
+ 111   1               display[z][y]=display[z][y]|ch1;
+ 112   1      
+ 113   1               else 
+ 114   1      
+ 115   1               display[z][y]=display[z][y]&ch0;
+ 116   1      
+ 117   1      }
+ 118          
+ 119          /*The first variable is the distance from the midpoint.
+ 120          
+ 121          The second is the layer.
+ 122          
+ 123          the third is the flash speed of the time between each two point.
+ 124          
+ 125          The forth is the enable io,it controls weather draw or claen.*/
+ 126          
+ 127          void cirp(char cpp,uchar dir,uchar le)
+ 128          
+ 129          {
+ 130   1      
+ 131   1               uchar a,b,c,cp;
+ 132   1      
+ 133   1               if ((cpp<128)&(cpp>=0))
+ 134   1      
+ 135   1               {
+ 136   2      
+ 137   2                         if (dir)
+ 138   2      
+ 139   2                         cp=127-cpp;
+ 140   2      
+ 141   2                         else 
+ 142   2      
+ 143   2                         cp=cpp; 
+ 144   2      
+ 145   2                         a=(dat[cp]>>5)&0x07;
+ 146   2      
+ 147   2                         b=(dat[cp]>>2)&0x07;
+ 148   2      
+ 149   2                         c=dat[cp]&0x03;
+ 150   2      
+ 151   2                         if (cpp>63)
+ 152   2      
+ 153   2                         c=7-c;
+ 154   2      
+ 155   2                         point (a,b,c,le);
+ 156   2      
+ 157   2               }
+ 158   1      
+ 159   1      }
+ 160          
+ 161          void line(uchar x1,uchar y1,uchar z1,uchar x2,uchar y2,uchar z2,uchar le)
+ 162          
+ 163          {
+ 164   1      
+ 165   1               char t,a,b,c,a1,b1,c1,i;
+ 166   1      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 4   
+
+ 167   1               a1=x2-x1;
+ 168   1      
+ 169   1               b1=y2-y1;
+ 170   1      
+ 171   1               c1=z2-z1;
+ 172   1      
+ 173   1               t=maxt(abss(a1),abss(b1),abss(c1));
+ 174   1      
+ 175   1               a=x1*10;
+ 176   1      
+ 177   1               b=y1*10;
+ 178   1      
+ 179   1               c=z1*10;
+ 180   1      
+ 181   1               a1=a1*10/t;
+ 182   1      
+ 183   1               b1=b1*10/t;
+ 184   1      
+ 185   1               c1=c1*10/t;
+ 186   1      
+ 187   1               for (i=0;i<t;i++)
+ 188   1      
+ 189   1               {
+ 190   2      
+ 191   2                         point(abs(a),abs(b),abs(c),le);
+ 192   2      
+ 193   2                         a+=a1;
+ 194   2      
+ 195   2                         b+=b1;
+ 196   2      
+ 197   2                         c+=c1;
+ 198   2      
+ 199   2               }
+ 200   1      
+ 201   1               point(x2,y2,z2,le);
+ 202   1      
+ 203   1      }
+ 204          
+ 205          void box(uchar x1,uchar y1,uchar z1,uchar x2,uchar y2,uchar z2,uchar fill,uchar le)
+ 206          {
+ 207   1      
+ 208   1          uchar i,j,t=0;   
+ 209   1          max(&x1,&x2);
+ 210   1          max(&y1,&y2);
+ 211   1          max(&z1,&z2);
+ 212   1          for (i=x1;i<=x2;i++)
+ 213   1                 t|=1<<i;
+ 214   1          if (!le)
+ 215   1                 t=~t;
+ 216   1          if (fill)
+ 217   1          {
+ 218   2                 if (le)
+ 219   2                 {
+ 220   3          
+ 221   3                          for (i=z1;i<=z2;i++)
+ 222   3          
+ 223   3                          {
+ 224   4          
+ 225   4                                   for (j=y1;j<=y2;j++)
+ 226   4          
+ 227   4                                             display[j][i]|=t;
+ 228   4          
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 5   
+
+ 229   4                          }
+ 230   3          
+ 231   3                 }
+ 232   2          
+ 233   2                 else
+ 234   2          
+ 235   2                 {
+ 236   3          
+ 237   3                          for (i=z1;i<=z2;i++)
+ 238   3          
+ 239   3                          {
+ 240   4          
+ 241   4                                   for (j=y1;j<=y2;j++)
+ 242   4          
+ 243   4                                             display[j][i]&=t;
+ 244   4          
+ 245   4                          }
+ 246   3          
+ 247   3                 }
+ 248   2          
+ 249   2          }
+ 250   1          
+ 251   1          else
+ 252   1          
+ 253   1          {
+ 254   2          
+ 255   2                 if (le)
+ 256   2          
+ 257   2                 {
+ 258   3          
+ 259   3                          display[y1][z1]|=t;
+ 260   3          
+ 261   3                          display[y2][z1]|=t;
+ 262   3          
+ 263   3                          display[y1][z2]|=t;
+ 264   3          
+ 265   3                          display[y2][z2]|=t;
+ 266   3          
+ 267   3                 }
+ 268   2          
+ 269   2                 else
+ 270   2          
+ 271   2                 {
+ 272   3          
+ 273   3                         display[y1][z1]&=t;
+ 274   3          
+ 275   3                          display[y2][z1]&=t;
+ 276   3          
+ 277   3                          display[y1][z2]&=t;
+ 278   3          
+ 279   3                          display[y2][z2]&=t;
+ 280   3          
+ 281   3                 }
+ 282   2          
+ 283   2                 t=(0x01<<x1)|(0x01<<x2);
+ 284   2          
+ 285   2                 if (!le)
+ 286   2          
+ 287   2                          t=~t;
+ 288   2          
+ 289   2                 if (le)
+ 290   2          
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 6   
+
+ 291   2                 {
+ 292   3          
+ 293   3                          for (j=z1;j<=z2;j+=(z2-z1))
+ 294   3          
+ 295   3                          {
+ 296   4          
+ 297   4                                   for (i=y1;i<=y2;i++)
+ 298   4          
+ 299   4                                             display[i][j]|=t;
+ 300   4          
+ 301   4                          }
+ 302   3          
+ 303   3                          for (j=y1;j<=y2;j+=(y2-y1))
+ 304   3          
+ 305   3                          {
+ 306   4          
+ 307   4                                   for (i=z1;i<=z2;i++)
+ 308   4          
+ 309   4                                             display[j][i]|=t;
+ 310   4          
+ 311   4                          }
+ 312   3          
+ 313   3                 }
+ 314   2          
+ 315   2                 else
+ 316   2          
+ 317   2                 {
+ 318   3          
+ 319   3                          for (j=z1;j<=z2;j+=(z2-z1))
+ 320   3          
+ 321   3                          {
+ 322   4          
+ 323   4                                   for (i=y1;i<=y2;i++)
+ 324   4          
+ 325   4                                   {
+ 326   5          
+ 327   5                                   display[i][j]&=t;
+ 328   5          
+ 329   5                                   }
+ 330   4          
+ 331   4                          }
+ 332   3          
+ 333   3                          for (j=y1;j<=y2;j+=(y2-y1))
+ 334   3          
+ 335   3                          {
+ 336   4          
+ 337   4                                   for (i=z1;i<=z2;i++)
+ 338   4          
+ 339   4                                   {
+ 340   5          
+ 341   5                                   display[j][i]&=t;
+ 342   5          
+ 343   5                                   }
+ 344   4          
+ 345   4                          }
+ 346   3          
+ 347   3                 }
+ 348   2          
+ 349   2          }
+ 350   1      
+ 351   1      }
+ 352          
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 7   
+
+ 353          void box_apeak_xy(uchar x1,uchar y1,uchar z1,uchar x2,uchar y2,uchar z2,uchar fill,uchar le)
+ 354          
+ 355          {
+ 356   1      
+ 357   1               uchar i;
+ 358   1      
+ 359   1               max(&z1,&z2);
+ 360   1      
+ 361   1               if (fill)
+ 362   1      
+ 363   1               {
+ 364   2      
+ 365   2                         for (i=z1;i<=z2;i++)
+ 366   2      
+ 367   2                         {
+ 368   3      
+ 369   3                                  line (x1,y1,i,x2,y2,i,le);
+ 370   3      
+ 371   3                         } 
+ 372   2      
+ 373   2               } 
+ 374   1      
+ 375   1               else
+ 376   1      
+ 377   1               {
+ 378   2      
+ 379   2                         line (x1,y1,z1,x2,y2,z1,le);
+ 380   2      
+ 381   2                         line (x1,y1,z2,x2,y2,z2,le);
+ 382   2      
+ 383   2                         line (x2,y2,z1,x2,y2,z2,le);
+ 384   2      
+ 385   2                         line (x1,y1,z1,x1,y1,z2,le);
+ 386   2      
+ 387   2               }
+ 388   1      
+ 389   1      }
+ 390          
+ 391          void roll_apeak_yz(uchar n,uint speed)
+ 392          
+ 393          {
+ 394   1      
+ 395   1               uchar i;
+ 396   1      
+ 397   1               switch(n)
+ 398   1      
+ 399   1               {
+ 400   2      
+ 401   2                         case 1:
+ 402   2      
+ 403   2                                  for (i=0;i<7;i++)
+ 404   2      
+ 405   2                                  {
+ 406   3      
+ 407   3                                           display[i][7]=0;
+ 408   3      
+ 409   3                                           display[7][6-i]=255;
+ 410   3      
+ 411   3                                           delay(speed);
+ 412   3      
+ 413   3                                  };
+ 414   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 8   
+
+ 415   2                                  break;
+ 416   2      
+ 417   2                         case 2:
+ 418   2      
+ 419   2                                  for (i=0;i<7;i++)
+ 420   2      
+ 421   2                                  {
+ 422   3      
+ 423   3                                           display[7][7-i]=0;
+ 424   3      
+ 425   3                                           display[6-i][0]=255;
+ 426   3      
+ 427   3                                           delay(speed);
+ 428   3      
+ 429   3                                  };
+ 430   2      
+ 431   2                                  break;
+ 432   2      
+ 433   2                         case 3:
+ 434   2      
+ 435   2                                  for (i=0;i<7;i++)
+ 436   2      
+ 437   2                                  {
+ 438   3      
+ 439   3                                           display[7-i][0]=0;
+ 440   3      
+ 441   3                                           display[0][i+1]=255;
+ 442   3      
+ 443   3                                           delay(speed);
+ 444   3      
+ 445   3                                  };
+ 446   2      
+ 447   2                                  break;
+ 448   2      
+ 449   2                         case 0:
+ 450   2      
+ 451   2                                  for (i=0;i<7;i++)
+ 452   2      
+ 453   2                                  {
+ 454   3      
+ 455   3                                           display[0][i]=0;
+ 456   3      
+ 457   3                                           display[i+1][7]=255;
+ 458   3      
+ 459   3                                           delay(speed);
+ 460   3      
+ 461   3                                  };
+ 462   2      
+ 463   2               }
+ 464   1      
+ 465   1      }
+ 466          
+ 467          void roll_apeak_xy(uchar n,uint speed)
+ 468          
+ 469          {
+ 470   1      
+ 471   1               uchar i;
+ 472   1      
+ 473   1               switch(n)
+ 474   1      
+ 475   1               {
+ 476   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 9   
+
+ 477   2                         case 1:
+ 478   2      
+ 479   2                                  for (i=0;i<7;i++)
+ 480   2      
+ 481   2                                  {
+ 482   3      
+ 483   3                                           line(0,i,0,0,i,7,0);
+ 484   3      
+ 485   3                                           line(i+1,7,0,i+1,7,7,1);
+ 486   3      
+ 487   3                                           delay(speed);
+ 488   3      
+ 489   3                                  };
+ 490   2      
+ 491   2                                  break;
+ 492   2      
+ 493   2                         case 2:
+ 494   2      
+ 495   2                                  for (i=0;i<7;i++)
+ 496   2      
+ 497   2                                  {
+ 498   3      
+ 499   3                                           line(i,7,0,i,7,7,0);
+ 500   3      
+ 501   3                                           line(7,6-i,0,7,6-i,7,1);
+ 502   3      
+ 503   3                                           delay(speed);
+ 504   3      
+ 505   3                                  };
+ 506   2      
+ 507   2                                  break;
+ 508   2      
+ 509   2                         case 3:
+ 510   2      
+ 511   2                                  for (i=0;i<7;i++)
+ 512   2      
+ 513   2                                  {
+ 514   3      
+ 515   3                                           line(7,7-i,0,7,7-i,7,0);
+ 516   3      
+ 517   3                                           line(6-i,0,0,6-i,0,7,1);
+ 518   3      
+ 519   3                                           delay(speed);
+ 520   3      
+ 521   3                                  };
+ 522   2      
+ 523   2                                  break;
+ 524   2      
+ 525   2                         case 0:
+ 526   2      
+ 527   2                                  for (i=0;i<7;i++)
+ 528   2      
+ 529   2                                  {
+ 530   3      
+ 531   3                                           line(7-i,0,0,7-i,0,7,0);
+ 532   3      
+ 533   3                                           line(0,i+1,0,0,i+1,7,1);
+ 534   3      
+ 535   3                                           delay(speed);
+ 536   3      
+ 537   3                                  };
+ 538   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 10  
+
+ 539   2               }
+ 540   1      
+ 541   1      }
+ 542          
+ 543          void roll_3_xy(uchar n,uint speed)
+ 544          
+ 545          {
+ 546   1      
+ 547   1               uchar i;
+ 548   1      
+ 549   1               switch(n)
+ 550   1      
+ 551   1               {
+ 552   2      
+ 553   2                         case 1:
+ 554   2      
+ 555   2                                  for (i=0;i<8;i++)
+ 556   2      
+ 557   2                                  {
+ 558   3      
+ 559   3                                           box_apeak_xy (0,i,0,7,7-i,7,1,1);
+ 560   3      
+ 561   3                                           delay(speed);
+ 562   3      
+ 563   3                                           if (i<7)
+ 564   3      
+ 565   3                                           box_apeak_xy (3,3,0,0,i,7,1,0);
+ 566   3      
+ 567   3                                  };
+ 568   2      
+ 569   2                                  break;
+ 570   2      
+ 571   2                         case 2:
+ 572   2      
+ 573   2                                  for (i=0;i<8;i++)
+ 574   2      
+ 575   2                                  {
+ 576   3      
+ 577   3                                            box_apeak_xy (7-i,0,0,i,7,7,1,1);
+ 578   3      
+ 579   3                                           delay(speed);
+ 580   3      
+ 581   3                                           if (i<7)
+ 582   3      
+ 583   3                                           box_apeak_xy (3,4,0,i,7,7,1,0);
+ 584   3      
+ 585   3                                  };
+ 586   2      
+ 587   2                                  break;
+ 588   2      
+ 589   2                         case 3:
+ 590   2      
+ 591   2                                  for (i=0;i<8;i++)
+ 592   2      
+ 593   2                                  {
+ 594   3      
+ 595   3                                           box_apeak_xy (0,i,0,7,7-i,7,1,1);
+ 596   3      
+ 597   3                                           delay(speed);
+ 598   3      
+ 599   3                                           if (i<7)
+ 600   3      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 11  
+
+ 601   3                                           box_apeak_xy (4,4,0,7,7-i,7,1,0);
+ 602   3      
+ 603   3                                  };
+ 604   2      
+ 605   2                                  break;
+ 606   2      
+ 607   2                         case 0:
+ 608   2      
+ 609   2                                  for (i=0;i<8;i++)
+ 610   2      
+ 611   2                                  {
+ 612   3      
+ 613   3                                           box_apeak_xy (7-i,0,0,i,7,7,1,1);
+ 614   3      
+ 615   3                                           delay(speed);
+ 616   3      
+ 617   3                                           if (i<7)
+ 618   3      
+ 619   3                                           box_apeak_xy (4,3,0,7-i,0,7,1,0);
+ 620   3      
+ 621   3                                  };
+ 622   2      
+ 623   2               }
+ 624   1      
+ 625   1      }
+ 626          
+ 627          void trans(uchar z,uint speed)
+ 628          
+ 629          {
+ 630   1      
+ 631   1               uchar i,j;
+ 632   1      
+ 633   1               for (j=0;j<8;j++)
+ 634   1      
+ 635   1               {
+ 636   2      
+ 637   2                         for (i=0;i<8;i++)
+ 638   2      
+ 639   2                         {
+ 640   3      
+ 641   3                                  display[z][i]>>=1;
+ 642   3      
+ 643   3                         }
+ 644   2      
+ 645   2                         delay(speed);
+ 646   2      
+ 647   2               }
+ 648   1      
+ 649   1      }
+ 650          
+ 651          void tranoutchar(uchar c,uint speed)
+ 652          
+ 653          {
+ 654   1      
+ 655   1               uchar i,j,k,a,i2=0;
+ 656   1      
+ 657   1               for (i=0;i<8;i++)
+ 658   1      
+ 659   1               {
+ 660   2      
+ 661   2                         if (i<7)
+ 662   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 12  
+
+ 663   2                         box_apeak_xy (i+1,0,0,i+1,7,7,1,1);
+ 664   2      
+ 665   2                         box_apeak_xy (i2,0,0,i2,7,7,1,0);
+ 666   2      
+ 667   2                         a=0;
+ 668   2      
+ 669   2                         i2=i+1;
+ 670   2      
+ 671   2                         for (j=0;j<=i;j++)
+ 672   2      
+ 673   2                         {
+ 674   3      
+ 675   3                                  a=a|(1<<j);
+ 676   3      
+ 677   3                         }
+ 678   2      
+ 679   2                         for (k=0;k<8;k++)
+ 680   2      
+ 681   2                         {
+ 682   3      
+ 683   3                                  display[k][3]|=table_cha[c][k]&a;
+ 684   3      
+ 685   3                                  display[k][4]|=table_cha[c][k]&a;
+ 686   3      
+ 687   3                         }
+ 688   2      
+ 689   2                         delay(speed);
+ 690   2      
+ 691   2               }
+ 692   1      
+ 693   1      }
+ 694          
+ 695          void transss()
+ 696          
+ 697          {
+ 698   1      
+ 699   1               uchar i,j;
+ 700   1      
+ 701   1               for (i=0;i<8;i++)
+ 702   1      
+ 703   1               {
+ 704   2      
+ 705   2                         for (j=0;j<8;j++)
+ 706   2      
+ 707   2                         display[i][j]<<=1;
+ 708   2      
+ 709   2               }
+ 710   1      
+ 711   1      }
+ 712          
+ 713          void flash_2()
+ 714          
+ 715          {
+ 716   1               uchar i;
+ 717   1               for (i=129;i>0;i--)
+ 718   1               {
+ 719   2                         cirp(i-2,0,1);
+ 720   2                         delay(8000);
+ 721   2                         cirp(i-1,0,0);
+ 722   2               }
+ 723   1               delay(8000);     
+ 724   1               for (i=0;i<136;i++)
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 13  
+
+ 725   1               {
+ 726   2                         cirp(i,1,1);
+ 727   2                         delay(8000);
+ 728   2                         cirp(i-8,1,0);
+ 729   2               }
+ 730   1               delay(8000);
+ 731   1               for (i=129;i>0;i--)
+ 732   1               {
+ 733   2                         cirp(i-2,0,1);
+ 734   2                         delay(8000);
+ 735   2               }
+ 736   1               delay(8000);
+ 737   1               for (i=0;i<128;i++)
+ 738   1               {
+ 739   2                         cirp(i-8,1,0);
+ 740   2                         delay(8000);
+ 741   2               }
+ 742   1               delay(60000);  
+ 743   1      }
+ 744          
+ 745          void flash_3()
+ 746          
+ 747          {
+ 748   1      
+ 749   1               char i;
+ 750   1      
+ 751   1               for (i=0;i<8;i++)
+ 752   1      
+ 753   1               {
+ 754   2      
+ 755   2                         box_apeak_xy(0,i,0,7,i,7,1,1);
+ 756   2      
+ 757   2                         delay(20000);
+ 758   2      
+ 759   2                         if (i<7)
+ 760   2      
+ 761   2                         box_apeak_xy(0,i,0,7,i,7,1,0);
+ 762   2      
+ 763   2               }
+ 764   1      
+ 765   1               for (i=7;i>=0;i--)
+ 766   1      
+ 767   1               {
+ 768   2      
+ 769   2                         box_apeak_xy(0,i,0,7,i,7,1,1);
+ 770   2      
+ 771   2                         delay(20000);
+ 772   2      
+ 773   2                         if (i>0)
+ 774   2      
+ 775   2                         box_apeak_xy(0,i,0,7,i,7,1,0);
+ 776   2      
+ 777   2               }
+ 778   1      
+ 779   1               for (i=0;i<8;i++)
+ 780   1      
+ 781   1               {
+ 782   2      
+ 783   2                         box_apeak_xy(0,i,0,7,i,7,1,1);
+ 784   2      
+ 785   2                         delay(20000);
+ 786   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 14  
+
+ 787   2                         if (i<7)
+ 788   2      
+ 789   2                         box_apeak_xy(0,i,0,7,i,7,1,0);
+ 790   2      
+ 791   2               }
+ 792   1      
+ 793   1      }
+ 794          
+ 795          void flash_4()
+ 796          
+ 797          {
+ 798   1      
+ 799   1               char i,j,an[8];
+ 800   1      
+ 801   1               for (j=7;j<15;j++)
+ 802   1      
+ 803   1                         an[j-7]=j;
+ 804   1      
+ 805   1               for (i=0;i<=16;i++)
+ 806   1      
+ 807   1               {
+ 808   2      
+ 809   2                         for (j=0;j<8;j++)
+ 810   2      
+ 811   2                         {
+ 812   3      
+ 813   3                                  if ((an[j]<8)&(an[j]>=0))
+ 814   3      
+ 815   3                                  line(0,an[j],j,7,an[j],j,1);
+ 816   3      
+ 817   3                         }
+ 818   2      
+ 819   2                         for (j=0;j<8;j++)
+ 820   2      
+ 821   2                         {
+ 822   3      
+ 823   3                                  if (((an[j]+1)<8)&(an[j]>=0))
+ 824   3      
+ 825   3                                  line(0,an[j]+1,j,7,an[j]+1,j,0);
+ 826   3      
+ 827   3                         }
+ 828   2      
+ 829   2                         for (j=0;j<8;j++)
+ 830   2      
+ 831   2                         {
+ 832   3      
+ 833   3                                  if (an[j]>0)
+ 834   3      
+ 835   3                                  an[j]--;
+ 836   3      
+ 837   3                         }
+ 838   2      
+ 839   2                         delay(15000);
+ 840   2      
+ 841   2               }
+ 842   1      
+ 843   1               for (j=0;j<8;j++)
+ 844   1      
+ 845   1                         an[j]=1-j;
+ 846   1      
+ 847   1               for (i=0;i<=16;i++)
+ 848   1      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 15  
+
+ 849   1               {
+ 850   2      
+ 851   2                         for (j=0;j<8;j++)
+ 852   2      
+ 853   2                         {
+ 854   3      
+ 855   3                                  if ((an[j]<8)&(an[j]>=0))
+ 856   3      
+ 857   3                                  line(0,an[j],j,7,an[j],j,1);
+ 858   3      
+ 859   3                         }
+ 860   2      
+ 861   2                         for (j=0;j<8;j++)
+ 862   2      
+ 863   2                         {
+ 864   3      
+ 865   3                                  if (((an[j]-1)<7)&(an[j]>0))
+ 866   3      
+ 867   3                                  line(0,an[j]-1,j,7,an[j]-1,j,0);
+ 868   3      
+ 869   3                         }
+ 870   2      
+ 871   2                         for (j=0;j<8;j++)
+ 872   2      
+ 873   2                         {
+ 874   3      
+ 875   3                                  if (an[j]<7)
+ 876   3      
+ 877   3                                  an[j]++;
+ 878   3      
+ 879   3                         }
+ 880   2      
+ 881   2                         delay(15000);
+ 882   2      
+ 883   2               }
+ 884   1      
+ 885   1      }
+ 886          
+ 887          void flash_5()
+ 888          
+ 889          {
+ 890   1      
+ 891   1               uint a=15000;//a=delay
+ 892   1      
+ 893   1               char i=8,j,an[4];
+ 894   1      
+ 895   1               //1
+ 896   1      
+ 897   1               for (j=7;j<11;j++)
+ 898   1      
+ 899   1                         an[j-7]=j;
+ 900   1      
+ 901   1               while(i--)
+ 902   1      
+ 903   1               {
+ 904   2      
+ 905   2                         for (j=0;j<4;j++)
+ 906   2      
+ 907   2                         {
+ 908   3      
+ 909   3                                  if (an[j]<8)
+ 910   3      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 16  
+
+ 911   3                                  box_apeak_xy(j,an[j],j,7-j,an[j],7-j,0,1);
+ 912   3      
+ 913   3                                  if (an[j]<7)
+ 914   3      
+ 915   3                                  box_apeak_xy(j,an[j]+1,j,7-j,an[j]+1,7-j,0,0);
+ 916   3      
+ 917   3                         }
+ 918   2      
+ 919   2                         for (j=0;j<4;j++)
+ 920   2      
+ 921   2                         {
+ 922   3      
+ 923   3                                  if (an[j]>3)
+ 924   3      
+ 925   3                                  an[j]--;
+ 926   3      
+ 927   3                         }
+ 928   2      
+ 929   2                         delay(a);
+ 930   2      
+ 931   2               }
+ 932   1      
+ 933   1               //2
+ 934   1      
+ 935   1               i=3;
+ 936   1      
+ 937   1               for (j=0;j<4;j++)
+ 938   1      
+ 939   1               an[j]=5-j;
+ 940   1      
+ 941   1               while(i--)
+ 942   1      
+ 943   1               {
+ 944   2      
+ 945   2                         for (j=1;j<4;j++)
+ 946   2      
+ 947   2                         {
+ 948   3      
+ 949   3                                  if (an[j]<4)
+ 950   3      
+ 951   3                                  box_apeak_xy(j,an[j],j,7-j,an[j],7-j,0,1);
+ 952   3      
+ 953   3                                  if (an[j]<3)
+ 954   3      
+ 955   3                                  box_apeak_xy(j,an[j]+1,j,7-j,an[j]+1,7-j,0,0);
+ 956   3      
+ 957   3                         }
+ 958   2      
+ 959   2                         for (j=0;j<4;j++)
+ 960   2      
+ 961   2                         {
+ 962   3      
+ 963   3                                  if (an[j]>0)
+ 964   3      
+ 965   3                                  an[j]--;
+ 966   3      
+ 967   3                         }
+ 968   2      
+ 969   2                         delay(a);
+ 970   2      
+ 971   2               }
+ 972   1      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 17  
+
+ 973   1               //3
+ 974   1      
+ 975   1               i=3;
+ 976   1      
+ 977   1               for (j=1;j<4;j++)
+ 978   1      
+ 979   1               an[j]=4-j;
+ 980   1      
+ 981   1               while(i--)
+ 982   1      
+ 983   1               {
+ 984   2      
+ 985   2                         for (j=1;j<4;j++)
+ 986   2      
+ 987   2                         {
+ 988   3      
+ 989   3                                  if (an[j]>=0)
+ 990   3      
+ 991   3                                  box_apeak_xy(j,an[j],j,7-j,an[j],7-j,0,1);
+ 992   3      
+ 993   3                                  if (an[j]>0)
+ 994   3      
+ 995   3                                  box_apeak_xy(j,an[j]-1,j,7-j,an[j]-1,7-j,0,0);
+ 996   3      
+ 997   3                         }
+ 998   2      
+ 999   2                         for (j=1;j<4;j++)
+1000   2      
+1001   2                         {
+1002   3      
+1003   3                                  if (an[j]<3)
+1004   3      
+1005   3                                  an[j]++;
+1006   3      
+1007   3                         }
+1008   2      
+1009   2                         delay(a);
+1010   2      
+1011   2               }
+1012   1      
+1013   1       
+1014   1      
+1015   1               //4
+1016   1      
+1017   1               i=3;
+1018   1      
+1019   1               for (j=0;j<4;j++)
+1020   1      
+1021   1               an[j]=j+1;
+1022   1      
+1023   1               while(i--)
+1024   1      
+1025   1               {
+1026   2      
+1027   2                         for (j=1;j<4;j++)
+1028   2      
+1029   2                         {
+1030   3      
+1031   3                                  if (an[j]>3)
+1032   3      
+1033   3                                  box_apeak_xy(j,an[j],j,7-j,an[j],7-j,0,1);
+1034   3      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 18  
+
+1035   3                                  if (an[j]>3)
+1036   3      
+1037   3                                  box_apeak_xy(j,an[j]-1,j,7-j,an[j]-1,7-j,0,0);
+1038   3      
+1039   3                         }
+1040   2      
+1041   2                         for (j=0;j<4;j++)
+1042   2      
+1043   2                                  an[j]++;
+1044   2      
+1045   2                         delay(a);
+1046   2      
+1047   2               }
+1048   1      
+1049   1               //5
+1050   1      
+1051   1               i=3;
+1052   1      
+1053   1               for (j=3;j<6;j++)
+1054   1      
+1055   1                         an[j-2]=j;
+1056   1      
+1057   1               while(i--)
+1058   1      
+1059   1               {
+1060   2      
+1061   2                         for (j=1;j<4;j++)
+1062   2      
+1063   2                         {
+1064   3      
+1065   3                                  box_apeak_xy(j,an[j],j,7-j,an[j],7-j,0,1);
+1066   3      
+1067   3                                  box_apeak_xy(j,an[j]+1,j,7-j,an[j]+1,7-j,0,0);
+1068   3      
+1069   3                         }
+1070   2      
+1071   2                         for (j=0;j<4;j++)
+1072   2      
+1073   2                         {
+1074   3      
+1075   3                                  if (an[j]>3)
+1076   3      
+1077   3                                  an[j]--;
+1078   3      
+1079   3                         }
+1080   2      
+1081   2                         delay(a);
+1082   2      
+1083   2               }
+1084   1      
+1085   1               //6
+1086   1      
+1087   1               i=3;
+1088   1      
+1089   1               for (j=0;j<4;j++)
+1090   1      
+1091   1               an[j]=5-j;
+1092   1      
+1093   1               while(i--)
+1094   1      
+1095   1               {
+1096   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 19  
+
+1097   2                         for (j=1;j<4;j++)
+1098   2      
+1099   2                         {
+1100   3      
+1101   3                                  if (an[j]<4)
+1102   3      
+1103   3                                  box_apeak_xy(j,an[j],j,7-j,an[j],7-j,0,1);
+1104   3      
+1105   3                                  if (an[j]<3)
+1106   3      
+1107   3                                  box_apeak_xy(j,an[j]+1,j,7-j,an[j]+1,7-j,0,0);
+1108   3      
+1109   3                         }
+1110   2      
+1111   2                         for (j=0;j<4;j++)
+1112   2      
+1113   2                         {
+1114   3      
+1115   3                                  if (an[j]>0)
+1116   3      
+1117   3                                  an[j]--;
+1118   3      
+1119   3                         }
+1120   2      
+1121   2                         delay(a);
+1122   2      
+1123   2               }
+1124   1      
+1125   1               //7
+1126   1      
+1127   1               i=3;
+1128   1      
+1129   1               for (j=0;j<4;j++)
+1130   1      
+1131   1               an[j]=3-j;
+1132   1      
+1133   1               an[0]=2;
+1134   1      
+1135   1               while(i--)
+1136   1      
+1137   1               {
+1138   2      
+1139   2                         for (j=0;j<3;j++)
+1140   2      
+1141   2                         {
+1142   3      
+1143   3                                  if (an[j]>=0)
+1144   3      
+1145   3                                           box_apeak_xy(j,an[j],j,7-j,an[j],7-j,0,1);
+1146   3      
+1147   3                                  if (an[j]>=0)
+1148   3      
+1149   3                                           box_apeak_xy(j,an[j]+1,j,7-j,an[j]+1,7-j,0,0);
+1150   3      
+1151   3                         }
+1152   2      
+1153   2                         for (j=0;j<4;j++)
+1154   2      
+1155   2                         {
+1156   3      
+1157   3                                  if (j<5-i)
+1158   3      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 20  
+
+1159   3                                  an[j]--;
+1160   3      
+1161   3                         }
+1162   2      
+1163   2                         delay(a);
+1164   2      
+1165   2               }
+1166   1      
+1167   1               //8
+1168   1      
+1169   1               i=10;
+1170   1      
+1171   1               for (j=0;j<4;j++)
+1172   1      
+1173   1                         an[j]=j-2;
+1174   1      
+1175   1               while(i--)
+1176   1      
+1177   1               {
+1178   2      
+1179   2                         for (j=0;j<4;j++)
+1180   2      
+1181   2                         {
+1182   3      
+1183   3                                  if (an[j]>=0)
+1184   3      
+1185   3                                  box_apeak_xy(j,an[j],j,7-j,an[j],7-j,0,1);
+1186   3      
+1187   3                                  if (an[j]>=0)
+1188   3      
+1189   3                                  box_apeak_xy(j,an[j]-1,j,7-j,an[j]-1,7-j,0,0);
+1190   3      
+1191   3                         }
+1192   2      
+1193   2                         for (j=0;j<4;j++)
+1194   2      
+1195   2                         {
+1196   3      
+1197   3                                  if (an[j]<7)
+1198   3      
+1199   3                                  an[j]++;
+1200   3      
+1201   3                         }
+1202   2      
+1203   2                         delay(a);
+1204   2      
+1205   2               }
+1206   1      
+1207   1      }
+1208          
+1209          void flash_6()
+1210          
+1211          {
+1212   1      
+1213   1            uchar i,j,k,z;
+1214   1      
+1215   1            roll_apeak_yz(1,10000);
+1216   1      
+1217   1            roll_apeak_yz(2,10000);
+1218   1      
+1219   1            roll_apeak_yz(3,10000);
+1220   1      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 21  
+
+1221   1            roll_apeak_yz(0,10000);
+1222   1      
+1223   1            roll_apeak_yz(1,10000);
+1224   1      
+1225   1            roll_apeak_yz(2,10000);
+1226   1      
+1227   1            roll_apeak_yz(3,10000);
+1228   1      
+1229   1            for (i=0;i<3;i++)
+1230   1      
+1231   1                     {
+1232   2      
+1233   2                               for (j=0;j<8;j++)
+1234   2      
+1235   2                               {
+1236   3      
+1237   3                                        for (k=0;k<8;k++)
+1238   3      
+1239   3                                        {
+1240   4      
+1241   4                                                 if ((table_3p[i][j]>>k)&1)
+1242   4      
+1243   4                                                 {
+1244   5      
+1245   5                                                           for (z=1;z<8;z++)
+1246   5      
+1247   5                                                                    {
+1248   6      
+1249   6                                                                             point (j,7-k,z,1);
+1250   6      
+1251   6                                                                             if (z-1)
+1252   6      
+1253   6                                                                             point (j,7-k,z-1,0);
+1254   6      
+1255   6                                                                             delay(5000);
+1256   6      
+1257   6                                                                    }
+1258   5      
+1259   5                                                 }
+1260   4      
+1261   4                                        }
+1262   3      
+1263   3                               }
+1264   2      
+1265   2                               trans(7,15000);
+1266   2      
+1267   2                     }
+1268   1      
+1269   1      }
+1270          
+1271          void flash_7()
+1272          
+1273          {
+1274   1      
+1275   1            uchar i;
+1276   1      
+1277   1            uint a=3000;
+1278   1      
+1279   1            roll_apeak_yz(0,10000);
+1280   1      
+1281   1            roll_apeak_yz(1,10000);
+1282   1      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 22  
+
+1283   1            roll_apeak_yz(2,10000);
+1284   1      
+1285   1            roll_apeak_yz(3,10000);
+1286   1      
+1287   1            roll_apeak_yz(0,10000);
+1288   1      
+1289   1            roll_apeak_yz(1,10000);
+1290   1      
+1291   1            roll_apeak_yz(2,10000);
+1292   1      
+1293   1            roll_apeak_yz(3,10000);
+1294   1      
+1295   1            roll_apeak_yz(0,10000);
+1296   1      
+1297   1            roll_apeak_yz(1,10000);
+1298   1      
+1299   1            roll_apeak_yz(2,10000);
+1300   1      
+1301   1            roll_apeak_xy(0,10000);
+1302   1      
+1303   1            roll_apeak_xy(1,10000);
+1304   1      
+1305   1            roll_apeak_xy(2,10000);
+1306   1      
+1307   1            roll_apeak_xy(3,10000);
+1308   1      
+1309   1            roll_apeak_xy(0,10000);
+1310   1      
+1311   1            roll_apeak_xy(1,10000);
+1312   1      
+1313   1            roll_apeak_xy(2,10000);
+1314   1      
+1315   1            roll_apeak_xy(3,10000);
+1316   1      
+1317   1            for (i=0;i<8;i++)
+1318   1      
+1319   1            {
+1320   2      
+1321   2                     box_apeak_xy (0,i,0,7-i,i,7,1,1);
+1322   2      
+1323   2                     delay(a);
+1324   2      
+1325   2            }
+1326   1      
+1327   1            delay(30000);
+1328   1      
+1329   1            roll_3_xy(0,a);
+1330   1      
+1331   1            delay(30000);
+1332   1      
+1333   1            roll_3_xy(1,a);
+1334   1      
+1335   1            delay(30000);
+1336   1      
+1337   1            roll_3_xy(2,a);
+1338   1      
+1339   1            delay(30000);
+1340   1      
+1341   1            roll_3_xy(3,a);
+1342   1      
+1343   1            delay(30000);
+1344   1      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 23  
+
+1345   1            roll_3_xy(0,a);
+1346   1      
+1347   1            delay(30000);
+1348   1      
+1349   1            roll_3_xy(1,a);
+1350   1      
+1351   1            delay(30000);
+1352   1      
+1353   1            roll_3_xy(2,a);
+1354   1      
+1355   1            delay(30000);
+1356   1      
+1357   1            roll_3_xy(3,a);
+1358   1      
+1359   1            for (i=7;i>0;i--)
+1360   1      
+1361   1            {
+1362   2      
+1363   2                     box_apeak_xy(i,0,0,i,7,7,1,0);
+1364   2      
+1365   2                     delay(a);
+1366   2      
+1367   2            }
+1368   1      
+1369   1      }
+1370          
+1371          void flash_8()
+1372          
+1373          {
+1374   1      
+1375   1            uchar i;
+1376   1      
+1377   1            for (i=5;i<8;i++)
+1378   1      
+1379   1            {
+1380   2      
+1381   2                     tranoutchar(i,10000);
+1382   2      
+1383   2                     delay(60000);
+1384   2      
+1385   2                     delay(60000);
+1386   2      
+1387   2            }
+1388   1      
+1389   1      }
+1390          
+1391          void flash_9()
+1392          
+1393          {
+1394   1      
+1395   1            char i;
+1396   1      
+1397   1            uchar j,an[8],x,y,t,x1,y1;
+1398   1      
+1399   1            for (i=0;i<8;i++)
+1400   1      
+1401   1            {
+1402   2      
+1403   2                     box_apeak_xy (i,0,0,i,7,7,1,1);
+1404   2      
+1405   2                     if (i)
+1406   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 24  
+
+1407   2                     box_apeak_xy (i-1,0,0,i-1,7,7,1,0);
+1408   2      
+1409   2                     delay(10000);
+1410   2      
+1411   2            }
+1412   1      
+1413   1            roll_apeak_xy(3,10000);
+1414   1      
+1415   1            roll_apeak_xy(0,10000);
+1416   1      
+1417   1            roll_apeak_xy(1,10000);
+1418   1      
+1419   1            for (i=0;i<7;i++)
+1420   1      
+1421   1            {
+1422   2      
+1423   2                     line(6-i,6-i,0,6-i,6-i,7,1);
+1424   2      
+1425   2                     line(i,7,0,i,7,7,0);
+1426   2      
+1427   2                     delay(10000);
+1428   2      
+1429   2            }
+1430   1      
+1431   1            for (i=0;i<8;i++)
+1432   1      
+1433   1                     an[i]=14;
+1434   1      
+1435   1            for (i=0;i<85;i++)
+1436   1      
+1437   1            {
+1438   2      
+1439   2                     clear(0);
+1440   2      
+1441   2                     for (j=0;j<8;j++)
+1442   2      
+1443   2                     {
+1444   3      
+1445   3                               t=an[j]%28;
+1446   3      
+1447   3                               x=dat2[t]>>5;
+1448   3      
+1449   3                               y=(dat2[t]>>2)&0x07;
+1450   3      
+1451   3                               t=(an[j]-14)%28;
+1452   3      
+1453   3                               x1=dat2[t]>>5;
+1454   3      
+1455   3                               y1=(dat2[t]>>2)&0x07;
+1456   3      
+1457   3                               line(x,y,j,x1,y1,j,1);
+1458   3      
+1459   3                     }
+1460   2      
+1461   2                     for (j=0;j<8;j++)
+1462   2      
+1463   2                     {
+1464   3      
+1465   3                     if ((i>j)&(j>i-71))
+1466   3      
+1467   3                     an[j]++;
+1468   3      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 25  
+
+1469   3                     } 
+1470   2      
+1471   2                     delay(5000);
+1472   2      
+1473   2            }
+1474   1      
+1475   1            for (i=0;i<85;i++)
+1476   1      
+1477   1            {
+1478   2      
+1479   2                     clear(0);
+1480   2      
+1481   2                     for (j=0;j<8;j++)
+1482   2      
+1483   2                     {
+1484   3      
+1485   3                               t=an[j]%28;
+1486   3      
+1487   3                               x=dat2[t]>>5;
+1488   3      
+1489   3                               y=(dat2[t]>>2)&0x07;
+1490   3      
+1491   3                               t=(an[j]-14)%28;
+1492   3      
+1493   3                               x1=dat2[t]>>5;
+1494   3      
+1495   3                               y1=(dat2[t]>>2)&0x07;
+1496   3      
+1497   3                               line(x,y,j,x1,y1,j,1);
+1498   3      
+1499   3                     }
+1500   2      
+1501   2                     for (j=0;j<8;j++)
+1502   2      
+1503   2                     {
+1504   3      
+1505   3                     if ((i>j)&(j>i-71))
+1506   3      
+1507   3                     an[j]--;
+1508   3      
+1509   3                     } 
+1510   2      
+1511   2                     delay(5000);
+1512   2      
+1513   2            }
+1514   1      
+1515   1            for (i=0;i<29;i++)
+1516   1      
+1517   1            {
+1518   2      
+1519   2                     clear(0);
+1520   2      
+1521   2      
+1522   2      
+1523   2                     t=an[0]%28;
+1524   2      
+1525   2                     x=dat2[t]>>5;
+1526   2      
+1527   2                     y=(dat2[t]>>2)&0x07;
+1528   2      
+1529   2                     t=(an[0]-14)%28;
+1530   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 26  
+
+1531   2                     x1=dat2[t]>>5;
+1532   2      
+1533   2                     y1=(dat2[t]>>2)&0x07;
+1534   2      
+1535   2                     box_apeak_xy(x,y,0,x1,y1,7,0,1);
+1536   2      
+1537   2                     box_apeak_xy(x,y,1,x1,y1,6,0,1);
+1538   2      
+1539   2                     an[0]++; 
+1540   2      
+1541   2                     delay(5000);
+1542   2      
+1543   2            }
+1544   1      
+1545   1            for (i=0;i<16;i++)
+1546   1      
+1547   1            {
+1548   2      
+1549   2                     clear(0);
+1550   2      
+1551   2      
+1552   2      
+1553   2                     t=an[0]%28;
+1554   2      
+1555   2                     x=dat2[t]>>5;
+1556   2      
+1557   2                     y=(dat2[t]>>2)&0x07;
+1558   2      
+1559   2                     t=(an[0]-14)%28;
+1560   2      
+1561   2                     x1=dat2[t]>>5;
+1562   2      
+1563   2                     y1=(dat2[t]>>2)&0x07;
+1564   2      
+1565   2                     box_apeak_xy(x,y,0,x1,y1,7,1,1);
+1566   2      
+1567   2                     an[0]--; 
+1568   2      
+1569   2                     delay(5000);
+1570   2      
+1571   2            }
+1572   1      
+1573   1            for (i=0;i<8;i++)
+1574   1      
+1575   1            {
+1576   2      
+1577   2                     line(i,i,0,0,0,i,0);
+1578   2      
+1579   2                     delay(5000);
+1580   2      
+1581   2            }
+1582   1      
+1583   1            for (i=1;i<7;i++)
+1584   1      
+1585   1            {
+1586   2      
+1587   2                     line(i,i,7,7,7,i,0);
+1588   2      
+1589   2                     delay(5000);
+1590   2      
+1591   2            }
+1592   1      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 27  
+
+1593   1            for (i=1;i<8;i++)
+1594   1      
+1595   1            {
+1596   2      
+1597   2                     clear(0);
+1598   2      
+1599   2                     box(7,7,7,7-i,7-i,7-i,0,1);
+1600   2      
+1601   2                     delay(10000);
+1602   2      
+1603   2            }
+1604   1      
+1605   1            for (i=1;i<7;i++)
+1606   1      
+1607   1            {
+1608   2      
+1609   2                     clear(0);
+1610   2      
+1611   2                     box(0,0,0,7-i,7-i,7-i,0,1);
+1612   2      
+1613   2                     delay(10000);
+1614   2      
+1615   2            }
+1616   1      
+1617   1            for (i=1;i<8;i++)
+1618   1      
+1619   1            {
+1620   2      
+1621   2                     clear(0);
+1622   2      
+1623   2                     box(0,0,0,i,i,i,0,1);
+1624   2      
+1625   2                     delay(10000);
+1626   2      
+1627   2            }
+1628   1      
+1629   1            for (i=1;i<7;i++)
+1630   1      
+1631   1            {
+1632   2      
+1633   2                     clear(0);
+1634   2      
+1635   2                     box(7,0,0,i,7-i,7-i,0,1);
+1636   2      
+1637   2                     delay(10000);
+1638   2      
+1639   2            }
+1640   1      
+1641   1            for (i=1;i<8;i++)
+1642   1      
+1643   1            {
+1644   2      
+1645   2                     box(7,0,0,7-i,i,i,1,1);
+1646   2      
+1647   2                     delay(10000);
+1648   2      
+1649   2            }
+1650   1      
+1651   1            for (i=1;i<7;i++)
+1652   1      
+1653   1            {
+1654   2      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 28  
+
+1655   2                     clear(0);
+1656   2      
+1657   2                     box(0,7,7,7-i,i,i,1,1);
+1658   2      
+1659   2                     delay(10000);
+1660   2      
+1661   2            }
+1662   1      
+1663   1      }
+1664          
+1665          void flash_10()
+1666          
+1667          {
+1668   1      
+1669   1            uchar i,j,an[4],x,y,t;
+1670   1      
+1671   1            for (i=1;i<7;i++)
+1672   1      
+1673   1            {
+1674   2      
+1675   2                     
+1676   2      
+1677   2                     clear(0);
+1678   2      
+1679   2                     box(0,6,6,1,7,7,1,1);
+1680   2      
+1681   2                     box(i,6,6-i,i+1,7,7-i,1,1);
+1682   2      
+1683   2                     box(i,6,6,i+1,7,7,1,1);
+1684   2      
+1685   2                     box(0,6,6-i,1,7,7-i,1,1);
+1686   2      
+1687   2                     box(0,6-i,6,1,7-i,7,1,1);
+1688   2      
+1689   2                     box(i,6-i,6-i,i+1,7-i,7-i,1,1);
+1690   2      
+1691   2                     box(i,6-i,6,i+1,7-i,7,1,1);
+1692   2      
+1693   2                     box(0,6-i,6-i,1,7-i,7-i,1,1);
+1694   2      
+1695   2                     delay(30000);
+1696   2      
+1697   2            }
+1698   1      
+1699   1            for (i=0;i<4;i++)
+1700   1      
+1701   1            {
+1702   2      
+1703   2                     an[i]=6*i;
+1704   2      
+1705   2            }
+1706   1      
+1707   1            for (i=0;i<35;i++)
+1708   1      
+1709   1            {
+1710   2      
+1711   2                     clear(0);
+1712   2      
+1713   2                     for(j=0;j<4;j++)
+1714   2      
+1715   2                     {
+1716   3      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 29  
+
+1717   3                               t=an[j]%24;
+1718   3      
+1719   3                               x=dat3[t]>>4;
+1720   3      
+1721   3                               y=dat3[t]&0x0f;
+1722   3      
+1723   3                               box(x,y,0,x+1,y+1,1,1,1);
+1724   3      
+1725   3                               box(x,y,6,x+1,y+1,7,1,1);
+1726   3      
+1727   3                     }
+1728   2      
+1729   2                     for (j=0;j<4;j++)
+1730   2      
+1731   2                     an[j]++; 
+1732   2      
+1733   2                     delay(10000);
+1734   2      
+1735   2            }
+1736   1      
+1737   1            for (i=0;i<35;i++)
+1738   1      
+1739   1            {
+1740   2      
+1741   2                     clear(0);
+1742   2      
+1743   2                     for(j=0;j<4;j++)
+1744   2      
+1745   2                     {
+1746   3      
+1747   3                               t=an[j]%24;
+1748   3      
+1749   3                               x=dat3[t]>>4;
+1750   3      
+1751   3                               y=dat3[t]&0x0f;
+1752   3      
+1753   3                               box(x,y,0,x+1,y+1,1,1,1);
+1754   3      
+1755   3                               box(x,y,6,x+1,y+1,7,1,1);
+1756   3      
+1757   3                     }
+1758   2      
+1759   2                     for (j=0;j<4;j++)
+1760   2      
+1761   2                     an[j]--; 
+1762   2      
+1763   2                     delay(10000);
+1764   2      
+1765   2            }
+1766   1      
+1767   1            for (i=0;i<35;i++)
+1768   1      
+1769   1            {
+1770   2      
+1771   2                     clear(0);
+1772   2      
+1773   2                     for(j=0;j<4;j++)
+1774   2      
+1775   2                     {
+1776   3      
+1777   3                               t=an[j]%24;
+1778   3      
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 30  
+
+1779   3                               x=dat3[t]>>4;
+1780   3      
+1781   3                               y=dat3[t]&0x0f;
+1782   3      
+1783   3                               box(x,0,y,x+1,1,y+1,1,1);
+1784   3      
+1785   3                               box(x,6,y,x+1,7,y+1,1,1);
+1786   3      
+1787   3                     }
+1788   2      
+1789   2                     for (j=0;j<4;j++)
+1790   2      
+1791   2                     an[j]++; 
+1792   2      
+1793   2                     delay(10000);
+1794   2      
+1795   2            }
+1796   1      
+1797   1            for (i=0;i<36;i++)
+1798   1      
+1799   1            {
+1800   2      
+1801   2                     clear(0);
+1802   2      
+1803   2                     for(j=0;j<4;j++)
+1804   2      
+1805   2                     {
+1806   3      
+1807   3                               t=an[j]%24;
+1808   3      
+1809   3                               x=dat3[t]>>4;
+1810   3      
+1811   3                               y=dat3[t]&0x0f;
+1812   3      
+1813   3                               box(x,0,y,x+1,1,y+1,1,1);
+1814   3      
+1815   3                               box(x,6,y,x+1,7,y+1,1,1);
+1816   3      
+1817   3                     }
+1818   2      
+1819   2                     for (j=0;j<4;j++)
+1820   2      
+1821   2                     an[j]--; 
+1822   2      
+1823   2                     delay(10000);
+1824   2      
+1825   2            }
+1826   1      
+1827   1            for (i=6;i>0;i--)
+1828   1            {
+1829   2      
+1830   2                     clear(0);
+1831   2      
+1832   2                     box(0,6,6,1,7,7,1,1);
+1833   2      
+1834   2                     box(i,6,6-i,i+1,7,7-i,1,1);
+1835   2      
+1836   2                     box(i,6,6,i+1,7,7,1,1);
+1837   2      
+1838   2                     box(0,6,6-i,1,7,7-i,1,1);
+1839   2      
+1840   2                     box(0,6-i,6,1,7-i,7,1,1);
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 31  
+
+1841   2      
+1842   2                     box(i,6-i,6-i,i+1,7-i,7-i,1,1);
+1843   2      
+1844   2                     box(i,6-i,6,i+1,7-i,7,1,1);
+1845   2      
+1846   2                     box(0,6-i,6-i,1,7-i,7-i,1,1);
+1847   2      
+1848   2                     delay(30000);
+1849   2      
+1850   2            }
+1851   1      
+1852   1      }
+1853          
+1854          void flash_11()
+1855          {
+1856   1              uchar i,j,t,x,y;
+1857   1              uchar code daa[13]={0,1,2,0x23,5,6,7,6,5,0x23,2,1,0};
+1858   1              for (j=0;j<5;j++)
+1859   1              {
+1860   2                      for (i=0;i<13;i++)
+1861   2                      
+1862   2                      {
+1863   3                      
+1864   3                              if (daa[i]>>4)
+1865   3                              
+1866   3                              {
+1867   4                              
+1868   4                                      t=daa[i]&0x0f;
+1869   4                                      
+1870   4                                      line (0,0,t+1,0,7,t+1,1);
+1871   4                              
+1872   4                              }
+1873   3                              
+1874   3                              else 
+1875   3                              {
+1876   4                                      t=daa[i]; 
+1877   4                              }
+1878   3                              
+1879   3                              line (0,0,t,0,7,t,1);                   
+1880   3                              transss();                      
+1881   3                              delay(10000);           
+1882   3                      }
+1883   2              }
+1884   1              for (j=1;j<8;j++)
+1885   1              
+1886   1              {
+1887   2              
+1888   2                      if (j>3)
+1889   2                      {
+1890   3                      
+1891   3                              t=4;
+1892   3                      }
+1893   2                      else
+1894   2                      {               
+1895   3                              t=j;
+1896   3                      }
+1897   2                      for (i=0;i<24;i+=j)
+1898   2                      {
+1899   3                      
+1900   3                              x=dat3[i]>>4;
+1901   3                              
+1902   3                              y=dat3[i]&0x0f;
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 32  
+
+1903   3                              
+1904   3                              box_apeak_xy(0,x,y,0,x+1,y+1,1,1);
+1905   3                              
+1906   3                              transss();
+1907   3                              
+1908   3                              delay(10000);
+1909   3                      
+1910   3                      }
+1911   2              
+1912   2              }
+1913   1              
+1914   1              for (j=1;j<8;j++)       
+1915   1              {
+1916   2              
+1917   2                      if (j>3)
+1918   2                      {
+1919   3                              t=4;
+1920   3                      }
+1921   2                      else
+1922   2                      {
+1923   3                              t=j;
+1924   3                      }
+1925   2                      for (i=0;i<24;i+=j)
+1926   2                      
+1927   2                      {
+1928   3                      
+1929   3                      x=dat3[i]>>4;
+1930   3                      
+1931   3                      y=dat3[i]&0x0f;
+1932   3                      
+1933   3                      point (0,x,y,1);
+1934   3                      
+1935   3                      transss();
+1936   3                      
+1937   3                      delay(10000);
+1938   3                      
+1939   3                      }
+1940   2              
+1941   2              }
+1942   1      
+1943   1      }
+1944          
+1945          
+1946          void Delay7us()         //@11.0592MHz
+1947          {
+1948   1              unsigned char i;
+1949   1      
+1950   1              _nop_();
+1951   1              _nop_();
+1952   1              _nop_();
+1953   1              i = 16;
+1954   1              while (--i);
+1955   1      }
+1956          
+1957          
+1958          void delay(uint i)
+1959          {                                                                                                     
+1960   1      
+1961   1          while (i--)
+1962   1          {
+1963   2              Delay7us();
+1964   2          }
+C51 COMPILER V9.01   FLASH                                                                 01/08/2019 21:00:41 PAGE 33  
+
+1965   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =  10712    ----
+   CONSTANT SIZE    =    321    ----
+   XDATA SIZE       =   ----     120
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

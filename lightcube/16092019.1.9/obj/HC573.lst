@@ -1,0 +1,138 @@
+C51 COMPILER V9.01   HC573                                                                 01/08/2019 21:00:41 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE HC573
+OBJECT MODULE PLACED IN .\obj\HC573.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE user\HC573.c LARGE OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\o
+                    -bj\HC573.lst) OBJECT(.\obj\HC573.obj)
+
+line level    source
+
+   1          #include"STC12C5A60S2.H" //芯片头文件
+   2          #include <intrins.h>
+   3          typedef unsigned char uchar;
+   4          typedef unsigned int  uint; 
+   5          sbit cs1 = P2^7;   //低电平时，数据锁存
+   6          sbit cs2 = P2^6;
+   7          sbit cs3 = P2^5;
+   8          sbit cs4 = P2^4;
+   9          sbit cs5 = P2^3;
+  10          sbit cs6 = P2^2;
+  11          sbit cs7 = P2^1;
+  12          sbit cs8 = P2^0;
+  13          #define DATA_573 P0 //573的数据端口
+  14          void hang1()
+  15          {
+  16   1      
+  17   1              cs1 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs1 = 0; //
+  18   1              cs2 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs2 = 0; //
+  19   1              cs3 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs3 = 0; //
+  20   1              cs4 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs4 = 0; //
+  21   1              cs5 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs5 = 0; //
+  22   1              cs6 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs6 = 0; //
+  23   1              cs7 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs7 = 0; //
+  24   1              cs8 = 1; _nop_(); DATA_573 = 0xff; _nop_(); cs8 = 0; //
+  25   1      }
+  26          
+  27          void hang2()
+  28          {
+  29   1              cs1 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs1 = 0; //
+  30   1              cs2 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs2 = 0; //
+  31   1              cs3 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs3 = 0; //
+  32   1              cs4 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs4 = 0; //
+  33   1              cs5 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs5 = 0; //
+  34   1              cs6 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs6 = 0; //
+  35   1              cs7 = 1; _nop_(); DATA_573 = 0xff; _nop_(); cs7 = 0; //
+  36   1              cs8 = 1; _nop_(); DATA_573 = 0x00; _nop_(); cs8 = 0; //
+  37   1      }
+  38          
+  39          void hang3()
+  40          {
+  41   1      
+  42   1              cs1 = 1; DATA_573 = 0x00; cs1 = 0; //
+  43   1              cs2 = 1; DATA_573 = 0x00; cs2 = 0; //
+  44   1              cs3 = 1; DATA_573 = 0x00; cs3 = 0; //
+  45   1              cs4 = 1; DATA_573 = 0x00; cs4 = 0; //
+  46   1              cs5 = 1; DATA_573 = 0x00; cs5 = 0; //
+  47   1              cs6 = 1; DATA_573 = 0xff; cs6 = 0; //
+  48   1              cs7 = 1; DATA_573 = 0x00; cs7 = 0; //
+  49   1              cs8 = 1; DATA_573 = 0x00; cs8 = 0; //
+  50   1      }
+  51          
+  52          void hang4()
+  53          {
+  54   1              cs1 = 1; DATA_573 = 0x00; cs1 = 0; //
+C51 COMPILER V9.01   HC573                                                                 01/08/2019 21:00:41 PAGE 2   
+
+  55   1              cs2 = 1; DATA_573 = 0x00; cs2 = 0; //
+  56   1              cs3 = 1; DATA_573 = 0x00; cs3 = 0; //
+  57   1              cs4 = 1; DATA_573 = 0x00; cs4 = 0; //
+  58   1              cs5 = 1; DATA_573 = 0xff; cs5 = 0; //
+  59   1              cs6 = 1; DATA_573 = 0x00; cs6 = 0; //
+  60   1              cs7 = 1; DATA_573 = 0x00; cs7 = 0; //
+  61   1              cs8 = 1; DATA_573 = 0x00; cs8 = 0; //
+  62   1      }
+  63          
+  64          void hang5()
+  65          {
+  66   1              cs1 = 1; DATA_573 = 0x00; cs1 = 0; //
+  67   1              cs2 = 1; DATA_573 = 0x00; cs2 = 0; //
+  68   1              cs3 = 1; DATA_573 = 0x00; cs3 = 0; //
+  69   1              cs4 = 1; DATA_573 = 0xff; cs4 = 0; //
+  70   1              cs5 = 1; DATA_573 = 0x00; cs5 = 0; //
+  71   1              cs6 = 1; DATA_573 = 0x00; cs6 = 0; //
+  72   1              cs7 = 1; DATA_573 = 0x00; cs7 = 0; //
+  73   1              cs8 = 1; DATA_573 = 0x00; cs8 = 0; //
+  74   1      }
+  75          
+  76          void hang6()
+  77          {
+  78   1              cs1 = 1; DATA_573 = 0x00; cs1 = 0; //
+  79   1              cs2 = 1; DATA_573 = 0x00; cs2 = 0; //
+  80   1              cs3 = 1; DATA_573 = 0xff; cs3 = 0; //
+  81   1              cs4 = 1; DATA_573 = 0x00; cs4 = 0; //
+  82   1              cs5 = 1; DATA_573 = 0x00; cs5 = 0; //
+  83   1              cs6 = 1; DATA_573 = 0x00; cs6 = 0; //
+  84   1              cs7 = 1; DATA_573 = 0x00; cs7 = 0; //
+  85   1              cs8 = 1; DATA_573 = 0x00; cs8 = 0; //
+  86   1      }
+  87          
+  88          void hang7()
+  89          {
+  90   1              cs1 = 1; DATA_573 = 0x00; cs1 = 0; //
+  91   1              cs2 = 1; DATA_573 = 0xff; cs2 = 0; //
+  92   1              cs3 = 1; DATA_573 = 0x00; cs3 = 0; //
+  93   1              cs4 = 1; DATA_573 = 0x00; cs4 = 0; //
+  94   1              cs5 = 1; DATA_573 = 0x00; cs5 = 0; //
+  95   1              cs6 = 1; DATA_573 = 0x00; cs6 = 0; //
+  96   1              cs7 = 1; DATA_573 = 0x00; cs7 = 0; //
+  97   1              cs8 = 1; DATA_573 = 0x00; cs8 = 0; //
+  98   1      }
+  99          
+ 100          void hang8()
+ 101          {
+ 102   1              cs1 = 1; DATA_573 = 0xff; cs1 = 0; //
+ 103   1              cs2 = 1; DATA_573 = 0x00; cs2 = 0; //
+ 104   1              cs3 = 1; DATA_573 = 0x00; cs3 = 0; //
+ 105   1              cs4 = 1; DATA_573 = 0x00; cs4 = 0; //
+ 106   1              cs5 = 1; DATA_573 = 0x00; cs5 = 0; //
+ 107   1              cs6 = 1; DATA_573 = 0x00; cs6 = 0; //
+ 108   1              cs7 = 1; DATA_573 = 0x00; cs7 = 0; //
+ 109   1              cs8 = 1; DATA_573 = 0x00; cs8 = 0; //
+ 110   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    440    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.01   HC573                                                                 01/08/2019 21:00:41 PAGE 3   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

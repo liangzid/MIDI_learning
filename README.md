@@ -47,3 +47,16 @@ pip install pudub
 ```
 pip install pygame
 ```
+### 安装librosa
+```
+pip install librosa
+```
+# 配置单片机端
+硬件部分：单片机端包含两个硬件环节，一个是使用IAP15F2K61S2来控制按键和灯光的部分，另一个是使用STC12C来控制光立方和AD转换
+的部分。这两个部分的设计原理图和PCB版图局部可见项目文件中。
+# 声明
+啊，想到了再写。
+
+
+
+
